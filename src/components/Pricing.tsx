@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check, Zap } from 'lucide-react';
+import { Check, Zap, ShieldCheck } from 'lucide-react';
 
 export default function Pricing() {
   const scrollToContact = () => {
@@ -7,7 +7,7 @@ export default function Pricing() {
   };
 
   const features = [
-    'Multi-Page/One-Page setup (strona główna, o nas, oferta, kontakt)',
+    'Multi-Page setup (strona główna, o nas, oferta, kontakt)',
     'Formularz kontaktowy z integracją',
     'Konfiguracja domeny',
     'Responsywny design mobilny',
@@ -51,7 +51,16 @@ export default function Pricing() {
                 <span className="text-6xl md:text-7xl font-bold text-white">500</span>
                 <span className="text-3xl text-gray-300 mb-2">zł</span>
               </div>
-              <p className="text-brand-neon text-lg mt-2">Jednorazowa płatność</p>
+              
+              {/* ZMIANA: Jasna informacja o modelu płatności */}
+              <div className="mt-4 bg-brand-navy/50 rounded-xl p-4 border border-brand-neon/30 inline-block">
+                <p className="text-brand-neon font-bold text-lg">
+                  Startujesz za jedyne 100 zł zaliczki!
+                </p>
+                <p className="text-gray-400 text-sm mt-1">
+                  Pozostałe 400 zł płacisz dopiero po odebraniu gotowej strony.
+                </p>
+              </div>
             </div>
 
             <div className="space-y-4 mb-8">
@@ -70,6 +79,20 @@ export default function Pricing() {
                   <span className="text-gray-300">{feature}</span>
                 </motion.div>
               ))}
+              
+              {/* Dodatkowy punkt o bezpieczeństwie */}
+              <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.7 }}
+                  className="flex items-start gap-3 pt-2"
+                >
+                  <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <ShieldCheck className="w-4 h-4 text-green-500" />
+                  </div>
+                  <span className="text-white font-medium">Gwarancja Satysfakcji: Jeśli projekt Ci się nie spodoba – zwracamy 100% zaliczki.</span>
+                </motion.div>
             </div>
 
             <motion.button
@@ -78,7 +101,7 @@ export default function Pricing() {
               onClick={scrollToContact}
               className="w-full bg-gradient-to-r from-brand-neon to-brand-blue text-black font-bold text-xl px-8 py-5 rounded-full hover:shadow-2xl hover:shadow-brand-neon/50 transition-all"
             >
-              Zamów Teraz
+              Zamów Teraz (Start 100 zł)
             </motion.button>
 
             <p className="text-center text-gray-400 text-sm mt-6">
