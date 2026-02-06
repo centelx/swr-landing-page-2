@@ -7,7 +7,7 @@ export default function Pricing() {
   };
 
   const features = [
-    'Multi-Page setup (strona główna, o nas, oferta, kontakt)',
+    'Multi-Page/One-Page setup (strona główna, o nas, oferta, kontakt)',
     'Formularz kontaktowy z integracją',
     'Konfiguracja domeny',
     'Responsywny design mobilny',
