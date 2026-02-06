@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check, Crown } from 'lucide-react';
+import { Check, Crown, AlertCircle, Sparkles } from 'lucide-react';
 
 export default function Maintenance() {
   const scrollToContact = () => {
@@ -11,39 +11,45 @@ export default function Maintenance() {
       name: 'START',
       price: '29',
       subtext: 'przy płatności rocznej',
-      monthlyOption: 'lub 49 zł przy płatności co miesiąc',
+      monthlyOption: 'lub 49 zł miesięcznie',
       popular: false,
+      // Wabik negatywny: Klient widzi ryzyko dodatkowych kosztów
+      warning: 'Każda zmiana na stronie: 100 zł', 
       features: [
-        'Hosting i utrzymanie',
-        'Monitoring dostępności',
-        '1 kopia zapasowa miesięcznie',
-        'Wsparcie mailowe',
+        'Hosting i domena techniczna',
+        'Certyfikat SSL',
+        'Monitoring dostępności 24/7',
+        'Kopie zapasowe (raz na mc)',
       ],
     },
     {
       name: 'STANDARD',
-      price: '149',
+      price: '99', // Zmniejszone ze 149 na 99, by łatwiej przeskoczyć z 49
+      subtext: 'przy płatności rocznej',
+      monthlyOption: 'lub 129 zł miesięcznie',
       popular: true,
+      // Wabik pozytywny: Wartość dodana przewyższa różnicę w cenie
+      highlight: 'Oszczędzasz 100 zł na poprawkach',
       features: [
         'Wszystko z pakietu START',
-        '1 aktualizacja treści miesięcznie',
-        'Priorytetowa odpowiedź 24-48h',
-        'Drobne poprawki graficzne',
-        'Optymalizacja CTA',
+        '1h prac programisty w cenie (wart. 100 zł)',
+        'Priorytetowa pomoc w razie awarii',
+        'Aktualizacje zabezpieczeń',
+        'Drobne zmiany graficzne',
       ],
     },
     {
       name: 'PREMIUM',
       price: '299',
+      subtext: 'przy płatności rocznej',
+      monthlyOption: 'fakturowane miesięcznie',
       popular: false,
       features: [
         'Wszystko z pakietu STANDARD',
-        'Nielimitowane aktualizacje treści',
-        'Nowe podstrony (2-3/rok)',
-        'Raporty i analityka',
-        'Testy A/B',
-        'Wsparcie SEO lokalne',
-        'WhatsApp 24/7',
+        'Nielimitowane drobne zmiany',
+        'Raporty SEO i analityka',
+        'Dodawanie nowych podstron',
+        'Opiekun klienta na WhatsApp',
       ],
     },
   ];
@@ -62,7 +68,7 @@ export default function Maintenance() {
             Pakiety Utrzymania
           </h2>
           <p className="text-xl text-gray-400">
-            Dbamy o Twoją stronę, abyś mógł skupić się na biznesie
+            Święty spokój to najlepsza inwestycja
           </p>
         </motion.div>
 
@@ -76,43 +82,61 @@ export default function Maintenance() {
               transition={{ duration: 0.6, delay: 0.1 * index }}
               className={`relative rounded-2xl p-8 flex flex-col h-full ${
                 plan.popular
-                  ? 'bg-gradient-to-br from-brand-neon/10 to-brand-blue/10 border-2 border-brand-neon shadow-lg shadow-brand-neon/20'
+                  ? 'bg-gradient-to-br from-brand-neon/10 to-brand-blue/10 border-2 border-brand-neon shadow-lg shadow-brand-neon/20 transform md:-translate-y-4'
                   : 'bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-2 border-gray-700'
               }`}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <div className="bg-gradient-to-r from-brand-neon to-brand-blue text-black px-4 py-1 rounded-full text-sm font-bold flex items-center gap-1">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-full text-center">
+                  <div className="bg-gradient-to-r from-brand-neon to-brand-blue text-black px-6 py-1.5 rounded-full text-sm font-bold inline-flex items-center gap-2 shadow-lg">
                     <Crown className="w-4 h-4" />
-                    NAJPOPULARNIEJSZY
+                    NAJCZĘŚCIEJ WYBIERANY
                   </div>
                 </div>
               )}
 
-              <div className="text-center mb-6">
+              <div className="text-center mb-6 pt-4">
                 <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-brand-neon' : 'text-white'}`}>
                   {plan.name}
                 </h3>
-                <div className="flex flex-col items-center justify-center">
-                  <div className="flex items-end gap-2">
+                
+                <div className="flex flex-col items-center justify-center min-h-[100px]">
+                  <div className="flex items-end gap-1">
                     <span className="text-5xl font-bold text-white">{plan.price}</span>
-                    <span className="text-gray-400 mb-2">zł/mc</span>
+                    <span className="text-xl text-gray-400 mb-1">zł/mc</span>
                   </div>
-                  {/* Logika dla pakietu START z podwójną ceną */}
-                  {plan.name === 'START' && (
-                     <>
-                       <span className="text-xs text-brand-neon mt-1 font-medium">{plan.subtext}</span>
-                       <span className="text-xs text-gray-500 mt-1">{plan.monthlyOption}</span>
-                     </>
-                  )}
+                  <span className="text-xs text-brand-accent mt-1 font-medium tracking-wide uppercase">
+                    {plan.subtext}
+                  </span>
+                  <span className="text-xs text-gray-500 mt-1">
+                    {plan.monthlyOption}
+                  </span>
+                </div>
+
+                {/* Sekcja Wabika - Ostrzeżenie lub Korzyść */}
+                <div className="mt-6 min-h-[40px] flex items-center justify-center">
+                    {plan.warning && (
+                        <div className="flex items-center gap-2 text-red-400 bg-red-900/20 px-3 py-2 rounded-lg text-sm font-medium border border-red-500/30">
+                            <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                            {plan.warning}
+                        </div>
+                    )}
+                    {plan.highlight && (
+                        <div className="flex items-center gap-2 text-brand-neon bg-brand-neon/10 px-3 py-2 rounded-lg text-sm font-medium border border-brand-neon/30">
+                            <Sparkles className="w-4 h-4 flex-shrink-0" />
+                            {plan.highlight}
+                        </div>
+                    )}
                 </div>
               </div>
 
-              <ul className="space-y-3 mb-8 flex-grow">
+              <div className="border-t border-gray-700 my-6"></div>
+
+              <ul className="space-y-4 mb-8 flex-grow">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3 text-gray-300">
                     <Check className={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.popular ? 'text-brand-neon' : 'text-gray-500'}`} />
-                    <span className="text-sm">{feature}</span>
+                    <span className="text-sm leading-snug">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -121,13 +145,13 @@ export default function Maintenance() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={scrollToContact}
-                className={`w-full font-bold py-3 rounded-full transition-all mt-auto ${
+                className={`w-full font-bold py-4 rounded-xl transition-all mt-auto ${
                   plan.popular
                     ? 'bg-gradient-to-r from-brand-neon to-brand-blue text-black hover:shadow-xl hover:shadow-brand-neon/50'
-                    : 'bg-white/10 text-white hover:bg-white/20 border border-gray-600'
+                    : 'bg-white/5 text-white hover:bg-white/10 border border-gray-600 hover:border-gray-500'
                 }`}
               >
-                Wybierz Pakiet
+                Wybieram {plan.name}
               </motion.button>
             </motion.div>
           ))}
