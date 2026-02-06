@@ -40,11 +40,11 @@ export default function Comparison() {
               </li>
               <li className="flex items-start gap-3 text-gray-300">
                 <X className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
-                <span><strong className="text-white">Technologia:</strong> Stare szablony Wordpress</span>
+                <span><strong className="text-white">Technologia:</strong> Wolne, gotowe szablony (ciężkie wczytywanie)</span>
               </li>
               <li className="flex items-start gap-3 text-gray-300">
                 <X className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
-                <span><strong className="text-white">Zmiany:</strong> Drogie poprawki</span>
+                <span><strong className="text-white">Zmiany:</strong> Płatne za każdą godzinę pracy</span>
               </li>
             </ul>
           </motion.div>
@@ -68,11 +68,11 @@ export default function Comparison() {
               </li>
               <li className="flex items-start gap-3 text-gray-300">
                 <Check className="w-6 h-6 text-brand-neon flex-shrink-0 mt-1" />
-                <span><strong className="text-white">Technologia:</strong> Czysty Kod + AI</span>
+                <span><strong className="text-white">Technologia:</strong> Strona lekka i szybka (Google to lubi)</span>
               </li>
               <li className="flex items-start gap-3 text-gray-300">
                 <Check className="w-6 h-6 text-brand-neon flex-shrink-0 mt-1" />
-                <span><strong className="text-white">Zmiany:</strong> Poprawki w cenie (7 dni)</span>
+                <span><strong className="text-white">Zmiany:</strong> Poprawki w cenie pakietu</span>
               </li>
             </ul>
           </motion.div>
