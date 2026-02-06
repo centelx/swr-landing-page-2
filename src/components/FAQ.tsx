@@ -11,25 +11,28 @@ export default function FAQ() {
       answer: 'Używamy nowoczesnych narzędzi AI i automatyzacji, co pozwala nam zredukować czas pracy z tygodni do godzin. Nie mamy kosztów dużych agencji - nie płacisz za biura, handlowców czy nadmiarowy personel. Po prostu uczciwa praca za uczciwą cenę.',
     },
     {
-      // ZAKTUALIZOWANE PYTANIE I ODPOWIEDŹ
+      question: 'Co jeżeli strona mi się nie spodoba?',
+      answer: 'Nic nie ryzykujesz. Wpłacasz jedynie 100 zł zaliczki, która jest w 100% zwrotna. Pracujemy nad Twoją stroną i wprowadzamy poprawki tak długo, aż powiesz "To jest to!". Jeśli mimo naszych starań nie dojdziemy do porozumienia (co jeszcze nam się nie zdarzyło), po prostu oddajemy Ci pieniądze. Płacisz pełną kwotę (pozostałe 400 zł) tylko wtedy, gdy jesteś w pełni zadowolony z efektu.',
+    },
+    {
       question: 'Czy muszę płacić całość z góry?',
-      answer: 'Nie! Aby rozpocząć pracę i zarezerwować termin, pobieramy jedynie symboliczną zaliczkę w wysokości 100 zł. Pozostałą kwotę (400 zł) wpłacasz dopiero, gdy strona będzie gotowa i w pełni Ci się spodoba. Zaliczka jest w 100% zwrotna – jeśli nie będziemy w stanie spełnić Twoich oczekiwań, oddajemy Ci pieniądze. Choć szczerze mówiąc, jeszcze nam się to nie zdarzyło – pracujemy nad stroną tak długo, aż będziesz zachwycony.',
+      answer: 'Nie! Aby rozpocząć pracę, pobieramy tylko symboliczną zaliczkę 100 zł. Resztę kwoty (400 zł) wpłacasz dopiero po zaakceptowaniu gotowej strony. To uczciwy układ, w którym obie strony czują się bezpiecznie.',
+    },
+    {
+      question: 'Czy 500 zł to wszystko?',
+      answer: 'Tak, 500 zł to pełna cena za projekt strony. Jedyne dodatkowe koszty to hosting (utrzymanie strony w sieci) i domena (adres www). Możesz skorzystać z naszych pakietów (hosting 1 miesiąc gratis, potem 29 zł/mc przy płatności rocznej) lub własnego dostawcy.',
     },
     {
       question: 'Czy naprawdę 24 godziny?',
-      answer: 'Tak! Po zatwierdzeniu szczegółów projektu (logo, teksty, zdjęcia) Twoja strona jest gotowa w ciągu 24 godzin roboczych. W praktyce często dostarczamy jeszcze szybciej.',
+      answer: 'Tak! Po zatwierdzeniu szczegółów projektu (logo, teksty, zdjęcia) Twoja strona jest gotowa w ciągu 24 godzin roboczych. Często działamy szybciej.',
     },
     {
-      question: 'Co jeśli coś trzeba zmienić?',
-      answer: 'Masz 7 dni na darmowe poprawki po dostawie strony. Jeśli coś nie pasuje - zmieniamy to bez dodatkowych kosztów. Po tym okresie oferujemy pakiety utrzymania z regularnymi aktualizacjami.',
+      question: 'Co jeśli coś trzeba zmienić po odebraniu strony?',
+      answer: 'Masz 7 dni na darmowe poprawki po dostawie strony. Jeśli coś nie pasuje - zmieniamy to bez dodatkowych kosztów. Po tym okresie oferujemy pakiety utrzymania, w ramach których również wprowadzamy aktualizacje.',
     },
     {
       question: 'Czy dostaję kod źródłowy?',
-      answer: 'Tak! Dostajesz pełen kod źródłowy swojej strony. To Twoja własność. Możesz w każdej chwili przenieść się do innego dostawcy lub modyfikować stronę samodzielnie.',
-    },
-    {
-      question: 'Czy strona będzie responsywna?',
-      answer: 'Absolutnie! Wszystkie nasze strony są w pełni responsywne i wyglądają perfekcyjnie na smartfonach, tabletach i komputerach. To standard, nie opcja.',
+      answer: 'Tak! Dostajesz pełen kod źródłowy swojej strony. To Twoja własność. Możesz w każdej chwili przenieść się do innego dostawcy.',
     },
   ];
 
