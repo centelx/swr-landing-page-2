@@ -1,31 +1,29 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Smartphone, Monitor } from 'lucide-react';
+import { ExternalLink, MousePointerClick } from 'lucide-react';
 
 export default function Portfolio() {
   const projects = [
     {
       title: 'Auto-Serwis "Błysk"',
       category: 'Motoryzacja',
-      image: 'from-orange-500/20 to-red-500/20', // Tu docelowo ścieżka do zdjęcia
+      // Pamiętaj: Tutaj muszą być DŁUGIE zrzuty ekranu całej strony (Full Page Screenshot)
+      image: '/projekt1-long.png', 
       description: 'Strona wizytówka z szybkim umawianiem wizyt. Czas realizacji: 22h.',
       link: '#',
-      type: 'mobile' // lub 'desktop'
     },
     {
       title: 'Salon Urody "Elegance"',
       category: 'Beauty & Wellness',
-      image: 'from-pink-500/20 to-purple-500/20',
+      image: '/projekt2-long.png',
       description: 'Elegancki design z cennikiem i galerią prac. Czas realizacji: 24h.',
       link: '#',
-      type: 'mobile'
     },
     {
       title: 'Remonty Kowalski',
       category: 'Budownictwo',
-      image: 'from-blue-500/20 to-cyan-500/20',
+      image: '/projekt3-long.png',
       description: 'Prosta strona ofertowa nastawiona na pozyskiwanie telefonów.',
       link: '#',
-      type: 'desktop'
     }
   ];
 
@@ -43,7 +41,7 @@ export default function Portfolio() {
             Nasze Realizacje
           </h2>
           <p className="text-xl text-gray-400">
-            Zobacz, co stworzyliśmy w zaledwie 24 godziny
+            Najedź na projekt, aby zobaczyć całość
           </p>
         </motion.div>
 
@@ -55,37 +53,43 @@ export default function Portfolio() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 * index }}
-              className="group relative bg-brand-navy/50 border border-gray-700 rounded-2xl overflow-hidden hover:border-brand-neon/50 transition-all duration-300"
+              className="group bg-brand-navy/50 border border-gray-700 rounded-2xl overflow-hidden hover:border-brand-neon/50 transition-all duration-300"
             >
-              {/* Podgląd Strony (Mockup) */}
-              <div className="relative h-64 overflow-hidden bg-gray-900">
-                {/* Gradient jako placeholder - podmień to na <img> */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.image} group-hover:scale-105 transition-transform duration-500`}></div>
+              {/* OKNO PRZEGLĄDARKI (SCROLL CONTAINER) */}
+              <div className="relative h-72 w-full overflow-hidden bg-gray-900 border-b border-gray-800">
                 
-                {/* Nakładka przy hoverze */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
-                  <a 
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer" 
-                    className="flex items-center gap-2 bg-brand-neon text-black font-bold px-6 py-3 rounded-full hover:shadow-lg hover:shadow-brand-neon/50 transition-all transform translate-y-4 group-hover:translate-y-0"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    Zobacz na żywo
-                  </a>
+                {/* Obrazek - Tutaj dzieje się magia */}
+                <div className="w-full h-auto transition-transform duration-[4000ms] ease-linear group-hover:-translate-y-[calc(100%-18rem)]">
+                   <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-auto object-cover object-top"
+                  />
                 </div>
 
-                {/* Ikona typu urządzenia */}
-                <div className="absolute top-4 right-4 bg-black/50 p-2 rounded-lg backdrop-blur-md">
-                  {project.type === 'mobile' ? (
-                    <Smartphone className="w-4 h-4 text-white" />
-                  ) : (
-                    <Monitor className="w-4 h-4 text-white" />
-                  )}
+                {/* Instrukcja "Hover me" (znika po najechaniu) */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+                  <div className="bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2 text-white/80 text-sm">
+                    <MousePointerClick className="w-4 h-4" />
+                    Najedź, aby przewinąć
+                  </div>
+                </div>
+
+                {/* Przycisk Linku (pojawia się na dole po najechaniu) */}
+                <div className="absolute bottom-4 right-4 translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <a 
+                    href={project.link}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-brand-neon text-black font-bold px-4 py-2 rounded-lg shadow-lg hover:bg-white transition-colors text-sm"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Live Demo
+                  </a>
                 </div>
               </div>
 
-              {/* Treść */}
+              {/* Opis pod spodem */}
               <div className="p-6">
                 <div className="text-xs font-bold text-brand-neon mb-2 uppercase tracking-wider">
                   {project.category}
@@ -93,29 +97,13 @@ export default function Portfolio() {
                 <h3 className="text-xl font-bold text-white mb-2">
                   {project.title}
                 </h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                <p className="text-gray-400 text-sm leading-relaxed">
                   {project.description}
                 </p>
               </div>
             </motion.div>
           ))}
         </div>
-        
-        {/* Przycisk CTA pod portfolio */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="text-center mt-12"
-        >
-          <p className="text-gray-400 mb-6">Podoba Ci się ten styl?</p>
-          <button 
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="inline-flex items-center gap-2 text-brand-neon border-b border-brand-neon hover:text-white hover:border-white transition-colors pb-1 font-semibold"
-          >
-            Chcę taką samą stronę
-          </button>
-        </motion.div>
       </div>
     </section>
   );
