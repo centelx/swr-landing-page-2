@@ -7,7 +7,7 @@ export default function Portfolio() {
       title: 'Auto-Serwis "Błysk"',
       category: 'Motoryzacja',
       // Pamiętaj: Tutaj muszą być DŁUGIE zrzuty ekranu całej strony (Full Page Screenshot)
-      image: '/projekt1-long.png', 
+      image: '/screen1.png', 
       description: 'Strona wizytówka z szybkim umawianiem wizyt. Czas realizacji: 22h.',
       link: '#',
     },
