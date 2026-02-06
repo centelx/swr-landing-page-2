@@ -13,7 +13,7 @@ export default function Maintenance() {
       subtext: 'przy płatności rocznej',
       monthlyOption: 'lub 49 zł miesięcznie',
       popular: false,
-      // Wabik negatywny: Klient widzi ryzyko dodatkowych kosztów
+      // Wabik negatywny
       warning: 'Każda zmiana na stronie: 100 zł', 
       features: [
         'Hosting i domena techniczna',
@@ -24,11 +24,11 @@ export default function Maintenance() {
     },
     {
       name: 'STANDARD',
-      price: '99', // Zmniejszone ze 149 na 99, by łatwiej przeskoczyć z 49
+      price: '99', 
       subtext: 'przy płatności rocznej',
       monthlyOption: 'lub 129 zł miesięcznie',
       popular: true,
-      // Wabik pozytywny: Wartość dodana przewyższa różnicę w cenie
+      // Wabik pozytywny
       highlight: 'Oszczędzasz 100 zł na poprawkach',
       features: [
         'Wszystko z pakietu START',
@@ -41,8 +41,9 @@ export default function Maintenance() {
     {
       name: 'PREMIUM',
       price: '299',
-      subtext: 'przy płatności rocznej',
-      monthlyOption: 'fakturowane miesięcznie',
+      // ZMIANA: Tylko płatność miesięczna
+      subtext: 'płatność co miesiąc',
+      monthlyOption: 'Możesz zrezygnować w każdej chwili', 
       popular: false,
       features: [
         'Wszystko z pakietu STANDARD',
@@ -113,7 +114,7 @@ export default function Maintenance() {
                   </span>
                 </div>
 
-                {/* Sekcja Wabika - Ostrzeżenie lub Korzyść */}
+                {/* Sekcja Wabika */}
                 <div className="mt-6 min-h-[40px] flex items-center justify-center">
                     {plan.warning && (
                         <div className="flex items-center gap-2 text-red-400 bg-red-900/20 px-3 py-2 rounded-lg text-sm font-medium border border-red-500/30">
