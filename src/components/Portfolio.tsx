@@ -8,20 +8,20 @@ export default function Portfolio() {
       category: 'Motoryzacja',
       // Pamiętaj: Tutaj muszą być DŁUGIE zrzuty ekranu całej strony (Full Page Screenshot)
       image: '/screen1.png', 
-      description: 'Strona wizytówka z szybkim umawianiem wizyt. Czas realizacji: 22h.',
+      description: 'Strona wizytówka z szybkim umawianiem wizyt. Czas realizacji: 16h.',
       link: '#',
     },
     {
       title: 'Salon Urody "Elegance"',
       category: 'Beauty & Wellness',
-      image: '/projekt2-long.png',
-      description: 'Elegancki design z cennikiem i galerią prac. Czas realizacji: 24h.',
+      image: '/screen2.png',
+      description: 'Elegancki design z cennikiem i galerią prac. Czas realizacji: 20h.',
       link: '#',
     },
     {
       title: 'Remonty Kowalski',
       category: 'Budownictwo',
-      image: '/projekt3-long.png',
+      image: '/screen3.png',
       description: 'Prosta strona ofertowa nastawiona na pozyskiwanie telefonów.',
       link: '#',
     }
