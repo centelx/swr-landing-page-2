@@ -11,8 +11,9 @@ export default function FAQ() {
       answer: 'Używamy nowoczesnych narzędzi AI i automatyzacji, co pozwala nam zredukować czas pracy z tygodni do godzin. Nie mamy kosztów dużych agencji - nie płacisz za biura, handlowców czy nadmiarowy personel. Po prostu uczciwa praca za uczciwą cenę.',
     },
     {
-      question: 'Czy 500 zł to wszystko?',
-      answer: 'Tak, 500 zł to pełna cena za stronę internetową. Jedyne dodatkowe koszty to opcjonalny hosting (jeśli wybierzesz własny) i ewentualna domena (około 50-70 zł/rok). Wszystko jest transparentne - bez ukrytych opłat.',
+      // ZAKTUALIZOWANE PYTANIE I ODPOWIEDŹ
+      question: 'Czy muszę płacić całość z góry?',
+      answer: 'Nie! Aby rozpocząć pracę i zarezerwować termin, pobieramy jedynie symboliczną zaliczkę w wysokości 100 zł. Pozostałą kwotę (400 zł) wpłacasz dopiero, gdy strona będzie gotowa i w pełni Ci się spodoba. Zaliczka jest w 100% zwrotna – jeśli nie będziemy w stanie spełnić Twoich oczekiwań, oddajemy Ci pieniądze. Choć szczerze mówiąc, jeszcze nam się to nie zdarzyło – pracujemy nad stroną tak długo, aż będziesz zachwycony.',
     },
     {
       question: 'Czy naprawdę 24 godziny?',
