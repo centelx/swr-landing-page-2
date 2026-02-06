@@ -9,7 +9,9 @@ export default function Maintenance() {
   const plans = [
     {
       name: 'START',
-      price: '49',
+      price: '29',
+      subtext: 'przy płatności rocznej',
+      monthlyOption: 'lub 49 zł przy płatności co miesiąc',
       popular: false,
       features: [
         'Hosting i utrzymanie',
@@ -72,7 +74,7 @@ export default function Maintenance() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 * index }}
-              className={`relative rounded-2xl p-8 ${
+              className={`relative rounded-2xl p-8 flex flex-col h-full ${
                 plan.popular
                   ? 'bg-gradient-to-br from-brand-neon/10 to-brand-blue/10 border-2 border-brand-neon shadow-lg shadow-brand-neon/20'
                   : 'bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-2 border-gray-700'
@@ -91,13 +93,22 @@ export default function Maintenance() {
                 <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-brand-neon' : 'text-white'}`}>
                   {plan.name}
                 </h3>
-                <div className="flex items-end justify-center gap-2">
-                  <span className="text-5xl font-bold text-white">{plan.price}</span>
-                  <span className="text-gray-400 mb-2">zł/mc</span>
+                <div className="flex flex-col items-center justify-center">
+                  <div className="flex items-end gap-2">
+                    <span className="text-5xl font-bold text-white">{plan.price}</span>
+                    <span className="text-gray-400 mb-2">zł/mc</span>
+                  </div>
+                  {/* Logika dla pakietu START z podwójną ceną */}
+                  {plan.name === 'START' && (
+                     <>
+                       <span className="text-xs text-brand-neon mt-1 font-medium">{plan.subtext}</span>
+                       <span className="text-xs text-gray-500 mt-1">{plan.monthlyOption}</span>
+                     </>
+                  )}
                 </div>
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8 flex-grow">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3 text-gray-300">
                     <Check className={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.popular ? 'text-brand-neon' : 'text-gray-500'}`} />
@@ -110,7 +121,7 @@ export default function Maintenance() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={scrollToContact}
-                className={`w-full font-bold py-3 rounded-full transition-all ${
+                className={`w-full font-bold py-3 rounded-full transition-all mt-auto ${
                   plan.popular
                     ? 'bg-gradient-to-r from-brand-neon to-brand-blue text-black hover:shadow-xl hover:shadow-brand-neon/50'
                     : 'bg-white/10 text-white hover:bg-white/20 border border-gray-600'
