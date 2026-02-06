@@ -8,7 +8,7 @@ export default function TopBar() {
         animate={{ scale: [1, 1.02, 1] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        GWARANCJA AKTUALNEJ CENY DO 23:59
+        Możemy wykonać tylko 3 takie projekty dziennie. Dostępne sloty na jutro: 1.
       </motion.p>
     </div>
   );
