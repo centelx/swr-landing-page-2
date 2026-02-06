@@ -12,7 +12,7 @@ export default function Pricing() {
     'Konfiguracja domeny',
     'Responsywny design mobilny',
     'Optymalizacja SEO',
-    'Hosting i SSL w cenie na pierwszy miesiąc',
+    'Hosting i SSL: 1 miesiąc GRATIS (potem tylko 29 zł/mc - najtaniej na rynku)',
   ];
 
   return (
