@@ -7,24 +7,7 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
   return (
     <div className="fixed inset-0 z-[100] bg-gray-950 flex flex-col h-screen w-screen">
       
-      {/* --- NOWOŚĆ: Style do ukrywania paska przewijania na mobile --- */}
-      {device === 'mobile' && (
-        <style>
-          {`
-            /* Dla Chrome, Safari i Opera */
-            .no-scrollbar::-webkit-scrollbar {
-              display: none;
-            }
-            /* Dla IE, Edge i Firefox */
-            .no-scrollbar {
-              -ms-overflow-style: none;  /* IE i Edge */
-              scrollbar-width: none;  /* Firefox */
-            }
-          `}
-        </style>
-      )}
-      
-      {/* 1. TOP BAR (PASEK SPRZEDAŻOWY) */}
+      {/* 1. TOP BAR */}
       <div className="h-16 bg-brand-navy border-b border-gray-700 flex items-center justify-between px-4 md:px-8 shadow-xl relative z-10 flex-shrink-0">
         
         {/* Lewa: Powrót */}
@@ -36,7 +19,7 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
           <span className="hidden md:inline">Zamknij podgląd</span>
         </button>
 
-        {/* Środek: Przełącznik urządzeń */}
+        {/* Środek: Przełącznik */}
         <div className="hidden md:flex bg-gray-800 rounded-lg p-1 border border-gray-700">
           <button 
             onClick={() => setDevice('desktop')}
@@ -70,34 +53,38 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
         </div>
       </div>
 
-      {/* 2. OBSZAR PODGLĄDU (IFRAME CONTAINER) */}
+      {/* 2. OBSZAR PODGLĄDU */}
       <div className="flex-1 bg-gray-900 w-full flex items-center justify-center overflow-hidden p-4 md:p-8 relative">
         
-        {/* KONTENER SYMULUJĄCY URZĄDZENIE */}
-        <div className={`transition-all duration-500 ease-in-out relative shadow-2xl mx-auto flex flex-col ${
+        {/* KONTENER URZĄDZENIA */}
+        <div className={`transition-all duration-500 ease-in-out relative shadow-2xl mx-auto flex flex-col bg-white ${
             device === 'mobile' 
-                /* ZMIANA: Dodano max-h-[85vh] żeby telefon nie był za długi na małych ekranach */
-                ? 'w-[375px] h-[812px] max-h-[85vh] bg-black rounded-[3rem] border-[14px] border-gray-800 overflow-hidden ring-4 ring-black/50'
-                : 'w-full h-full bg-white rounded-lg border border-gray-700'
+                /* ZMIANA 1: Szerokość 430px (iPhone Pro Max) i max-h-80vh żeby nie był za długi */
+                ? 'w-[430px] h-[850px] max-h-[80vh] rounded-[3rem] border-[12px] border-gray-800 ring-4 ring-black/50'
+                : 'w-full h-full rounded-lg border border-gray-700'
         }`}>
             
-            {/* "Notch" (wcięcie) - tylko na mobile */}
+            {/* Notch - tylko na mobile */}
             {device === 'mobile' && (
                  <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[30px] w-[120px] bg-gray-800 rounded-b-2xl z-20 pointer-events-none border-b border-x border-gray-900/50"></div>
             )}
 
-            {/* IFRAME WŁAŚCIWY */}
-            <iframe 
-              src={projectUrl} 
-              title="Podgląd strony"
-              /* ZMIANA: Dodano klasę 'no-scrollbar' na mobile oraz zaokrąglenie rogów */
-              className={`w-full h-full bg-white flex-1 ${device === 'mobile' ? 'no-scrollbar rounded-[2.5rem]' : ''}`}
-              // Ważne dla bezpieczeństwa i funkcjonalności wewnątrz iframe
-              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            />
+            {/* MASKOWNICA DO UKRYWANIA SCROLLBARA */}
+            {/* overflow-hidden tutaj jest kluczowe - ucina wystający pasek */}
+            <div className={`w-full h-full overflow-hidden bg-white ${device === 'mobile' ? 'rounded-[2.2rem]' : 'rounded-lg'}`}>
+              
+              <iframe 
+                src={projectUrl} 
+                title="Podgląd strony"
+                /* ZMIANA 2: Iframe szerszy o 20px (w-[calc(100%+20px)]) - to wypycha pasek scrollowania poza widoczny obszar */
+                className={`h-full bg-white border-0 ${device === 'mobile' ? 'w-[calc(100%+20px)]' : 'w-full'}`}
+                sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              />
+
+            </div>
             
-            {/* Odbicie światła na ekranie (dodatkowy realizm) */}
+            {/* Odbicie światła - tylko mobile */}
             {device === 'mobile' && (
                 <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none z-10 rounded-[2.5rem]"></div>
             )}
