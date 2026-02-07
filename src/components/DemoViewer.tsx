@@ -19,7 +19,7 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
           <span className="hidden md:inline">Zamknij podgląd</span>
         </button>
 
-        {/* Środek: Przełącznik */}
+        {/* Środek: Przełącznik (Ukrywamy go na małych telefonach, bo tam zawsze jest mobile) */}
         <div className="hidden md:flex bg-gray-800 rounded-lg p-1 border border-gray-700">
           <button 
             onClick={() => setDevice('desktop')}
@@ -54,32 +54,37 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
       </div>
 
       {/* 2. OBSZAR PODGLĄDU */}
-      <div className="flex-1 bg-gray-900 w-full flex items-center justify-center overflow-hidden p-4 md:p-8 relative">
+      {/* Na mobile usuwamy padding (p-0), na desktopie zostawiamy (md:p-8) */}
+      <div className="flex-1 bg-gray-900 w-full flex items-center justify-center overflow-hidden p-0 md:p-8 relative">
         
         {/* KONTENER URZĄDZENIA */}
+        {/* ZMIANY: 
+            Dodałem prefix 'md:' do wszystkich stylów "iPhone'owych".
+            Bez prefixu (czyli na mobile) ustawiamy w-full h-full i border-0.
+        */}
         <div className={`transition-all duration-500 ease-in-out relative shadow-2xl mx-auto flex flex-col bg-white ${
             device === 'mobile' 
-                ? 'w-[430px] h-[932px] max-h-[90vh] rounded-[3rem] border-[12px] border-gray-800 ring-4 ring-black/50'
-                : 'w-full h-full rounded-lg border border-gray-700'
+                ? 'w-full h-full border-0 rounded-none md:w-[430px] md:h-[932px] md:max-h-[90vh] md:rounded-[3rem] md:border-[12px] md:border-gray-800 md:ring-4 md:ring-black/50'
+                : 'w-full h-full rounded-none md:rounded-lg border-0 md:border border-gray-700'
         }`}>
             
-            {/* Notch - tylko na mobile */}
+            {/* Notch - tylko na mobile-VIEW w trybie DESKTOP (ukryty na prawdziwym telefonie) */}
             {device === 'mobile' && (
-                 <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[30px] w-[120px] bg-gray-800 rounded-b-2xl z-20 pointer-events-none border-b border-x border-gray-900/50"></div>
+                 <div className="hidden md:block absolute top-0 left-1/2 -translate-x-1/2 h-[30px] w-[120px] bg-gray-800 rounded-b-2xl z-20 pointer-events-none border-b border-x border-gray-900/50"></div>
             )}
 
-            {/* MASKOWNICA DO UKRYWANIA SCROLLBARÓW */}
-            <div className={`w-full h-full overflow-hidden bg-white ${device === 'mobile' ? 'rounded-[2.2rem]' : 'rounded-lg'}`}>
+            {/* MASKOWNICA */}
+            <div className={`w-full h-full overflow-hidden bg-white ${device === 'mobile' ? 'rounded-none md:rounded-[2.2rem]' : 'rounded-none md:rounded-lg'}`}>
               
               <iframe 
                 src={projectUrl} 
                 title="Podgląd strony"
-                /* ZMIANA: Dodano h-[calc(100%+20px)]. 
-                   Teraz iframe jest szerszy ORAZ wyższy o 20px.
-                   To wypycha OBA paski scrollowania (pionowy i poziomy) poza widoczny obszar. */
+                /* ZMIANA: Trik z +20px (ukrywanie scrolla) stosujemy tylko na Desktopie (md:).
+                   Na prawdziwym telefonie chcemy natywny scroll (w-full).
+                */
                 className={`bg-white border-0 ${
                     device === 'mobile' 
-                    ? 'w-[calc(100%+20px)] h-[calc(100%+20px)]' 
+                    ? 'w-full h-full md:w-[calc(100%+20px)] md:h-[calc(100%+20px)]' 
                     : 'w-full h-full'
                 }`}
                 sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
@@ -88,9 +93,9 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
 
             </div>
             
-            {/* Odbicie światła - tylko mobile */}
+            {/* Odbicie światła - tylko na desktopie */}
             {device === 'mobile' && (
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none z-10 rounded-[2.5rem]"></div>
+                <div className="hidden md:block absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none z-10 rounded-[2.5rem]"></div>
             )}
         </div>
       </div>
