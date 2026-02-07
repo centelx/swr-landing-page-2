@@ -7,6 +7,23 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
   return (
     <div className="fixed inset-0 z-[100] bg-gray-950 flex flex-col h-screen w-screen">
       
+      {/* --- NOWOŚĆ: Style do ukrywania paska przewijania na mobile --- */}
+      {device === 'mobile' && (
+        <style>
+          {`
+            /* Dla Chrome, Safari i Opera */
+            .no-scrollbar::-webkit-scrollbar {
+              display: none;
+            }
+            /* Dla IE, Edge i Firefox */
+            .no-scrollbar {
+              -ms-overflow-style: none;  /* IE i Edge */
+              scrollbar-width: none;  /* Firefox */
+            }
+          `}
+        </style>
+      )}
+      
       {/* 1. TOP BAR (PASEK SPRZEDAŻOWY) */}
       <div className="h-16 bg-brand-navy border-b border-gray-700 flex items-center justify-between px-4 md:px-8 shadow-xl relative z-10 flex-shrink-0">
         
@@ -54,15 +71,13 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
       </div>
 
       {/* 2. OBSZAR PODGLĄDU (IFRAME CONTAINER) */}
-      {/* Dodano padding i centrowanie, żeby telefon nie przyklejał się do krawędzi */}
-      <div className="flex-1 bg-gray-900 w-full flex items-center justify-center overflow-auto p-4 md:p-8 relative">
+      <div className="flex-1 bg-gray-900 w-full flex items-center justify-center overflow-hidden p-4 md:p-8 relative">
         
         {/* KONTENER SYMULUJĄCY URZĄDZENIE */}
-        <div className={`transition-all duration-500 ease-in-out relative shadow-2xl mx-auto ${
+        <div className={`transition-all duration-500 ease-in-out relative shadow-2xl mx-auto flex flex-col ${
             device === 'mobile' 
-                /* STYL IPHONE'A (CSS only) */
-                ? 'w-[375px] h-[812px] bg-black rounded-[3rem] border-[14px] border-gray-800 overflow-hidden ring-4 ring-black/50'
-                /* STYL DESKTOP */
+                /* ZMIANA: Dodano max-h-[85vh] żeby telefon nie był za długi na małych ekranach */
+                ? 'w-[375px] h-[812px] max-h-[85vh] bg-black rounded-[3rem] border-[14px] border-gray-800 overflow-hidden ring-4 ring-black/50'
                 : 'w-full h-full bg-white rounded-lg border border-gray-700'
         }`}>
             
@@ -75,7 +90,8 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
             <iframe 
               src={projectUrl} 
               title="Podgląd strony"
-              className="w-full h-full bg-white"
+              /* ZMIANA: Dodano klasę 'no-scrollbar' na mobile oraz zaokrąglenie rogów */
+              className={`w-full h-full bg-white flex-1 ${device === 'mobile' ? 'no-scrollbar rounded-[2.5rem]' : ''}`}
               // Ważne dla bezpieczeństwa i funkcjonalności wewnątrz iframe
               sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
