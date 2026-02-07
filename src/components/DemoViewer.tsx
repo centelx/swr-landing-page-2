@@ -59,7 +59,6 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
         {/* KONTENER URZĄDZENIA */}
         <div className={`transition-all duration-500 ease-in-out relative shadow-2xl mx-auto flex flex-col bg-white ${
             device === 'mobile' 
-                /* ZMIANA: h-[932px] (wysokość Pro Max) i max-h-[90vh] (żeby wykorzystał więcej ekranu) */
                 ? 'w-[430px] h-[932px] max-h-[90vh] rounded-[3rem] border-[12px] border-gray-800 ring-4 ring-black/50'
                 : 'w-full h-full rounded-lg border border-gray-700'
         }`}>
@@ -69,14 +68,20 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
                  <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[30px] w-[120px] bg-gray-800 rounded-b-2xl z-20 pointer-events-none border-b border-x border-gray-900/50"></div>
             )}
 
-            {/* MASKOWNICA DO UKRYWANIA SCROLLBARA */}
+            {/* MASKOWNICA DO UKRYWANIA SCROLLBARÓW */}
             <div className={`w-full h-full overflow-hidden bg-white ${device === 'mobile' ? 'rounded-[2.2rem]' : 'rounded-lg'}`}>
               
               <iframe 
                 src={projectUrl} 
                 title="Podgląd strony"
-                /* Iframe szerszy o 20px - wypycha pasek scrollowania */
-                className={`h-full bg-white border-0 ${device === 'mobile' ? 'w-[calc(100%+20px)]' : 'w-full'}`}
+                /* ZMIANA: Dodano h-[calc(100%+20px)]. 
+                   Teraz iframe jest szerszy ORAZ wyższy o 20px.
+                   To wypycha OBA paski scrollowania (pionowy i poziomy) poza widoczny obszar. */
+                className={`bg-white border-0 ${
+                    device === 'mobile' 
+                    ? 'w-[calc(100%+20px)] h-[calc(100%+20px)]' 
+                    : 'w-full h-full'
+                }`}
                 sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               />
