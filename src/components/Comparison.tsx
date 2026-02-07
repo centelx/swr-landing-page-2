@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { X, Check } from 'lucide-react';
+import { X, Check, AlertTriangle } from 'lucide-react';
 
 export default function Comparison() {
   return (
@@ -20,7 +20,8 @@ export default function Comparison() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+          {/* TRADYCYJNE AGENCJE */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -49,6 +50,7 @@ export default function Comparison() {
             </ul>
           </motion.div>
 
+          {/* SWR MEDIA */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -77,6 +79,34 @@ export default function Comparison() {
             </ul>
           </motion.div>
         </div>
+
+        {/* --- NOWOŚĆ: SEKCJA AWERSJI DO STRATY --- */}
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="max-w-4xl mx-auto bg-red-500/10 border border-red-500/40 rounded-xl p-6 md:p-8 text-center relative overflow-hidden"
+        >
+            {/* Ozdobny blask */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-50"></div>
+            
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 relative z-10">
+                <div className="bg-red-500/20 p-3 rounded-full flex-shrink-0">
+                    <AlertTriangle className="w-8 h-8 text-red-500" />
+                </div>
+                <div className="text-left">
+                    <h4 className="text-xl md:text-2xl font-bold text-white mb-2">
+                        Czy stać Cię na brak strony?
+                    </h4>
+                    <p className="text-gray-300 leading-relaxed">
+                        Statystyki pokazują, że <strong className="text-white">70% klientów</strong> sprawdza firmę w Google przed zadzwonieniem. 
+                        Jeśli Cię tam nie ma – idą do konkurencji. Nie oszczędzasz 500 zł – tracisz wielokrotność tej kwoty każdego miesiąca.
+                    </p>
+                </div>
+            </div>
+        </motion.div>
+
       </div>
     </section>
   );
