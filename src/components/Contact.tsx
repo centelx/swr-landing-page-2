@@ -7,12 +7,12 @@ export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   
-  // Stan formularza - doszedł contactMethod
+  // Stan formularza
   const [formData, setFormData] = useState({
     domainStatus: '', 
     industry: '',     
     timeline: '',     
-    contactMethod: '', // NOWOŚĆ: Preferowana forma wywiadu
+    contactMethod: '',
     name: '',         
     phone: '',        
     email: '',        
@@ -80,7 +80,6 @@ export default function Contact() {
     }
   };
 
-  // Teraz mamy 6 kroków (doszedł wybór metody kontaktu)
   const progress = (step / 6) * 100;
 
   return (
@@ -108,10 +107,10 @@ export default function Contact() {
           viewport={{ once: true }}
           className="bg-gray-900 border border-gray-800 rounded-3xl overflow-hidden shadow-2xl relative"
         >
-          {/* PASEK POSTĘPU */}
+          {/* PASEK POSTĘPU - ZMIANA NA ZIELONY */}
           <div className="h-2 bg-gray-800 w-full">
             <motion.div 
-              className="h-full bg-gradient-to-r from-brand-neon to-brand-blue"
+              className="h-full bg-gradient-to-r from-green-400 to-green-600"
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.5 }}
@@ -143,7 +142,7 @@ export default function Contact() {
             ) : (
               <AnimatePresence mode='wait'>
                 
-                {/* KROK 1: DOMENA */}
+                {/* KROK 1 */}
                 {step === 1 && (
                   <motion.div
                     key="step1"
@@ -167,7 +166,7 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* KROK 2: BRANŻA */}
+                {/* KROK 2 */}
                 {step === 2 && (
                   <motion.div
                     key="step2"
@@ -190,7 +189,7 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* KROK 3: CZAS */}
+                {/* KROK 3 */}
                 {step === 3 && (
                   <motion.div
                     key="step3"
@@ -225,7 +224,7 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* NOWOŚĆ - KROK 4: PREFERENCJA KONTAKTU (WYWIAD) */}
+                {/* KROK 4 */}
                 {step === 4 && (
                   <motion.div
                     key="step4"
@@ -272,7 +271,7 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* KROK 5: DANE KONTAKTOWE */}
+                {/* KROK 5 */}
                 {step === 5 && (
                   <motion.div
                     key="step5"
@@ -346,7 +345,7 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* KROK 6: WYBÓR PŁATNOŚCI (FINAŁ) */}
+                {/* KROK 6 */}
                 {step === 6 && (
                   <motion.div
                     key="step6"
@@ -365,7 +364,6 @@ export default function Contact() {
                     </div>
 
                     <div className="space-y-4">
-                      {/* OPCJA A: ONLINE (Szybka) */}
                       <button
                         onClick={() => submitForm('Online (100zł)')}
                         disabled={status === 'loading'}
@@ -386,7 +384,6 @@ export default function Contact() {
                         </div>
                       </button>
 
-                      {/* OPCJA B: PROFORMA / ROZMOWA */}
                       <button
                         onClick={() => submitForm('Rozmowa/Faktura')}
                         disabled={status === 'loading'}
