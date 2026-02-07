@@ -44,7 +44,7 @@ export default function Contact() {
       TELEFON: ${finalData.phone}
       EMAIL: ${finalData.email}
       ---
-      PREFEROWANY KONTAKT (WYWIAD): ${finalData.contactMethod}
+      PREFEROWANY KONTAKT: ${finalData.contactMethod}
       ---
       DOMENA: ${finalData.domainStatus}
       BRANŻA: ${finalData.industry}
@@ -107,7 +107,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="bg-gray-900 border border-gray-800 rounded-3xl overflow-hidden shadow-2xl relative"
         >
-          {/* PASEK POSTĘPU - ZMIANA NA ZIELONY */}
+          {/* PASEK POSTĘPU (ZIELONY) */}
           <div className="h-2 bg-gray-800 w-full">
             <motion.div 
               className="h-full bg-gradient-to-r from-green-400 to-green-600"
@@ -271,7 +271,7 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* KROK 5 */}
+                {/* KROK 5: DANE KONTAKTOWE */}
                 {step === 5 && (
                   <motion.div
                     key="step5"
@@ -309,8 +309,14 @@ export default function Contact() {
                           placeholder="500 600 700"
                         />
                       </div>
+                      
+                      {/* LOGIKA EMAILA: WYMAGANY TYLKO DLA ANKIETY EMAILOWEJ */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-400 mb-1">Email (do wysyłki podglądu) *</label>
+                        <label className="block text-sm font-medium text-gray-400 mb-1">
+                            {formData.contactMethod.includes('Email') 
+                                ? "Email (do wysyłki ankiety) *" 
+                                : "Email (opcjonalnie - do wysyłki podglądu)"}
+                        </label>
                         <input
                           name="email"
                           value={formData.email}
@@ -320,6 +326,7 @@ export default function Contact() {
                           placeholder="jan@firma.pl"
                         />
                       </div>
+
                        <div>
                         <label className="block text-sm font-medium text-gray-400 mb-1">Dodatkowe uwagi (opcjonalnie)</label>
                         <textarea
@@ -334,8 +341,15 @@ export default function Contact() {
 
                       <button
                         onClick={() => {
-                          if(formData.name && formData.phone && formData.email) setStep(6);
-                          else alert("Proszę uzupełnić wymagane dane");
+                          const isEmailRequired = formData.contactMethod.includes('Email');
+                          // Sprawdzamy Imię i Telefon (zawsze) + Email (tylko jeśli wymagany)
+                          if(formData.name && formData.phone && (!isEmailRequired || formData.email)) {
+                            setStep(6);
+                          } else {
+                            alert(isEmailRequired 
+                                ? "Proszę podać Imię, Telefon i Email (wymagany do ankiety)" 
+                                : "Proszę podać Imię i Numer Telefonu");
+                          }
                         }}
                         className="w-full mt-4 bg-brand-neon text-black font-bold text-lg py-4 rounded-full hover:shadow-lg hover:shadow-brand-neon/50 transition-all flex items-center justify-center gap-2"
                       >
