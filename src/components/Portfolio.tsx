@@ -9,7 +9,7 @@ export default function Portfolio() {
       // Pamiętaj: Tutaj muszą być DŁUGIE zrzuty ekranu całej strony (Full Page Screenshot)
       image: '/screen1.png', 
       description: 'Strona wizytówka z szybkim umawianiem wizyt. Czas realizacji: 16h.',
-      link: '#',
+      link: 'https://iglen.pl/', // <--- ZMIANA TUTAJ
     },
     {
       title: 'Salon Urody "Elegance"',
