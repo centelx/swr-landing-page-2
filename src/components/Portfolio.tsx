@@ -72,7 +72,7 @@ export default function Portfolio() {
           category: 'Finanse',
           style: 'ZAUFANIE & USŁUGI',
           styleColor: 'text-blue-300 border-blue-300/30 bg-blue-300/10',
-          image: '/screen3.png', // Placeholder (do zmiany)
+          image: '/screen6.png', // Placeholder (do zmiany)
           description: 'Klasyczny, korporacyjny styl. Idealny dla kancelarii i księgowości.',
           link: 'https://d-way.pl/', // Pusty link
         }
