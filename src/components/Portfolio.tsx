@@ -28,7 +28,7 @@ export default function Portfolio() {
       category: 'Budownictwo',
       image: '/screen3.png',
       description: 'Prosta strona ofertowa nastawiona na pozyskiwanie telefonów.',
-      link: 'https://domnaroztoczu.pages.dev/', // Tu docelowo inny link
+      link: 'https://d-way.pl/', // Tu docelowo inny link
     }
   ];
 
