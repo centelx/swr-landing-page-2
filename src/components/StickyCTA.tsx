@@ -7,8 +7,19 @@ export default function StickyCTA() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Pokaż przycisk dopiero jak użytkownik przewinie trochę w dół (np. 300px)
-      // Żeby nie zasłaniał treści w Hero na samym początku
+      // 1. Sprawdź, czy jesteśmy na dole strony (przy sekcji kontakt)
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+         const rect = contactSection.getBoundingClientRect();
+         // Jeśli góra sekcji kontakt jest widoczna w oknie (lub wyżej), ukryj przycisk
+         // window.innerHeight to wysokość ekranu telefonu.
+         if (rect.top < window.innerHeight) {
+             setIsVisible(false);
+             return; // Ważne, żeby nie nadpisać tego niżej
+         }
+      }
+
+      // 2. Standardowe pokazywanie po scrollu
       if (window.scrollY > 300) {
         setIsVisible(true);
       } else {
@@ -27,7 +38,6 @@ export default function StickyCTA() {
   return (
     <AnimatePresence>
       {isVisible && (
-        // md:hidden sprawia, że na komputerze ten element znika całkowicie!
         <motion.div
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
