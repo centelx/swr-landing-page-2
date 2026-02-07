@@ -1,25 +1,25 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { Send, CheckCircle, AlertCircle, ArrowRight, ChevronLeft, CreditCard, PhoneCall, Check } from 'lucide-react';
+import { CheckCircle, AlertCircle, ArrowRight, ChevronLeft, CreditCard, PhoneCall, Mail, Phone } from 'lucide-react';
 
 export default function Contact() {
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   
-  // Stan formularza - zbieramy dane krok po kroku
+  // Stan formularza - doszedł contactMethod
   const [formData, setFormData] = useState({
-    domainStatus: '', // Krok 1
-    industry: '',     // Krok 2
-    timeline: '',     // Krok 3
-    name: '',         // Krok 4
-    phone: '',        // Krok 4
-    email: '',        // Krok 4
-    info: '',         // Krok 4
-    paymentPreference: '' // Krok 5 (Finał)
+    domainStatus: '', 
+    industry: '',     
+    timeline: '',     
+    contactMethod: '', // NOWOŚĆ: Preferowana forma wywiadu
+    name: '',         
+    phone: '',        
+    email: '',        
+    info: '',         
+    paymentPreference: '' 
   });
 
-  // Funkcja do aktualizacji danych i przejścia dalej
   const handleSelection = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     setStep(prev => prev + 1);
@@ -30,28 +30,27 @@ export default function Contact() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Finałowa wysyłka do Web3Forms
   const submitForm = async (preference: 'Online (100zł)' | 'Rozmowa/Faktura') => {
     setStatus('loading');
     
-    // Aktualizujemy preferencję płatności w locie przed wysyłką
     const finalData = { ...formData, paymentPreference: preference };
 
     const formBody = new FormData();
-    formBody.append('access_key', '4343a106-203d-4279-9980-da05e02f360f'); // Twój klucz
+    formBody.append('access_key', '4343a106-203d-4279-9980-da05e02f360f'); 
     formBody.append('subject', `Nowe Zgłoszenie: ${finalData.name} (${preference})`);
     
-    // Ładne formatowanie wiadomości dla Ciebie w mailu
     const messageBody = `
       KLIENT: ${finalData.name}
       TELEFON: ${finalData.phone}
       EMAIL: ${finalData.email}
       ---
+      PREFEROWANY KONTAKT (WYWIAD): ${finalData.contactMethod}
+      ---
       DOMENA: ${finalData.domainStatus}
       BRANŻA: ${finalData.industry}
       TERMIN: ${finalData.timeline}
       ---
-      PREFERENCJA PŁATNOŚCI: ${preference}
+      PŁATNOŚĆ: ${preference}
       DODATKOWE INFO: ${finalData.info}
     `;
     formBody.append('message', messageBody);
@@ -69,7 +68,7 @@ export default function Contact() {
         if (preference === 'Online (100zł)') {
           setMessage('Dziękujemy! Za chwilę otrzymasz SMS/Email z linkiem do bezpiecznej płatności 100 zł.');
         } else {
-          setMessage('Dziękujemy! Zadzwonimy do Ciebie w ciągu 24h, aby ustalić szczegóły.');
+          setMessage('Dziękujemy! Skontaktujemy się wybraną metodą w ciągu 24h.');
         }
       } else {
         setStatus('error');
@@ -81,14 +80,13 @@ export default function Contact() {
     }
   };
 
-  // Obliczanie postępu (1-5) -> 20% - 100%
-  const progress = (step / 5) * 100;
+  // Teraz mamy 6 kroków (doszedł wybór metody kontaktu)
+  const progress = (step / 6) * 100;
 
   return (
-    <section id="contact" className="py-20 px-4 bg-brand-dark min-h-[800px] flex items-center justify-center">
+    <section id="contact" className="py-20 px-4 bg-brand-dark min-h-[850px] flex items-center justify-center">
       <div className="max-w-3xl w-full mx-auto">
         
-        {/* NAGŁÓWEK SEKCYJNY */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -100,18 +98,17 @@ export default function Contact() {
             Zarezerwuj Termin
           </h2>
           <p className="text-xl text-gray-400">
-            Wypełnij krótki formularz, aby sprawdzić dostępność na jutro.
+            Sprawdź dostępność na jutro i wybierz formę współpracy.
           </p>
         </motion.div>
 
-        {/* GŁÓWNA KARTA FORMULARZA */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           className="bg-gray-900 border border-gray-800 rounded-3xl overflow-hidden shadow-2xl relative"
         >
-          {/* PASEK POSTĘPU (ZEIGARNIK EFFECT) */}
+          {/* PASEK POSTĘPU */}
           <div className="h-2 bg-gray-800 w-full">
             <motion.div 
               className="h-full bg-gradient-to-r from-brand-neon to-brand-blue"
@@ -123,7 +120,6 @@ export default function Contact() {
 
           <div className="p-8 md:p-12">
             
-            {/* POWRÓT (Jeśli nie jesteśmy w kroku 1 i nie ma sukcesu) */}
             {step > 1 && status !== 'success' && (
               <button 
                 onClick={() => setStep(prev => prev - 1)}
@@ -133,7 +129,6 @@ export default function Contact() {
               </button>
             )}
 
-            {/* STAN SUKCESU */}
             {status === 'success' ? (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-10">
                 <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -146,7 +141,6 @@ export default function Contact() {
                 </div>
               </motion.div>
             ) : (
-              /* LOGIKA KROKÓW */
               <AnimatePresence mode='wait'>
                 
                 {/* KROK 1: DOMENA */}
@@ -196,7 +190,7 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* KROK 3: CZAS (PILNOŚĆ) */}
+                {/* KROK 3: CZAS */}
                 {step === 3 && (
                   <motion.div
                     key="step3"
@@ -231,7 +225,7 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* KROK 4: DANE KONTAKTOWE */}
+                {/* NOWOŚĆ - KROK 4: PREFERENCJA KONTAKTU (WYWIAD) */}
                 {step === 4 && (
                   <motion.div
                     key="step4"
@@ -239,8 +233,59 @@ export default function Contact() {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -20, opacity: 0 }}
                   >
+                    <h3 className="text-2xl font-bold text-white mb-2">Jak chcesz omówić szczegóły?</h3>
+                    <p className="text-gray-400 mb-8">Nie robimy stron "w ciemno". Chcemy poznać Twój biznes, aby strona sprzedawała.</p>
+                    
+                    <div className="grid gap-4">
+                      <button
+                        onClick={() => handleSelection('contactMethod', 'Telefonicznie (5-10 min)')}
+                        className="w-full text-left p-6 rounded-xl border border-gray-700 bg-gray-800/50 hover:bg-brand-navy hover:border-brand-neon transition-all flex items-center justify-between group"
+                      >
+                        <div className="flex items-center gap-4">
+                            <div className="bg-brand-neon/20 p-3 rounded-full text-brand-neon">
+                                <Phone className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <span className="text-lg font-bold text-white block">Krótka Rozmowa (5-10 min)</span>
+                                <span className="text-gray-400 text-sm">Zadzwońcie do mnie i zapytajcie o to, co ważne.</span>
+                            </div>
+                        </div>
+                        <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-brand-neon" />
+                      </button>
+                      
+                      <button
+                        onClick={() => handleSelection('contactMethod', 'Email (Ankieta)')}
+                        className="w-full text-left p-6 rounded-xl border border-gray-700 bg-gray-800/50 hover:bg-brand-navy hover:border-brand-neon transition-all flex items-center justify-between group"
+                      >
+                        <div className="flex items-center gap-4">
+                            <div className="bg-brand-blue/20 p-3 rounded-full text-brand-blue">
+                                <Mail className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <span className="text-lg font-bold text-white block">Formularz Email</span>
+                                <span className="text-gray-400 text-sm">Wolę odpisać na pytania w wolnej chwili.</span>
+                            </div>
+                        </div>
+                        <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-brand-neon" />
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* KROK 5: DANE KONTAKTOWE */}
+                {step === 5 && (
+                  <motion.div
+                    key="step5"
+                    initial={{ x: 20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: -20, opacity: 0 }}
+                  >
                     <h3 className="text-2xl font-bold text-white mb-2">Świetnie! Mamy wolny termin.</h3>
-                    <p className="text-gray-400 mb-8">Gdzie mamy wysłać podgląd gotowego projektu?</p>
+                    <p className="text-gray-400 mb-8">
+                        {formData.contactMethod.includes('Email') 
+                            ? "Gdzie mamy wysłać ankietę projektową?" 
+                            : "Na jaki numer mamy zadzwonić?"}
+                    </p>
                     
                     <div className="space-y-4">
                       <div>
@@ -266,7 +311,7 @@ export default function Contact() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-400 mb-1">Email (opcjonalnie)</label>
+                        <label className="block text-sm font-medium text-gray-400 mb-1">Email (do wysyłki podglądu) *</label>
                         <input
                           name="email"
                           value={formData.email}
@@ -277,7 +322,7 @@ export default function Contact() {
                         />
                       </div>
                        <div>
-                        <label className="block text-sm font-medium text-gray-400 mb-1">Dodatkowe uwagi</label>
+                        <label className="block text-sm font-medium text-gray-400 mb-1">Dodatkowe uwagi (opcjonalnie)</label>
                         <textarea
                           name="info"
                           value={formData.info}
@@ -290,8 +335,8 @@ export default function Contact() {
 
                       <button
                         onClick={() => {
-                          if(formData.name && formData.phone) setStep(5);
-                          else alert("Proszę podać Imię i Telefon");
+                          if(formData.name && formData.phone && formData.email) setStep(6);
+                          else alert("Proszę uzupełnić wymagane dane");
                         }}
                         className="w-full mt-4 bg-brand-neon text-black font-bold text-lg py-4 rounded-full hover:shadow-lg hover:shadow-brand-neon/50 transition-all flex items-center justify-center gap-2"
                       >
@@ -301,18 +346,21 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* KROK 5: WYBÓR PŁATNOŚCI (FINAŁ) */}
-                {step === 5 && (
+                {/* KROK 6: WYBÓR PŁATNOŚCI (FINAŁ) */}
+                {step === 6 && (
                   <motion.div
-                    key="step5"
+                    key="step6"
                     initial={{ x: 20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -20, opacity: 0 }}
                   >
-                    <h3 className="text-2xl font-bold text-white mb-4">Ostatni krok: Startujemy?</h3>
+                    <h3 className="text-2xl font-bold text-white mb-4">Ostatni krok: Potwierdź rezerwację</h3>
                     <div className="bg-brand-navy/30 p-4 rounded-xl border border-brand-neon/20 mb-8">
-                       <p className="text-gray-300 text-sm">
+                       <p className="text-gray-300 text-sm mb-1">
                          <span className="text-brand-neon font-bold">Twoje dane:</span> {formData.name}, {formData.phone}
+                       </p>
+                       <p className="text-gray-300 text-sm">
+                         <span className="text-brand-neon font-bold">Wybrany kontakt:</span> {formData.contactMethod}
                        </p>
                     </div>
 
@@ -332,7 +380,7 @@ export default function Contact() {
                                    <CreditCard className="w-5 h-5 text-brand-neon" />
                                    Wpłacam zaliczkę 100 zł
                                 </h4>
-                                <p className="text-gray-400 text-sm mt-1">Start prac natychmiast. Płatność online.</p>
+                                <p className="text-gray-400 text-sm mt-1">Rezerwacja terminu + Start od zaraz.</p>
                             </div>
                             <ArrowRight className="w-6 h-6 text-brand-neon" />
                         </div>
@@ -347,9 +395,9 @@ export default function Contact() {
                          <div className="text-left">
                              <h4 className="text-white font-bold text-lg flex items-center gap-2">
                                 <PhoneCall className="w-5 h-5 text-gray-400" />
-                                Proszę o Fakturę / Kontakt
+                                Zapłać później (Faktura)
                              </h4>
-                             <p className="text-gray-400 text-sm mt-1">Opłać tradycyjnym przelewem.</p>
+                             <p className="text-gray-400 text-sm mt-1">Najpierw ustalmy szczegóły.</p>
                          </div>
                          <ArrowRight className="w-6 h-6 text-gray-500" />
                       </button>
