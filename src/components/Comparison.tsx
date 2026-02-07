@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { X, Check, AlertTriangle } from 'lucide-react';
+import { X, Check, AlertTriangle, Lock, Search, Zap } from 'lucide-react';
 
 export default function Comparison() {
   return (
@@ -80,15 +80,14 @@ export default function Comparison() {
           </motion.div>
         </div>
 
-        {/* --- NOWOŚĆ: SEKCJA AWERSJI DO STRATY --- */}
+        {/* SEKCJA AWERSJI DO STRATY */}
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="max-w-4xl mx-auto bg-red-500/10 border border-red-500/40 rounded-xl p-6 md:p-8 text-center relative overflow-hidden"
+            className="max-w-4xl mx-auto bg-red-500/10 border border-red-500/40 rounded-xl p-6 md:p-8 text-center relative overflow-hidden mb-12"
         >
-            {/* Ozdobny blask */}
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-50"></div>
             
             <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 relative z-10">
@@ -106,6 +105,22 @@ export default function Comparison() {
                 </div>
             </div>
         </motion.div>
+
+        {/* ZMIANA: EFEKT AUREOLI TECHNOLOGICZNEJ (Zaufanie) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-8 border-t border-gray-800">
+           <div className="flex items-center justify-center gap-3 text-gray-400">
+              <Search className="w-6 h-6 text-brand-neon" />
+              <span className="text-sm font-semibold">Przyjazna dla Google (SEO)</span>
+           </div>
+           <div className="flex items-center justify-center gap-3 text-gray-400">
+              <Lock className="w-6 h-6 text-brand-neon" />
+              <span className="text-sm font-semibold">Bezpieczeństwo SSL (Kłódka)</span>
+           </div>
+           <div className="flex items-center justify-center gap-3 text-gray-400">
+              <Zap className="w-6 h-6 text-brand-neon" />
+              <span className="text-sm font-semibold">Błyskawiczne ładowanie</span>
+           </div>
+        </div>
 
       </div>
     </section>
