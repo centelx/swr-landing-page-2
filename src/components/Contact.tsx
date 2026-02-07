@@ -7,6 +7,9 @@ export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   
+  // Stan błędów walidacji
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  
   // Stan formularza
   const [formData, setFormData] = useState({
     domainStatus: '', 
@@ -28,6 +31,32 @@ export default function Contact() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Jeśli użytkownik zaczyna pisać, usuwamy błąd dla tego pola
+    if (errors[name]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+
+  // Funkcja walidująca Krok 5
+  const validateStep5 = () => {
+    const newErrors: Record<string, string> = {};
+    const isEmailRequired = formData.contactMethod.includes('Email');
+
+    if (!formData.name.trim()) newErrors.name = 'Imię i nazwisko jest wymagane';
+    if (!formData.phone.trim()) newErrors.phone = 'Numer telefonu jest wymagany';
+    
+    if (isEmailRequired && !formData.email.trim()) {
+      newErrors.email = 'Email jest wymagany do wysyłki ankiety';
+    }
+
+    setErrors(newErrors);
+    // Zwraca true jeśli nie ma błędów
+    return Object.keys(newErrors).length === 0;
   };
 
   const submitForm = async (preference: 'Online (100zł)' | 'Rozmowa/Faktura') => {
@@ -44,7 +73,7 @@ export default function Contact() {
       TELEFON: ${finalData.phone}
       EMAIL: ${finalData.email}
       ---
-      PREFEROWANY KONTAKT: ${finalData.contactMethod}
+      PREFEROWANY KONTAKT (WYWIAD): ${finalData.contactMethod}
       ---
       DOMENA: ${finalData.domainStatus}
       BRANŻA: ${finalData.industry}
@@ -271,7 +300,7 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* KROK 5: DANE KONTAKTOWE */}
+                {/* KROK 5: DANE KONTAKTOWE (Z WALIDACJĄ INLINE) */}
                 {step === 5 && (
                   <motion.div
                     key="step5"
@@ -288,31 +317,46 @@ export default function Contact() {
                     
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-400 mb-1">Imię i Nazwisko *</label>
+                        <label className={`block text-sm font-medium mb-1 ${errors.name ? 'text-red-500' : 'text-gray-400'}`}>
+                           Imię i Nazwisko *
+                        </label>
                         <input
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
                           type="text"
-                          className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-brand-neon"
+                          className={`w-full px-4 py-3 bg-gray-800 border rounded-lg text-white focus:outline-none transition-all ${
+                             errors.name 
+                                ? 'border-red-500 focus:border-red-500' 
+                                : 'border-gray-700 focus:border-brand-neon'
+                          }`}
                           placeholder="Jan Kowalski"
                         />
+                        {errors.name && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3"/> {errors.name}</p>}
                       </div>
+
                       <div>
-                        <label className="block text-sm font-medium text-gray-400 mb-1">Numer Telefonu *</label>
+                        <label className={`block text-sm font-medium mb-1 ${errors.phone ? 'text-red-500' : 'text-gray-400'}`}>
+                           Numer Telefonu *
+                        </label>
                         <input
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
                           type="tel"
-                          className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-brand-neon"
+                          className={`w-full px-4 py-3 bg-gray-800 border rounded-lg text-white focus:outline-none transition-all ${
+                             errors.phone 
+                                ? 'border-red-500 focus:border-red-500' 
+                                : 'border-gray-700 focus:border-brand-neon'
+                          }`}
                           placeholder="500 600 700"
                         />
+                        {errors.phone && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3"/> {errors.phone}</p>}
                       </div>
                       
-                      {/* LOGIKA EMAILA: WYMAGANY TYLKO DLA ANKIETY EMAILOWEJ */}
+                      {/* LOGIKA EMAILA */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-400 mb-1">
+                        <label className={`block text-sm font-medium mb-1 ${errors.email ? 'text-red-500' : 'text-gray-400'}`}>
                             {formData.contactMethod.includes('Email') 
                                 ? "Email (do wysyłki ankiety) *" 
                                 : "Email (opcjonalnie - do wysyłki podglądu)"}
@@ -322,9 +366,14 @@ export default function Contact() {
                           value={formData.email}
                           onChange={handleInputChange}
                           type="email"
-                          className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-brand-neon"
+                          className={`w-full px-4 py-3 bg-gray-800 border rounded-lg text-white focus:outline-none transition-all ${
+                             errors.email 
+                                ? 'border-red-500 focus:border-red-500' 
+                                : 'border-gray-700 focus:border-brand-neon'
+                          }`}
                           placeholder="jan@firma.pl"
                         />
+                         {errors.email && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3"/> {errors.email}</p>}
                       </div>
 
                        <div>
@@ -341,14 +390,8 @@ export default function Contact() {
 
                       <button
                         onClick={() => {
-                          const isEmailRequired = formData.contactMethod.includes('Email');
-                          // Sprawdzamy Imię i Telefon (zawsze) + Email (tylko jeśli wymagany)
-                          if(formData.name && formData.phone && (!isEmailRequired || formData.email)) {
+                          if(validateStep5()) {
                             setStep(6);
-                          } else {
-                            alert(isEmailRequired 
-                                ? "Proszę podać Imię, Telefon i Email (wymagany do ankiety)" 
-                                : "Proszę podać Imię i Numer Telefonu");
                           }
                         }}
                         className="w-full mt-4 bg-brand-neon text-black font-bold text-lg py-4 rounded-full hover:shadow-lg hover:shadow-brand-neon/50 transition-all flex items-center justify-center gap-2"
