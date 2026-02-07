@@ -59,8 +59,8 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
         {/* KONTENER URZĄDZENIA */}
         <div className={`transition-all duration-500 ease-in-out relative shadow-2xl mx-auto flex flex-col bg-white ${
             device === 'mobile' 
-                /* ZMIANA 1: Szerokość 430px (iPhone Pro Max) i max-h-80vh żeby nie był za długi */
-                ? 'w-[430px] h-[850px] max-h-[80vh] rounded-[3rem] border-[12px] border-gray-800 ring-4 ring-black/50'
+                /* ZMIANA: h-[932px] (wysokość Pro Max) i max-h-[90vh] (żeby wykorzystał więcej ekranu) */
+                ? 'w-[430px] h-[932px] max-h-[90vh] rounded-[3rem] border-[12px] border-gray-800 ring-4 ring-black/50'
                 : 'w-full h-full rounded-lg border border-gray-700'
         }`}>
             
@@ -70,13 +70,12 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
             )}
 
             {/* MASKOWNICA DO UKRYWANIA SCROLLBARA */}
-            {/* overflow-hidden tutaj jest kluczowe - ucina wystający pasek */}
             <div className={`w-full h-full overflow-hidden bg-white ${device === 'mobile' ? 'rounded-[2.2rem]' : 'rounded-lg'}`}>
               
               <iframe 
                 src={projectUrl} 
                 title="Podgląd strony"
-                /* ZMIANA 2: Iframe szerszy o 20px (w-[calc(100%+20px)]) - to wypycha pasek scrollowania poza widoczny obszar */
+                /* Iframe szerszy o 20px - wypycha pasek scrollowania */
                 className={`h-full bg-white border-0 ${device === 'mobile' ? 'w-[calc(100%+20px)]' : 'w-full'}`}
                 sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
