@@ -96,8 +96,9 @@ export default function Portfolio() {
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Nasze Realizacje
             </h2>
-            <p className="text-xl text-gray-400">
-              Wybierz styl, który pasuje do Twojego biznesu
+            {/* ZMIANA TEKSTU TUTAJ: Zdejmujemy odpowiedzialność z klienta */}
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Zainspiruj się poniższymi stylami. Nie wiesz, który wybrać? <span className="text-brand-neon">Dobierzemy ten, który najlepiej sprzedaje w Twojej branży.</span>
             </p>
           </motion.div>
 
