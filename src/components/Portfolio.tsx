@@ -56,7 +56,7 @@ export default function Portfolio() {
           styleColor: 'text-pink-300 border-pink-300/30 bg-pink-300/10',
           image: '/screen2.png', // Placeholder (do zmiany)
           description: 'Profesjonalna strona z opisem zabiegów i zespołem lekarzy.',
-          link: '#', // Pusty link
+          link: 'https://gabinetnadzieja.pl/', // Pusty link
         },
         {
           title: 'Developer "Solid"',
@@ -65,7 +65,7 @@ export default function Portfolio() {
           styleColor: 'text-orange-400 border-orange-400/30 bg-orange-400/10',
           image: '/screen1.png', // Placeholder (do zmiany)
           description: 'Nowoczesna prezentacja inwestycji z ciemnym, technicznym tłem.',
-          link: '#', // Pusty link
+          link: 'https://iglen.pl/', // Pusty link
         },
         {
           title: 'Biuro "Bilans"',
