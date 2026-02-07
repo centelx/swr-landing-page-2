@@ -1,19 +1,10 @@
 import { motion } from 'framer-motion';
-import { Check, Zap, ShieldCheck } from 'lucide-react';
+import { Check, Zap, ShieldCheck, Gift } from 'lucide-react';
 
 export default function Pricing() {
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  const features = [
-    'Multi-Page setup (strona główna, o nas, oferta, kontakt)',
-    'Formularz kontaktowy z integracją',
-    'Konfiguracja domeny',
-    'Responsywny design mobilny',
-    'Optymalizacja SEO',
-    'Hosting i SSL: 1 miesiąc GRATIS (potem tylko 29 zł/mc - najtaniej na rynku)',
-  ];
 
   return (
     <section id="offer" className="py-20 px-4 bg-brand-dark">
@@ -52,7 +43,6 @@ export default function Pricing() {
                 <span className="text-3xl text-gray-300 mb-2">zł</span>
               </div>
               
-              {/* ZMIANA: Jasna informacja o modelu płatności */}
               <div className="mt-4 bg-brand-navy/50 rounded-xl p-4 border border-brand-neon/30 inline-block">
                 <p className="text-brand-neon font-bold text-lg">
                   Startujesz za jedyne 100 zł zaliczki!
@@ -64,23 +54,45 @@ export default function Pricing() {
             </div>
 
             <div className="space-y-4 mb-8">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.1 * index }}
-                  className="flex items-start gap-3"
-                >
+              {/* Standardowe funkcje */}
+              {[
+                'Multi-Page setup (strona główna, o nas, oferta, kontakt)',
+                'Formularz kontaktowy z integracją',
+                'Konfiguracja domeny',
+                'Responsywny design mobilny',
+              ].map((feature, index) => (
+                <div key={index} className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-brand-neon/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Check className="w-4 h-4 text-brand-neon" />
                   </div>
                   <span className="text-gray-300">{feature}</span>
-                </motion.div>
+                </div>
               ))}
+
+              {/* ZMIANA: Framing BONUSÓW (Wartość dodana) */}
+              <div className="border-t border-gray-700 my-4 pt-4 space-y-4">
+                <div className="flex items-start gap-3 bg-brand-neon/5 p-3 rounded-lg border border-brand-neon/20">
+                    <div className="w-6 h-6 rounded-full bg-brand-neon/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Gift className="w-4 h-4 text-brand-neon" />
+                    </div>
+                    <div>
+                        <span className="text-white font-bold block">BONUS: Wstępne pozycjonowanie Google</span>
+                        <span className="text-brand-neon text-sm font-bold">WARTOŚĆ 300 ZŁ - GRATIS</span>
+                    </div>
+                </div>
+
+                <div className="flex items-start gap-3 bg-brand-neon/5 p-3 rounded-lg border border-brand-neon/20">
+                    <div className="w-6 h-6 rounded-full bg-brand-neon/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Gift className="w-4 h-4 text-brand-neon" />
+                    </div>
+                    <div>
+                        <span className="text-white font-bold block">BONUS: Hosting i SSL (1 miesiąc)</span>
+                        <span className="text-brand-neon text-sm font-bold">WARTOŚĆ 49 ZŁ - GRATIS</span>
+                    </div>
+                </div>
+              </div>
               
-              {/* Dodatkowy punkt o bezpieczeństwie */}
+              {/* Punkt o bezpieczeństwie */}
               <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -101,7 +113,7 @@ export default function Pricing() {
               onClick={scrollToContact}
               className="w-full bg-gradient-to-r from-brand-neon to-brand-blue text-black font-bold text-xl px-8 py-5 rounded-full hover:shadow-2xl hover:shadow-brand-neon/50 transition-all"
             >
-              Zamów Teraz (Start 100 zł)
+              Odbieram bonusy i zamawiam
             </motion.button>
 
             <p className="text-center text-gray-400 text-sm mt-6">
