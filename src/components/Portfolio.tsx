@@ -21,14 +21,14 @@ export default function Portfolio() {
       category: 'Beauty & Wellness',
       image: '/screen2.png',
       description: 'Elegancki design z cennikiem i galerią prac. Czas realizacji: 20h.',
-      link: '#', // Tu docelowo inny link
+      link: 'https://gabinetnadzieja.pl/', // Tu docelowo inny link
     },
     {
       title: 'Remonty Kowalski',
       category: 'Budownictwo',
       image: '/screen3.png',
       description: 'Prosta strona ofertowa nastawiona na pozyskiwanie telefonów.',
-      link: '#', // Tu docelowo inny link
+      link: 'https://domnaroztoczu.pages.dev/', // Tu docelowo inny link
     }
   ];
 
