@@ -1,27 +1,27 @@
 import { motion } from 'framer-motion';
-import { Search, PenTool, Code2, Rocket } from 'lucide-react';
+import { Search, FileSignature, MonitorPlay, Rocket } from 'lucide-react';
 
 export default function Process() {
   const steps = [
     {
       icon: Search,
-      title: '1. Strategia i Analiza',
-      description: 'Zanim napiszemy pierwszą linię kodu, analizujemy Twoją branżę i konkurencję. Ustalamy, kto jest Twoim klientem i jak do niego trafić.',
+      title: '1. Rozmowa i Strategia',
+      description: 'Ustalamy cele Twojej strony. Omawiamy budżet i funkcjonalności. Bez zobowiązań.',
     },
     {
-      icon: PenTool,
-      title: '2. Design i Makieta',
-      description: 'Projektujemy warstwę wizualną i układ treści. Nie używamy gotowców. Każdy element ma swoje uzasadnienie psychologiczne.',
+      icon: FileSignature,
+      title: '2. Bezpieczny Start (30%)',
+      description: 'Podpisujemy umowę i wpłacasz 30% zaliczki na start prac. To gwarantuje rezerwację terminu.',
     },
     {
-      icon: Code2,
-      title: '3. Programowanie (Development)',
-      description: 'Nasi programiści wdrażają projekt używając nowoczesnych technologii. Dbamy o szybkość, bezpieczeństwo i optymalizację pod Google.',
+      icon: MonitorPlay,
+      title: '3. Projekt i Demo',
+      description: 'Tworzymy w pełni działającą stronę na naszym serwerze testowym. Możesz klikać, sprawdzać i zgłaszać uwagi.',
     },
     {
       icon: Rocket,
-      title: '4. Wdrożenie i Szkolenie',
-      description: 'Uruchamiamy stronę pod Twoją domeną. Konfigurujemy analitykę i pokazujemy Ci, jak zarządzać treścią. Jesteśmy gotowi do startu.',
+      title: '4. Akceptacja i Finał (70%)',
+      description: 'Dopłacasz resztę dopiero, gdy jesteś zadowolony z efektu. Wtedy podpinamy domenę i przekazujemy Ci stronę.',
     },
   ];
 
@@ -35,10 +35,10 @@ export default function Process() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Jak Wygląda Współpraca?
+            Przejrzyste Zasady
           </h2>
           <p className="text-xl text-gray-400">
-            Profesjonalny proces, który gwarantuje rezultaty. Czas realizacji: 7-14 dni.
+            Minimum formalności, maksimum bezpieczeństwa dla Ciebie.
           </p>
         </motion.div>
 
