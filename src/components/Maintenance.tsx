@@ -65,10 +65,10 @@ export default function Maintenance() {
                   : 'bg-gray-900 border-gray-700'
               }`}
             >
-              {/* Plakietka wyróżniająca */}
+              {/* Plakietka wyróżniająca - ZMIANA TEKSTU NA BARDZIEJ PRZEKONUJĄCY */}
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-neon text-black px-4 py-1 rounded-full text-sm font-bold shadow-lg shadow-brand-neon/20">
-                  NAJLEPSZA WARTOŚĆ
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-neon text-black px-4 py-1 rounded-full text-sm font-bold shadow-lg shadow-brand-neon/20 whitespace-nowrap">
+                  NAJCZĘŚCIEJ WYBIERANY
                 </div>
               )}
 
