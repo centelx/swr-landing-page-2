@@ -2,13 +2,13 @@ import TopBar from '../components/TopBar';
 import Hero from '../components/Hero';
 import Portfolio from '../components/Portfolio';
 import Comparison from '../components/Comparison';
+import Process from '../components/Process'; // <--- DODANY IMPORT
 import Pricing from '../components/Pricing';
 import Maintenance from '../components/Maintenance';
 import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
-// WAŻNE: Musisz zaimportować nowy komponent, żeby działał
 import StickyCTA from '../components/StickyCTA';
 
 export default function Home() {
@@ -18,6 +18,10 @@ export default function Home() {
       <Hero />
       <Portfolio />
       <Comparison />
+      
+      {/* Tu jest idealne miejsce. Tłumaczymy "JAK" to robimy, zanim powiemy "ZA ILE" */}
+      <Process />
+      
       <Pricing />
       <Maintenance />
       <Testimonials />
@@ -25,7 +29,6 @@ export default function Home() {
       <Contact />
       <Footer />
       
-      {/* Tutaj wrzucamy nasz przyklejony przycisk (widoczny tylko na mobile) */}
       <StickyCTA />
     </>
   );
