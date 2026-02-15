@@ -41,9 +41,6 @@ export default function Footer() {
             <div className="text-gray-400 space-y-2 text-sm">
               <p>SWR Albert Świerczewski</p>
               <p>NIP: 8252208750</p>
-              <p className="text-xs text-gray-500 mt-4">
-                Działamy na terenie całej Polski oraz zdalnie dla klientów zagranicznych.
-              </p>
             </div>
           </div>
         </div>
@@ -53,19 +50,12 @@ export default function Footer() {
           <p className="text-gray-500 text-sm">
             © {currentYear} SWR Media. Wszystkie prawa zastrzeżone.
           </p>
-          <div className="flex gap-6">
+          <div>
             <Link
                 to="/privacy-policy"
                 className="text-gray-500 hover:text-brand-neon text-sm transition-colors"
             >
                 Polityka Prywatności
-            </Link>
-            <span className="text-gray-700">|</span>
-            <Link
-                to="/"
-                className="text-gray-500 hover:text-brand-neon text-sm transition-colors"
-            >
-                Regulamin
             </Link>
           </div>
         </div>
