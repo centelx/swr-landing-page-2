@@ -10,8 +10,8 @@ export default function Process() {
     },
     {
       icon: FileSignature,
-      title: '2. Bezpieczny Start (30%)',
-      description: 'Podpisujemy umowę i wpłacasz 30% zaliczki na start prac. To gwarantuje rezerwację terminu.',
+      title: '2. Formalności (30%)',
+      description: 'Podpisujemy umowę i wpłacasz zadatek (30%) na start prac. To rezerwuje Twój termin i pokrywa koszty analizy.',
     },
     {
       icon: MonitorPlay,
@@ -20,8 +20,8 @@ export default function Process() {
     },
     {
       icon: Rocket,
-      title: '4. Akceptacja i Finał (70%)',
-      description: 'Dopłacasz resztę dopiero, gdy jesteś zadowolony z efektu. Wtedy podpinamy domenę i przekazujemy Ci stronę.',
+      title: '4. Publikacja i Start (70%)',
+      description: 'Po akceptacji wrzucamy stronę do sieci. Od tego momentu Twój biznes jest widoczny online 24/7 i zaczyna na siebie zarabiać.',
     },
   ];
 
@@ -38,7 +38,7 @@ export default function Process() {
             Przejrzyste Zasady
           </h2>
           <p className="text-xl text-gray-400">
-            Minimum formalności, maksimum bezpieczeństwa dla Ciebie.
+            Płacisz za efekt, nie za obietnice.
           </p>
         </motion.div>
 
