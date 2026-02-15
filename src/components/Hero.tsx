@@ -8,7 +8,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-brand-dark pt-20 pb-12 px-4">
-      {/* Tło ozdobne (z oryginału) */}
+      {/* Tło ozdobne */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute w-96 h-96 bg-brand-neon/10 rounded-full blur-3xl top-20 -left-20"></div>
         <div className="absolute w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl bottom-20 -right-20"></div>
@@ -21,7 +21,7 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          {/* NOWY NAGŁÓWEK (Premium) */}
+          {/* NAGŁÓWEK */}
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
             Nie budujemy stron.<br />
             <span className="bg-gradient-to-r from-brand-neon to-brand-blue text-transparent bg-clip-text">
@@ -29,20 +29,19 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* NOWY PODTYTUŁ */}
+          {/* PODTYTUŁ */}
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
             Twoja konkurencja walczy ceną. Ty wygraj jakością. 
             Tworzymy serwisy klasy premium, które <span className="text-white font-semibold">zamieniają odwiedzających w płacących klientów.</span>
           </p>
 
-          {/* WIDEO (W miejscu dawnego placeholdera) */}
+          {/* WIDEO */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
             className="relative max-w-4xl mx-auto mb-12 group"
           >
-            {/* Ozdobna ramka/poświata */}
             <div className="relative aspect-video bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden shadow-2xl shadow-brand-neon/10">
               <iframe 
                 className="absolute inset-0 w-full h-full"
@@ -58,7 +57,7 @@ export default function Hero() {
           </motion.div>
 
           {/* PRZYCISKI CTA */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-16">
             <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -79,13 +78,19 @@ export default function Hero() {
             </motion.button>
           </div>
 
-          {/* SOCIAL PROOF (Dolna sekcja) */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-gray-400 text-sm">
-            <p>Zaufali nam liderzy rynku:</p>
-            <div className="flex items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-               <span className="font-bold text-white text-lg">NEXUS</span>
-               <span className="font-bold text-white text-lg">SOLID BUD</span>
-               <span className="font-bold text-white text-lg">MEDICA</span>
+          {/* PASEK UNIWERSALNY (BEZPIECZNY DLA KAŻDEJ BRANŻY) */}
+          <div className="border-t border-gray-800 pt-8">
+            <p className="text-gray-500 text-sm mb-4 uppercase tracking-wider font-medium">
+              Realizujemy projekty dla:
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 md:gap-12 opacity-70">
+               <span className="font-bold text-white text-lg">FIRMY USŁUGOWE</span>
+               <span className="text-gray-700 hidden md:inline">•</span>
+               <span className="font-bold text-white text-lg">E-COMMERCE</span>
+               <span className="text-gray-700 hidden md:inline">•</span>
+               <span className="font-bold text-white text-lg">SPECJALIŚCI</span>
+               <span className="text-gray-700 hidden md:inline">•</span>
+               <span className="font-bold text-white text-lg">MŚP</span>
             </div>
           </div>
 
