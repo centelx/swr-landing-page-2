@@ -92,7 +92,7 @@ export default function Hero() {
               {/* IFRAME Z YOUTUBE */}
               <iframe 
                 className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/rLNxCVTfhaY?rel=0" 
+                src="https://youtu.be/AqdxxTKPot0?si=G16ppHxyPAJcCMnm" 
                 title="Wideo sprzedażowe"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen
