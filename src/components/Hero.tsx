@@ -35,6 +35,27 @@ export default function Hero() {
             Tworzymy serwisy klasy premium, które <span className="text-white font-semibold">zamieniają odwiedzających w płacących klientów.</span>
           </p>
 
+          {/* --- WIDEO (PRZENIESIONE TUTAJ) --- */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="relative max-w-4xl mx-auto mb-10 group"
+          >
+            <div className="relative aspect-video bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden shadow-2xl shadow-brand-neon/10">
+              <iframe 
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/gkjSXBCVo8E?rel=0" 
+                title="Wideo sprzedażowe"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            </div>
+            <p className="text-gray-500 text-xs mt-4 uppercase tracking-widest">
+                Wideo: Zobacz dlaczego warto (0:33)
+            </p>
+          </motion.div>
+
           {/* PRZYCISKI CTA */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
             <motion.button
@@ -57,7 +78,7 @@ export default function Hero() {
             </motion.button>
           </div>
 
-          {/* --- NOWOŚĆ: KONKRETNE LICZBY (SOCIAL PROOF) --- */}
+          {/* KONKRETNE LICZBY (SOCIAL PROOF) */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -68,7 +89,6 @@ export default function Hero() {
             <div className="flex -space-x-3">
                {[1,2,3,4].map((i) => (
                  <div key={i} className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-700 flex items-center justify-center overflow-hidden">
-                    {/* W prawdziwym projekcie tu byłyby zdjęcia klientów. Teraz dajemy ikonkę user */}
                     <User className="w-6 h-6 text-gray-400" />
                  </div>
                ))}
@@ -86,27 +106,6 @@ export default function Hero() {
                    <strong className="text-white">89</strong> Zadowolonych Firm
                 </p>
             </div>
-          </motion.div>
-
-          {/* WIDEO */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="relative max-w-4xl mx-auto mb-12 group"
-          >
-            <div className="relative aspect-video bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden shadow-2xl shadow-brand-neon/10">
-              <iframe 
-                className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/gkjSXBCVo8E?rel=0" 
-                title="Wideo sprzedażowe"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
-            </div>
-            <p className="text-gray-500 text-xs mt-4 uppercase tracking-widest">
-                Wideo: Zobacz dlaczego warto (0:33)
-            </p>
           </motion.div>
 
           {/* PASEK BRANŻOWY */}
