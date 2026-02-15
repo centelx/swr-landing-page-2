@@ -14,6 +14,7 @@ export default function Pricing() {
       features: [
         'Projekt graficzny One-Page',
         'Responsywność (Mobile First)',
+        'Integracja z Mapami / Social Media', // DODANE
         'Podstawowe SEO techniczne',
         'Formularz kontaktowy',
         'Szybki serwer i domena (rok)',
@@ -26,11 +27,11 @@ export default function Pricing() {
       desc: 'Kompletne rozwiązanie budujące przewagę rynkową.',
       features: [
         'Rozbudowana struktura (do 6 podstron)',
+        'Panel CMS (Edytujesz treści sam)', // KLUCZOWY ARGUMENT
         'Copywriting sprzedażowy (Psychologia)',
         'Zaawansowana analityka (Google)',
+        'Konfiguracja Google Moja Firma', // TO BRZMI PROFESJONALNIEJ NIŻ "MAPA"
         'Optymalizacja Core Web Vitals',
-        'Integracja z Social Media / Mapami',
-        'Panel CMS do edycji treści'
       ]
     },
     {
