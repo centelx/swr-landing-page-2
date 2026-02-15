@@ -43,7 +43,7 @@ export default function Hero() {
                 onClick={scrollToPricing}
                 className="bg-brand-neon text-black font-bold text-lg px-12 py-5 rounded-full hover:shadow-2xl hover:shadow-brand-neon/50 transition-all flex items-center gap-2"
             >
-                Sprawdź Ceny
+                Zobacz Ofertę
                 <ChevronRight className="w-5 h-5" />
             </motion.button>
 
