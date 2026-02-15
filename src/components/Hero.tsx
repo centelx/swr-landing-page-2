@@ -78,19 +78,19 @@ export default function Hero() {
             </motion.button>
           </div>
 
-          {/* PASEK UNIWERSALNY (BEZPIECZNY DLA KAŻDEJ BRANŻY) */}
+          {/* PASEK BRANŻOWY (ZMIANA NA KONKRETY) */}
           <div className="border-t border-gray-800 pt-8">
             <p className="text-gray-500 text-sm mb-4 uppercase tracking-wider font-medium">
               Realizujemy projekty dla:
             </p>
             <div className="flex flex-wrap justify-center gap-4 md:gap-12 opacity-70">
-               <span className="font-bold text-white text-lg">FIRMY USŁUGOWE</span>
+               <span className="font-bold text-white text-lg">USŁUGI</span>
                <span className="text-gray-700 hidden md:inline">•</span>
                <span className="font-bold text-white text-lg">E-COMMERCE</span>
                <span className="text-gray-700 hidden md:inline">•</span>
-               <span className="font-bold text-white text-lg">SPECJALIŚCI</span>
+               <span className="font-bold text-white text-lg">BUDOWNICTWO</span>
                <span className="text-gray-700 hidden md:inline">•</span>
-               <span className="font-bold text-white text-lg">MŚP</span>
+               <span className="font-bold text-white text-lg">SPECJALIŚCI</span>
             </div>
           </div>
 
