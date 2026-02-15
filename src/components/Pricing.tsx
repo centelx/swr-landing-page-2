@@ -10,7 +10,7 @@ export default function Pricing() {
     {
       name: 'Wizytówka',
       price: '2900',
-      oldPrice: '3500', // Przekreślona cena
+      oldPrice: '3500', 
       desc: 'Idealna na start dla specjalistów i małych firm.',
       features: [
         'Projekt One-Page (Wszystko na 1 stronie)',
@@ -24,8 +24,8 @@ export default function Pricing() {
     {
       name: 'Strona Firmowa',
       price: '3900',
-      oldPrice: '4900', // Przekreślona cena
-      popular: false, // Brak wyróżnienia "Najczęściej wybierany"
+      oldPrice: '4900', 
+      popular: false, 
       desc: 'Kompletne rozwiązanie budujące przewagę rynkową.',
       features: [
         'Rozbudowana struktura (do 6 podstron)',
@@ -95,12 +95,13 @@ export default function Pricing() {
               </div>
 
               <div className="mb-8">
-                {/* --- NOWE: CZERWONE POLE Z PRZEKREŚLONĄ CENĄ --- */}
+                {/* --- NOWE: CENA REGULARNA BEZ PRZEKREŚLENIA --- */}
                 {plan.oldPrice && (
                     <div className="inline-flex items-center gap-2 bg-red-900/30 border border-red-500/50 rounded-lg px-3 py-1.5 mb-3">
                         <Tag className="w-3 h-3 text-red-400" />
                         <span className="text-red-300 text-xs font-medium uppercase tracking-wide">Cena regularna:</span>
-                        <span className="text-red-200 font-bold line-through decoration-red-500 decoration-2 text-lg">
+                        {/* Usunięto klasę 'line-through' dla lepszej czytelności */}
+                        <span className="text-red-200 font-bold text-lg">
                             {plan.oldPrice} zł
                         </span>
                     </div>
