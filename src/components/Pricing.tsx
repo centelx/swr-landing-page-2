@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check, ShieldCheck, Zap, BarChart } from 'lucide-react';
+import { Check, ShieldCheck, Zap, BarChart, Tag } from 'lucide-react';
 
 export default function Pricing() {
   const scrollToContact = () => {
@@ -10,7 +10,7 @@ export default function Pricing() {
     {
       name: 'Wizytówka',
       price: '2900',
-      oldPrice: '3500', // DODANO PROMOCJĘ
+      oldPrice: '3500', // Przekreślona cena
       desc: 'Idealna na start dla specjalistów i małych firm.',
       features: [
         'Projekt One-Page (Wszystko na 1 stronie)',
@@ -24,8 +24,8 @@ export default function Pricing() {
     {
       name: 'Strona Firmowa',
       price: '3900',
-      oldPrice: '4900', // DODANO PROMOCJĘ
-      popular: false, // USUNIĘTO WYRÓŻNIENIE
+      oldPrice: '4900', // Przekreślona cena
+      popular: false, // Brak wyróżnienia "Najczęściej wybierany"
       desc: 'Kompletne rozwiązanie budujące przewagę rynkową.',
       features: [
         'Rozbudowana struktura (do 6 podstron)',
@@ -89,18 +89,23 @@ export default function Pricing() {
                 </div>
               )}
 
-              <div className="mb-8">
+              <div className="mb-6">
                 <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
                 <p className="text-gray-400 text-sm h-10">{plan.desc}</p>
               </div>
 
               <div className="mb-8">
-                {/* Wyświetlanie starej ceny, jeśli istnieje */}
+                {/* --- NOWE: CZERWONE POLE Z PRZEKREŚLONĄ CENĄ --- */}
                 {plan.oldPrice && (
-                    <div className="text-gray-500 line-through text-lg font-medium decoration-red-500/50 mb-1">
-                        {plan.oldPrice} zł
+                    <div className="inline-flex items-center gap-2 bg-red-900/30 border border-red-500/50 rounded-lg px-3 py-1.5 mb-3">
+                        <Tag className="w-3 h-3 text-red-400" />
+                        <span className="text-red-300 text-xs font-medium uppercase tracking-wide">Cena regularna:</span>
+                        <span className="text-red-200 font-bold line-through decoration-red-500 decoration-2 text-lg">
+                            {plan.oldPrice} zł
+                        </span>
                     </div>
                 )}
+                
                 <div className="flex items-baseline gap-1">
                   {plan.price !== 'Wycena' && <span className="text-gray-400 text-lg">od</span>}
                   <span className="text-4xl font-bold text-white">{plan.price}</span>
