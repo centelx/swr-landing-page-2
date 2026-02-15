@@ -1,126 +1,155 @@
 import { motion } from 'framer-motion';
-import { Check, Zap, ShieldCheck, Gift } from 'lucide-react';
+import { Check, ShieldCheck, Zap, BarChart } from 'lucide-react';
 
 export default function Pricing() {
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const plans = [
+    {
+      name: 'Wizytówka',
+      price: '2900',
+      desc: 'Idealna na start dla specjalistów i małych firm.',
+      features: [
+        'Projekt graficzny One-Page',
+        'Responsywność (Mobile First)',
+        'Podstawowe SEO techniczne',
+        'Formularz kontaktowy',
+        'Szybki serwer i domena (rok)',
+      ]
+    },
+    {
+      name: 'Strona Firmowa',
+      price: '3900',
+      popular: true,
+      desc: 'Kompletne rozwiązanie budujące przewagę rynkową.',
+      features: [
+        'Rozbudowana struktura (do 6 podstron)',
+        'Copywriting sprzedażowy (Psychologia)',
+        'Zaawansowana analityka (Google)',
+        'Optymalizacja Core Web Vitals',
+        'Integracja z Social Media / Mapami',
+        'Panel CMS do edycji treści'
+      ]
+    },
+    {
+      name: 'E-Commerce / Custom',
+      price: 'Wycena',
+      desc: 'Dla wymagających biznesów i sklepów.',
+      features: [
+        'Sklep internetowy / Płatności',
+        'Niestandardowe funkcjonalności',
+        'Integracje API / CRM',
+        'Strategia marketingowa',
+        'Wielojęzyczność',
+        'Audyt konkurencji'
+      ]
+    }
+  ];
+
   return (
-    <section id="offer" className="py-20 px-4 bg-brand-dark">
+    <section id="offer" className="py-24 px-4 bg-brand-dark">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 bg-brand-accent/20 border border-brand-accent px-4 py-2 rounded-full mb-4">
-            <Zap className="w-4 h-4 text-brand-accent" />
-            <span className="text-brand-accent font-semibold text-sm">OFERTA SPECJALNA</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Twoja Strona za 500 zł
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Inwestycja w Twój Biznes
           </h2>
-          <p className="text-xl text-gray-400">
-            Wszystko czego potrzebujesz w jednej cenie
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            Nie oferujemy "tanich stron", które trzeba poprawiać po miesiącu. 
+            Dostarczamy kompletne rozwiązania, które zarabiają na siebie od pierwszego dnia.
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-2xl mx-auto"
-        >
-          <div className="bg-gradient-to-br from-brand-neon/10 to-brand-blue/10 rounded-3xl p-8 md:p-12 border-2 border-brand-neon shadow-2xl shadow-brand-neon/30">
-            <div className="text-center mb-8">
-              <p className="text-gray-400 text-lg mb-2 line-through">2999 zł</p>
-              <div className="flex items-end justify-center gap-2">
-                <span className="text-6xl md:text-7xl font-bold text-white">500</span>
-                <span className="text-3xl text-gray-300 mb-2">zł</span>
-              </div>
-              
-              <div className="mt-4 bg-brand-navy/50 rounded-xl p-4 border border-brand-neon/30 inline-block">
-                <p className="text-brand-neon font-bold text-lg">
-                  Startujesz za jedyne 100 zł zaliczki!
-                </p>
-                <p className="text-gray-400 text-sm mt-1">
-                  Pozostałe 400 zł płacisz dopiero po odebraniu gotowej strony.
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-4 mb-8">
-              {/* Standardowe funkcje */}
-              {[
-                'Multi-Page setup (strona główna, o nas, oferta, kontakt)',
-                'Formularz kontaktowy z integracją',
-                'Konfiguracja domeny',
-                'Responsywny design mobilny',
-              ].map((feature, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-brand-neon/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-4 h-4 text-brand-neon" />
-                  </div>
-                  <span className="text-gray-300">{feature}</span>
-                </div>
-              ))}
-
-              {/* ZMIANA: Framing BONUSÓW (Wartość dodana) */}
-              <div className="border-t border-gray-700 my-4 pt-4 space-y-4">
-                <div className="flex items-start gap-3 bg-brand-neon/5 p-3 rounded-lg border border-brand-neon/20">
-                    <div className="w-6 h-6 rounded-full bg-brand-neon/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Gift className="w-4 h-4 text-brand-neon" />
-                    </div>
-                    <div>
-                        <span className="text-white font-bold block">BONUS: Wstępne pozycjonowanie Google</span>
-                        <span className="text-brand-neon text-sm font-bold">WARTOŚĆ 300 ZŁ - GRATIS</span>
-                    </div>
-                </div>
-
-                <div className="flex items-start gap-3 bg-brand-neon/5 p-3 rounded-lg border border-brand-neon/20">
-                    <div className="w-6 h-6 rounded-full bg-brand-neon/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Gift className="w-4 h-4 text-brand-neon" />
-                    </div>
-                    <div>
-                        <span className="text-white font-bold block">BONUS: Hosting i SSL (1 miesiąc)</span>
-                        <span className="text-brand-neon text-sm font-bold">WARTOŚĆ 49 ZŁ - GRATIS</span>
-                    </div>
-                </div>
-              </div>
-              
-              {/* Punkt o bezpieczeństwie */}
-              <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.7 }}
-                  className="flex items-start gap-3 pt-2"
-                >
-                  <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <ShieldCheck className="w-4 h-4 text-green-500" />
-                  </div>
-                  <span className="text-white font-medium">Gwarancja Satysfakcji: Jeśli projekt Ci się nie spodoba – zwracamy 100% zaliczki.</span>
-                </motion.div>
-            </div>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={scrollToContact}
-              className="w-full bg-gradient-to-r from-brand-neon to-brand-blue text-black font-bold text-xl px-8 py-5 rounded-full hover:shadow-2xl hover:shadow-brand-neon/50 transition-all"
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {plans.map((plan, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className={`relative rounded-2xl p-8 flex flex-col ${
+                plan.popular 
+                  ? 'bg-gray-800 border-2 border-brand-neon' 
+                  : 'bg-gray-900 border border-gray-700'
+              }`}
             >
-              Odbieram bonusy i zamawiam
-            </motion.button>
+              {plan.popular && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-neon text-black px-4 py-1 rounded-full text-sm font-bold">
+                  NAJCZĘŚCIEJ WYBIERANY
+                </div>
+              )}
 
-            <p className="text-center text-gray-400 text-sm mt-6">
-              Realizacja w 24 godziny od zatwierdzenia projektu
-            </p>
-          </div>
-        </motion.div>
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+                <p className="text-gray-400 text-sm h-10">{plan.desc}</p>
+              </div>
+
+              <div className="mb-8">
+                <div className="flex items-baseline gap-1">
+                  {plan.price !== 'Wycena' && <span className="text-gray-400 text-lg">od</span>}
+                  <span className="text-4xl font-bold text-white">{plan.price}</span>
+                  {plan.price !== 'Wycena' && <span className="text-xl text-gray-400">zł</span>}
+                </div>
+                {plan.price !== 'Wycena' && <p className="text-gray-500 text-sm mt-2">+ VAT 23%</p>}
+              </div>
+
+              <ul className="space-y-4 mb-8 flex-grow">
+                {plan.features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3 text-gray-300">
+                    <div className="w-5 h-5 rounded-full bg-brand-neon/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Check className="w-3 h-3 text-brand-neon" />
+                    </div>
+                    <span className="text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                onClick={scrollToContact}
+                className={`w-full py-4 rounded-xl font-bold transition-all ${
+                  plan.popular
+                    ? 'bg-brand-neon text-black hover:bg-white'
+                    : 'bg-white/10 text-white hover:bg-white/20'
+                }`}
+              >
+                Zapytaj o ten pakiet
+              </button>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Sekcja "Black Magic" - Uzasadnienie ceny */}
+        <div className="mt-20 grid md:grid-cols-3 gap-8 border-t border-gray-800 pt-12">
+            <div className="text-center">
+                <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-4 text-brand-neon">
+                    <Zap className="w-6 h-6" />
+                </div>
+                <h4 className="text-white font-bold mb-2">Technologia React/Next.js</h4>
+                <p className="text-gray-400 text-sm">Nie używamy powolnych kreatorów. Twoja strona będzie działać błyskawicznie, co Google nagradza wyższą pozycją.</p>
+            </div>
+            <div className="text-center">
+                <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-4 text-brand-neon">
+                    <BarChart className="w-6 h-6" />
+                </div>
+                <h4 className="text-white font-bold mb-2">Psychologia Sprzedaży</h4>
+                <p className="text-gray-400 text-sm">Układ strony projektujemy tak, aby prowadził klienta za rękę prosto do przycisku "Kup" lub "Zadzwoń".</p>
+            </div>
+             <div className="text-center">
+                <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-4 text-brand-neon">
+                    <ShieldCheck className="w-6 h-6" />
+                </div>
+                <h4 className="text-white font-bold mb-2">Bezpieczeństwo i RODO</h4>
+                <p className="text-gray-400 text-sm">Zadba o certyfikaty SSL, politykę prywatności i zgodność z prawem, abyś mógł spać spokojnie.</p>
+            </div>
+        </div>
+
       </div>
     </section>
   );
