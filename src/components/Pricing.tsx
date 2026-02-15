@@ -10,12 +10,13 @@ export default function Pricing() {
     {
       name: 'Wizytówka',
       price: '2900',
+      oldPrice: '3500', // DODANO PROMOCJĘ
       desc: 'Idealna na start dla specjalistów i małych firm.',
       features: [
         'Projekt One-Page (Wszystko na 1 stronie)',
-        'Działa idealnie na telefonach (RWD)', // ZMIANA
+        'Działa idealnie na telefonach (RWD)',
         'Integracja z Mapami / Facebookiem',
-        'Przyjazna dla Google (Podstawy SEO)', // ZMIANA
+        'Przyjazna dla Google (Podstawy SEO)',
         'Formularz kontaktowy na email',
         'Szybki serwer i domena (rok w cenie)',
       ]
@@ -23,15 +24,16 @@ export default function Pricing() {
     {
       name: 'Strona Firmowa',
       price: '3900',
-      popular: true,
+      oldPrice: '4900', // DODANO PROMOCJĘ
+      popular: false, // USUNIĘTO WYRÓŻNIENIE
       desc: 'Kompletne rozwiązanie budujące przewagę rynkową.',
       features: [
         'Rozbudowana struktura (do 6 podstron)',
         'Panel CMS (Edytujesz treści sam)',
-        'Teksty sprzedażowe (Pisze Copywriter)', // ZMIANA NA BARDZIEJ ZROZUMIAŁE
+        'Teksty sprzedażowe (Pisze Copywriter)',
         'Podpięcie statystyk odwiedzin',
         'Konfiguracja wizytówki Google',
-        'Błyskawiczne wczytywanie (Lepsze SEO)', // ZAMIAST CORE WEB VITALS
+        'Błyskawiczne wczytywanie (Lepsze SEO)',
       ]
     },
     {
@@ -93,6 +95,12 @@ export default function Pricing() {
               </div>
 
               <div className="mb-8">
+                {/* Wyświetlanie starej ceny, jeśli istnieje */}
+                {plan.oldPrice && (
+                    <div className="text-gray-500 line-through text-lg font-medium decoration-red-500/50 mb-1">
+                        {plan.oldPrice} zł
+                    </div>
+                )}
                 <div className="flex items-baseline gap-1">
                   {plan.price !== 'Wycena' && <span className="text-gray-400 text-lg">od</span>}
                   <span className="text-4xl font-bold text-white">{plan.price}</span>
