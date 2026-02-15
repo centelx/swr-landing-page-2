@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronRight, Star, Play } from 'lucide-react';
+import { ChevronRight, Star } from 'lucide-react';
 
 export default function Hero() {
   const scrollToPricing = () => {
@@ -76,12 +76,12 @@ export default function Hero() {
           </button>
         </motion.div>
 
-        {/* --- VSL: VIDEO SALES LETTER (PRZYWRÓCONE) --- */}
+        {/* --- VSL: VIDEO SALES LETTER (TUTAJ JEST TWOJE WIDEO) --- */}
         <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="relative max-w-4xl mx-auto group cursor-pointer"
+            className="relative max-w-4xl mx-auto group"
           >
             {/* Ozdobna poświata pod wideo */}
             <div className="absolute -inset-1 bg-gradient-to-r from-brand-neon to-brand-blue rounded-2xl opacity-20 blur-lg group-hover:opacity-40 transition duration-500"></div>
@@ -89,33 +89,14 @@ export default function Hero() {
             {/* Kontener Wideo */}
             <div className="relative aspect-video bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden shadow-2xl">
               
-              {/* Thumbnail / Placeholder */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
-                 {/* Tutaj możesz wstawić <img> ze swoim zdjęciem/miniaturą */}
-                 <div className="text-center p-8">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-4 border border-white/20 shadow-lg"
-                    >
-                      <Play className="w-8 h-8 text-white fill-white ml-1" />
-                    </motion.div>
-                    <p className="text-white font-bold text-lg tracking-wide">
-                      ZOBACZ DLACZEGO WARTO
-                    </p>
-                    <p className="text-brand-neon text-sm font-medium mt-1">
-                      Wideo od założyciela (2 min)
-                    </p>
-                 </div>
-              </div>
-
-              {/* Tutaj odkomentuj i wstaw iframe z YouTube/Vimeo gdy będziesz miał film */}
-              {/* <iframe 
+              {/* IFRAME Z YOUTUBE */}
+              <iframe 
                 className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/TWOJE_ID" 
-                title="SWR Media VSL"
+                src="https://www.youtube.com/embed/rLNxCVTfhaY?rel=0" 
+                title="Wideo sprzedażowe"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen
-              ></iframe> */}
+              ></iframe>
 
             </div>
         </motion.div>
@@ -124,7 +105,6 @@ export default function Hero() {
         <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6 text-gray-400 text-sm">
             <p>Dołącz do firm, które postawiły na jakość:</p>
             <div className="flex gap-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                {/* Tu możesz wstawić logotypy klientów w przyszłości, teraz tekstowo */}
                 <span className="font-bold text-white text-lg">NEXUS</span>
                 <span className="font-bold text-white text-lg">SOLID BUD</span>
                 <span className="font-bold text-white text-lg">MEDICA</span>
