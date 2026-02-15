@@ -1,15 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { CheckCircle, ArrowRight, ChevronLeft, Phone, Mail } from 'lucide-react';
+import { CheckCircle, ArrowRight, ChevronLeft, Phone, Mail, Wallet } from 'lucide-react';
 
 export default function Contact() {
-  // Mamy teraz 3 kroki, więc postęp liczymy dla 3
+  // Teraz mamy 4 kroki: Branża -> Budżet -> Metoda -> Dane
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   
   const [formData, setFormData] = useState({
     industry: '',     
-    contactMethod: '', // 'Telefon' lub 'Email'
+    contactMethod: '', 
     budget: '',
     name: '',         
     phone: '',        
@@ -22,7 +22,7 @@ export default function Contact() {
     setStep(prev => prev + 1);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -32,18 +32,18 @@ export default function Contact() {
     
     const formBody = new FormData();
     formBody.append('access_key', '4343a106-203d-4279-9980-da05e02f360f'); 
-    formBody.append('subject', `LEAD (${formData.contactMethod}): ${formData.name}`);
+    formBody.append('subject', `LEAD PREMIUM (${formData.budget}): ${formData.name}`);
     
     const messageBody = `
       KLIENT: ${formData.name}
-      PREFEROWANY KONTAKT: ${formData.contactMethod}
+      BUDŻET: ${formData.budget}
+      KONTAKT: ${formData.contactMethod}
       ---
       TELEFON: ${formData.phone}
       EMAIL: ${formData.email}
       ---
       BRANŻA: ${formData.industry}
-      BUDŻET: ${formData.budget}
-      DODATKOWE INFO: ${formData.info}
+      INFO: ${formData.info}
     `;
     formBody.append('message', messageBody);
 
@@ -63,11 +63,11 @@ export default function Contact() {
     }
   };
 
-  // Obliczenie postępu dla 3 kroków
-  const progress = (step / 3) * 100;
+  // Obliczenie postępu dla 4 kroków
+  const progress = (step / 4) * 100;
 
   return (
-    <section id="contact" className="py-20 px-4 bg-brand-dark min-h-[700px] flex items-center justify-center">
+    <section id="contact" className="py-20 px-4 bg-brand-dark min-h-[750px] flex items-center justify-center">
       <div className="max-w-2xl w-full mx-auto">
         
         <motion.div
@@ -80,13 +80,13 @@ export default function Contact() {
             Rozpocznijmy Współpracę
           </h2>
           <p className="text-gray-400">
-            Odpowiemy w ciągu 24h. Wybierz, jak wolisz się skontaktować.
+            Wypełnij formularz, abyśmy mogli przygotować wstępną strategię.
           </p>
         </motion.div>
 
         <div className="bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl relative overflow-hidden">
             
-            {/* --- PRZYWRÓCONY ZIELONY PASEK POSTĘPU --- */}
+            {/* PASEK POSTĘPU */}
             <div className="h-2 bg-gray-800 w-full absolute top-0 left-0 z-10">
                 <motion.div 
                   className="h-full bg-gradient-to-r from-green-400 to-green-600"
@@ -96,15 +96,15 @@ export default function Contact() {
                 />
             </div>
 
-            <div className="p-8 md:p-12 pt-10"> {/* Dodatkowy padding u góry, żeby nie zasłonić paska */}
+            <div className="p-8 md:p-12 pt-10">
                 {status === 'success' ? (
                 <div className="text-center py-10">
                     <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />
                     <h3 className="text-2xl font-bold text-white mb-4">Dziękujemy za zgłoszenie!</h3>
                     <p className="text-gray-400 text-lg">
                     {formData.contactMethod === 'Telefon' 
-                        ? 'Zadzwonimy do Ciebie w najbliższym dniu roboczym.'
-                        : 'Sprawdź swoją skrzynkę email - wyślemy tam ankietę projektową.'}
+                        ? 'Twój opiekun klienta zadzwoni w najbliższym dniu roboczym.'
+                        : 'Sprawdź email - wysłaliśmy potwierdzenie przyjęcia zgłoszenia.'}
                     </p>
                 </div>
                 ) : (
@@ -133,7 +133,7 @@ export default function Contact() {
                     </motion.div>
                     )}
 
-                    {/* KROK 2: METODA KONTAKTU */}
+                    {/* KROK 2: BUDŻET (PRZYWRÓCONY) */}
                     {step === 2 && (
                     <motion.div
                         key="step2"
@@ -144,8 +144,37 @@ export default function Contact() {
                         <div className="flex items-center gap-2 mb-6 cursor-pointer text-gray-500 hover:text-white" onClick={() => setStep(1)}>
                             <ChevronLeft className="w-4 h-4" /> Wstecz
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-2">Jak chcesz omówić projekt?</h3>
-                        <p className="text-gray-400 text-sm mb-6">Szanujemy Twój czas. Wybierz wygodniejszą formę.</p>
+                        <h3 className="text-xl font-bold text-white mb-2">Jaki budżet planujesz przeznaczyć?</h3>
+                        <p className="text-gray-400 text-sm mb-6">Pozwoli nam to dobrać odpowiednie rozwiązania.</p>
+                        
+                        <div className="space-y-3">
+                          {['2,500 - 4,000 zł (Wizytówka / Start)', '4,000 - 7,000 zł (Strona Firmowa)', 'Powyżej 7,000 zł (Sklep / Custom)'].map((opt) => (
+                            <button
+                              key={opt}
+                              onClick={() => handleSelection('budget', opt)}
+                              className="w-full text-left p-5 rounded-xl border border-gray-700 bg-gray-800/50 hover:bg-brand-navy hover:border-brand-neon transition-all flex items-center justify-between group"
+                            >
+                              <span className="font-medium text-white">{opt}</span>
+                              <Wallet className="w-5 h-5 text-gray-600 group-hover:text-brand-neon" />
+                            </button>
+                          ))}
+                        </div>
+                    </motion.div>
+                    )}
+
+                    {/* KROK 3: METODA KONTAKTU */}
+                    {step === 3 && (
+                    <motion.div
+                        key="step3"
+                        initial={{ x: 20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: -20, opacity: 0 }}
+                    >
+                        <div className="flex items-center gap-2 mb-6 cursor-pointer text-gray-500 hover:text-white" onClick={() => setStep(2)}>
+                            <ChevronLeft className="w-4 h-4" /> Wstecz
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2">Jak chcesz omówić szczegóły?</h3>
+                        <p className="text-gray-400 text-sm mb-6">Wybierz wygodniejszą formę komunikacji.</p>
                         
                         <div className="space-y-4">
                         <button
@@ -174,7 +203,7 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <span className="text-lg font-bold text-white block">Ankieta Email</span>
-                                    <span className="text-gray-400 text-sm">Wolę wszystko opisać w mailu</span>
+                                    <span className="text-gray-400 text-sm">Wolę opisać wszystko w mailu</span>
                                 </div>
                             </div>
                             <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-brand-neon" />
@@ -183,15 +212,15 @@ export default function Contact() {
                     </motion.div>
                     )}
 
-                    {/* KROK 3: DANE KONTAKTOWE */}
-                    {step === 3 && (
+                    {/* KROK 4: DANE KONTAKTOWE */}
+                    {step === 4 && (
                     <motion.div
-                        key="step3"
+                        key="step4"
                         initial={{ x: 20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: -20, opacity: 0 }}
                     >
-                        <div className="flex items-center gap-2 mb-6 cursor-pointer text-gray-500 hover:text-white" onClick={() => setStep(2)}>
+                        <div className="flex items-center gap-2 mb-6 cursor-pointer text-gray-500 hover:text-white" onClick={() => setStep(3)}>
                             <ChevronLeft className="w-4 h-4" /> Wstecz
                         </div>
                         
@@ -231,18 +260,6 @@ export default function Contact() {
                                 formData.contactMethod === 'Email' ? 'border-brand-neon/50' : 'border-gray-700'
                             }`}
                         />
-
-                        <select
-                            name="budget"
-                            value={formData.budget}
-                            onChange={handleInputChange}
-                            className="w-full p-4 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-brand-neon outline-none appearance-none cursor-pointer"
-                        >
-                            <option value="" disabled>Planowany budżet (Orientacyjnie)</option>
-                            <option value="2500-4000">2,500 - 4,000 zł</option>
-                            <option value="4000-7000">4,000 - 7,000 zł</option>
-                            <option value="7000+">Powyżej 7,000 zł</option>
-                        </select>
 
                         <textarea
                             name="info"
