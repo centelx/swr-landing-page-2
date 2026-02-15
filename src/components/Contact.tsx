@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { CheckCircle, ArrowRight, ChevronLeft, Phone, Mail, Wallet } from 'lucide-react';
 
 export default function Contact() {
-  // Teraz mamy 4 kroki: Branża -> Budżet -> Metoda -> Dane
+  // Teraz mamy 4 kroki: Branża -> Metoda -> Budżet -> Dane (ZMIANA KOLEJNOŚCI)
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   
@@ -110,7 +110,7 @@ export default function Contact() {
                 ) : (
                 <AnimatePresence mode='wait'>
                     
-                    {/* KROK 1: BRANŻA */}
+                    {/* KROK 1: BRANŻA (Bez zmian) */}
                     {step === 1 && (
                     <motion.div
                         key="step1"
@@ -133,44 +133,15 @@ export default function Contact() {
                     </motion.div>
                     )}
 
-                    {/* KROK 2: BUDŻET (PRZYWRÓCONY) */}
+                    {/* KROK 2: METODA KONTAKTU (Przeniesiony wcześniej) */}
                     {step === 2 && (
                     <motion.div
-                        key="step2"
+                        key="step2" // Zmienione z step3 na step2
                         initial={{ x: 20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: -20, opacity: 0 }}
                     >
                         <div className="flex items-center gap-2 mb-6 cursor-pointer text-gray-500 hover:text-white" onClick={() => setStep(1)}>
-                            <ChevronLeft className="w-4 h-4" /> Wstecz
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-2">Jaki budżet planujesz przeznaczyć?</h3>
-                        <p className="text-gray-400 text-sm mb-6">Pozwoli nam to dobrać odpowiednie rozwiązania.</p>
-                        
-                        <div className="space-y-3">
-                          {['2,500 - 4,000 zł (Wizytówka / Start)', '4,000 - 7,000 zł (Strona Firmowa)', 'Powyżej 7,000 zł (Sklep / Custom)'].map((opt) => (
-                            <button
-                              key={opt}
-                              onClick={() => handleSelection('budget', opt)}
-                              className="w-full text-left p-5 rounded-xl border border-gray-700 bg-gray-800/50 hover:bg-brand-navy hover:border-brand-neon transition-all flex items-center justify-between group"
-                            >
-                              <span className="font-medium text-white">{opt}</span>
-                              <Wallet className="w-5 h-5 text-gray-600 group-hover:text-brand-neon" />
-                            </button>
-                          ))}
-                        </div>
-                    </motion.div>
-                    )}
-
-                    {/* KROK 3: METODA KONTAKTU */}
-                    {step === 3 && (
-                    <motion.div
-                        key="step3"
-                        initial={{ x: 20, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        exit={{ x: -20, opacity: 0 }}
-                    >
-                        <div className="flex items-center gap-2 mb-6 cursor-pointer text-gray-500 hover:text-white" onClick={() => setStep(2)}>
                             <ChevronLeft className="w-4 h-4" /> Wstecz
                         </div>
                         <h3 className="text-xl font-bold text-white mb-2">Jak chcesz omówić szczegóły?</h3>
@@ -212,7 +183,38 @@ export default function Contact() {
                     </motion.div>
                     )}
 
-                    {/* KROK 4: DANE KONTAKTOWE */}
+                    {/* KROK 3: BUDŻET (Przeniesiony później) */}
+                    {step === 3 && (
+                    <motion.div
+                        key="step3" // Zmienione z step2 na step3
+                        initial={{ x: 20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: -20, opacity: 0 }}
+                    >
+                        {/* Wstecz prowadzi teraz do kroku 2 (Metoda) */}
+                        <div className="flex items-center gap-2 mb-6 cursor-pointer text-gray-500 hover:text-white" onClick={() => setStep(2)}>
+                            <ChevronLeft className="w-4 h-4" /> Wstecz
+                        </div>
+                        {/* ZMIANA TREŚCI PYTANIA */}
+                        <h3 className="text-xl font-bold text-white mb-2">W jakim przedziale inwestycyjnym chcemy się poruszać?</h3>
+                        <p className="text-gray-400 text-sm mb-6">Pozwoli nam to dobrać odpowiednie rozwiązania.</p>
+                        
+                        <div className="space-y-3">
+                          {['2,500 - 4,000 zł (Wizytówka / Start)', '4,000 - 7,000 zł (Strona Firmowa)', 'Powyżej 7,000 zł (Sklep / Custom)'].map((opt) => (
+                            <button
+                              key={opt}
+                              onClick={() => handleSelection('budget', opt)}
+                              className="w-full text-left p-5 rounded-xl border border-gray-700 bg-gray-800/50 hover:bg-brand-navy hover:border-brand-neon transition-all flex items-center justify-between group"
+                            >
+                              <span className="font-medium text-white">{opt}</span>
+                              <Wallet className="w-5 h-5 text-gray-600 group-hover:text-brand-neon" />
+                            </button>
+                          ))}
+                        </div>
+                    </motion.div>
+                    )}
+
+                    {/* KROK 4: DANE KONTAKTOWE (Wstecz prowadzi do kroku 3 - Budżet) */}
                     {step === 4 && (
                     <motion.div
                         key="step4"
