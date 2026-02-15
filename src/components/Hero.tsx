@@ -83,7 +83,7 @@ export default function Hero() {
                    {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />)}
                 </div>
                 <p className="text-gray-400 text-sm">
-                   <strong className="text-white">89+</strong> Zadowolonych Firm
+                   <strong className="text-white">89</strong> Zadowolonych Firm
                 </p>
             </div>
           </motion.div>
