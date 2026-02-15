@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { X, Check, AlertTriangle, Lock, Search, Zap } from 'lucide-react';
+import { X, Check } from 'lucide-react';
 
 export default function Comparison() {
   return (
@@ -9,43 +9,46 @@ export default function Comparison() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Brutalna Prawda
+            Dlaczego 90% stron nie sprzedaje?
           </h2>
           <p className="text-xl text-gray-400">
-            Porównaj i zdecyduj sam
+            Bo są robione "żeby były", a nie "żeby zarabiały".
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
-          {/* TRADYCYJNE AGENCJE */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {/* TANI WYKONAWCY */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-gradient-to-br from-red-950/30 to-gray-900/30 rounded-2xl p-8 border-2 border-red-500/30"
+            className="bg-red-950/20 rounded-2xl p-8 border border-red-900/50"
           >
-            <h3 className="text-2xl font-bold text-red-400 mb-6">Tradycyjne Agencje</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-gray-300">
-                <X className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
-                <span><strong className="text-white">Cena:</strong> 2000-8000 zł</span>
+            <h3 className="text-2xl font-bold text-red-400 mb-6">Tani Wykonawcy / Szablony</h3>
+            <ul className="space-y-6">
+              <li className="flex items-start gap-4 text-gray-400">
+                <X className="w-6 h-6 text-red-500 flex-shrink-0" />
+                <div>
+                  <strong className="text-white block mb-1">Gotowe szablony</strong>
+                  Twoja strona wygląda tak samo jak 1000 innych firm. Brak wyróżnienia.
+                </div>
               </li>
-              <li className="flex items-start gap-3 text-gray-300">
-                <X className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
-                <span><strong className="text-white">Czas:</strong> 2-3 tygodnie</span>
+              <li className="flex items-start gap-4 text-gray-400">
+                <X className="w-6 h-6 text-red-500 flex-shrink-0" />
+                <div>
+                  <strong className="text-white block mb-1">Brak strategii</strong>
+                  Ładne obrazki, które nie mają sensu marketingowego. Klient wchodzi i wychodzi.
+                </div>
               </li>
-              <li className="flex items-start gap-3 text-gray-300">
-                <X className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
-                <span><strong className="text-white">Technologia:</strong> Wolne, gotowe szablony (ciężkie wczytywanie)</span>
-              </li>
-              <li className="flex items-start gap-3 text-gray-300">
-                <X className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
-                <span><strong className="text-white">Zmiany:</strong> Płatne za każdą godzinę pracy</span>
+              <li className="flex items-start gap-4 text-gray-400">
+                <X className="w-6 h-6 text-red-500 flex-shrink-0" />
+                <div>
+                  <strong className="text-white block mb-1">Wolne działanie</strong>
+                  Przeładowany kod (WordPress) odstrasza klientów i Google'a.
+                </div>
               </li>
             </ul>
           </motion.div>
@@ -55,73 +58,34 @@ export default function Comparison() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-gradient-to-br from-brand-neon/10 to-brand-blue/10 rounded-2xl p-8 border-2 border-brand-neon shadow-lg shadow-brand-neon/20"
+            className="bg-brand-neon/5 rounded-2xl p-8 border border-brand-neon/30"
           >
-            <h3 className="text-2xl font-bold text-brand-neon mb-6">SWR Media</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-gray-300">
-                <Check className="w-6 h-6 text-brand-neon flex-shrink-0 mt-1" />
-                <span><strong className="text-white">Cena:</strong> 500 zł</span>
+            <h3 className="text-2xl font-bold text-brand-neon mb-6">SWR Media (Podejście Premium)</h3>
+            <ul className="space-y-6">
+              <li className="flex items-start gap-4 text-gray-300">
+                <Check className="w-6 h-6 text-brand-neon flex-shrink-0" />
+                <div>
+                  <strong className="text-white block mb-1">Indywidualny Projekt UX</strong>
+                  Projektujemy ścieżkę klienta, która prowadzi prosto do zakupu.
+                </div>
               </li>
-              <li className="flex items-start gap-3 text-gray-300">
-                <Check className="w-6 h-6 text-brand-neon flex-shrink-0 mt-1" />
-                <span><strong className="text-white">Czas:</strong> 24h</span>
+              <li className="flex items-start gap-4 text-gray-300">
+                <Check className="w-6 h-6 text-brand-neon flex-shrink-0" />
+                <div>
+                  <strong className="text-white block mb-1">Copywriting Sprzedażowy</strong>
+                  Piszemy teksty językiem korzyści. Rozumiemy bóle Twoich klientów.
+                </div>
               </li>
-              <li className="flex items-start gap-3 text-gray-300">
-                <Check className="w-6 h-6 text-brand-neon flex-shrink-0 mt-1" />
-                <span><strong className="text-white">Technologia:</strong> Strona lekka i szybka (Google to lubi)</span>
-              </li>
-              <li className="flex items-start gap-3 text-gray-300">
-                <Check className="w-6 h-6 text-brand-neon flex-shrink-0 mt-1" />
-                <span><strong className="text-white">Zmiany:</strong> Poprawki w cenie pakietu</span>
+              <li className="flex items-start gap-4 text-gray-300">
+                <Check className="w-6 h-6 text-brand-neon flex-shrink-0" />
+                <div>
+                  <strong className="text-white block mb-1">Technologia React/Next.js</strong>
+                  Strona ładuje się w ułamku sekundy. Google promuje szybkie serwisy.
+                </div>
               </li>
             </ul>
           </motion.div>
         </div>
-
-        {/* SEKCJA AWERSJI DO STRATY */}
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="max-w-4xl mx-auto bg-red-500/10 border border-red-500/40 rounded-xl p-6 md:p-8 text-center relative overflow-hidden mb-12"
-        >
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-50"></div>
-            
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 relative z-10">
-                <div className="bg-red-500/20 p-3 rounded-full flex-shrink-0">
-                    <AlertTriangle className="w-8 h-8 text-red-500" />
-                </div>
-                <div className="text-left">
-                    <h4 className="text-xl md:text-2xl font-bold text-white mb-2">
-                        Czy stać Cię na brak strony?
-                    </h4>
-                    <p className="text-gray-300 leading-relaxed">
-                        Statystyki pokazują, że <strong className="text-white">70% klientów</strong> sprawdza firmę w Google przed zadzwonieniem. 
-                        Jeśli Cię tam nie ma – idą do konkurencji. Nie oszczędzasz 500 zł – tracisz wielokrotność tej kwoty każdego miesiąca.
-                    </p>
-                </div>
-            </div>
-        </motion.div>
-
-        {/* ZMIANA: EFEKT AUREOLI TECHNOLOGICZNEJ (Zaufanie) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-8 border-t border-gray-800">
-           <div className="flex items-center justify-center gap-3 text-gray-400">
-              <Search className="w-6 h-6 text-brand-neon" />
-              <span className="text-sm font-semibold">Przyjazna dla Google (SEO)</span>
-           </div>
-           <div className="flex items-center justify-center gap-3 text-gray-400">
-              <Lock className="w-6 h-6 text-brand-neon" />
-              <span className="text-sm font-semibold">Bezpieczeństwo SSL (Kłódka)</span>
-           </div>
-           <div className="flex items-center justify-center gap-3 text-gray-400">
-              <Zap className="w-6 h-6 text-brand-neon" />
-              <span className="text-sm font-semibold">Błyskawiczne ładowanie</span>
-           </div>
-        </div>
-
       </div>
     </section>
   );
