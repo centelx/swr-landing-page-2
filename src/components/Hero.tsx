@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Star, User } from 'lucide-react';
 
 export default function Hero() {
   const scrollToPricing = () => {
@@ -30,10 +30,63 @@ export default function Hero() {
           </h1>
 
           {/* PODTYTUŁ */}
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto">
             Twoja konkurencja walczy ceną. Ty wygraj jakością. 
             Tworzymy serwisy klasy premium, które <span className="text-white font-semibold">zamieniają odwiedzających w płacących klientów.</span>
           </p>
+
+          {/* PRZYCISKI CTA */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
+            <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={scrollToPricing}
+                className="bg-brand-neon text-black font-bold text-lg px-12 py-5 rounded-full hover:shadow-2xl hover:shadow-brand-neon/50 transition-all flex items-center gap-2"
+            >
+                Sprawdź Ceny
+                <ChevronRight className="w-5 h-5" />
+            </motion.button>
+
+            <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-transparent border border-gray-700 text-white font-bold text-lg px-12 py-5 rounded-full hover:bg-white/5 transition-all"
+            >
+                Nasze Realizacje
+            </motion.button>
+          </div>
+
+          {/* --- NOWOŚĆ: KONKRETNE LICZBY (SOCIAL PROOF) --- */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="flex items-center justify-center gap-4 mb-12"
+          >
+            {/* Grupa Avatarów (Symulacja) */}
+            <div className="flex -space-x-3">
+               {[1,2,3,4].map((i) => (
+                 <div key={i} className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-700 flex items-center justify-center overflow-hidden">
+                    {/* W prawdziwym projekcie tu byłyby zdjęcia klientów. Teraz dajemy ikonkę user */}
+                    <User className="w-6 h-6 text-gray-400" />
+                 </div>
+               ))}
+               <div className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-800 flex items-center justify-center text-xs text-white font-bold">
+                 +80
+               </div>
+            </div>
+            
+            {/* Tekst i Gwiazdki */}
+            <div className="text-left">
+                <div className="flex gap-0.5 mb-0.5">
+                   {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />)}
+                </div>
+                <p className="text-gray-400 text-sm">
+                   <strong className="text-white">89+</strong> Zadowolonych Firm
+                </p>
+            </div>
+          </motion.div>
 
           {/* WIDEO */}
           <motion.div
@@ -56,29 +109,7 @@ export default function Hero() {
             </p>
           </motion.div>
 
-          {/* PRZYCISKI CTA */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-16">
-            <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={scrollToPricing}
-                className="bg-brand-neon text-black font-bold text-lg px-12 py-5 rounded-full hover:shadow-2xl hover:shadow-brand-neon/50 transition-all flex items-center gap-2"
-            >
-                Sprawdź Ceny
-                <ChevronRight className="w-5 h-5" />
-            </motion.button>
-
-            <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-transparent border border-gray-700 text-white font-bold text-lg px-12 py-5 rounded-full hover:bg-white/5 transition-all"
-            >
-                Nasze Realizacje
-            </motion.button>
-          </div>
-
-          {/* PASEK BRANŻOWY (ZMIANA NA KONKRETY) */}
+          {/* PASEK BRANŻOWY */}
           <div className="border-t border-gray-800 pt-8">
             <p className="text-gray-500 text-sm mb-4 uppercase tracking-wider font-medium">
               Realizujemy projekty dla:
