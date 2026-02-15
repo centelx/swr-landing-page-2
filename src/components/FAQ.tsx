@@ -7,24 +7,28 @@ export default function FAQ() {
 
   const faqs = [
     {
-      question: 'Dlaczego Wasze usługi kosztują więcej niż u "studenta"?',
-      answer: 'Bo dostarczamy narzędzie biznesowe, a nie tylko kod. Student zrobi stronę, która "jest". My robimy stronę, która "sprzedaje". W cenie otrzymujesz analizę rynku, psychologię sprzedaży, copywriting i optymalizację techniczną, której amatorzy nie potrafią wykonać.',
+      question: 'Czy muszę płacić całość z góry?',
+      answer: 'Nie. Działamy w modelu "Bezpieczny Start". Pobieramy jedynie 30% zaliczki na rozpoczęcie prac (rezerwacja czasu zespołu). Pozostałe 70% płacisz dopiero wtedy, gdy zobaczysz gotową, działającą stronę na naszym serwerze testowym i zaakceptujesz efekt.',
+    },
+    {
+      question: 'Co jeśli strona mi się nie spodoba?',
+      answer: 'Pracujemy do skutku. W cenie projektu uwzględnione są rundy poprawek. Zanim zakodujemy stronę, przedstawiamy wstępną wizję. Jeśli finalny efekt drastycznie rozminie się z ustaleniami (co nam się nie zdarza), masz prawo do rezygnacji, a my nie pobieramy końcowej wpłaty.',
+    },
+    {
+      question: 'Dlaczego Wasze usługi kosztują więcej niż "strona za 500 zł"?',
+      answer: 'Bo dostarczamy narzędzie biznesowe, a nie tylko kod. Strona za 500 zł to zazwyczaj gotowy szablon, który jest wolny i trudny w obsłudze. My tworzymy dedykowane rozwiązanie w technologii React/Next.js, z analizą konkurencji, psychologią sprzedaży i pełnym wsparciem technicznym.',
     },
     {
       question: 'Jak długo trwa realizacja?',
-      answer: 'Standardowy czas to 7-14 dni roboczych. Jakość wymaga czasu - musimy poznać Twój biznes, przygotować strategię, zaprojektować unikalny wygląd i przetestować wdrożenie. Nie wierzymy w "strony w 24h", bo one rzadko przynoszą zyski.',
+      answer: 'Standardowy czas to 7-14 dni roboczych. Jakość wymaga czasu - musimy poznać Twój biznes, przygotować strategię, zaprojektować unikalny wygląd i przetestować wdrożenie. Nie wierzymy w "profesjonalne strony w 24h".',
     },
     {
       question: 'Czy wystawiacie fakturę VAT?',
-      answer: 'Oczywiście. Działamy legalnie, płacimy podatki i wystawiamy pełną fakturę VAT 23%, którą możesz wrzucić w koszty firmy.',
+      answer: 'Oczywiście. Działamy legalnie, płacimy podatki i wystawiamy pełną fakturę VAT 23%, którą możesz wliczyć w koszty prowadzenia działalności.',
     },
     {
       question: 'Czy po oddaniu strony zostaję sam?',
       answer: 'Absolutnie nie. Oferujemy pakiety opieki technicznej, dzięki którym Twoja strona będzie zawsze aktualna i bezpieczna. Możesz też zlecać nam dalszy rozwój serwisu.',
-    },
-    {
-      question: 'Czy strona będzie widoczna w Google?',
-      answer: 'Tak. Każdy nasz projekt jest optymalizowany pod kątem SEO technicznego (szybkość, struktura nagłówków, meta tagi). To fundament, dzięki któremu Google chętniej wyświetla Twoją stronę wyżej w wynikach wyszukiwania.',
     }
   ];
 
