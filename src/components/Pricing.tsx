@@ -12,12 +12,12 @@ export default function Pricing() {
       price: '2900',
       desc: 'Idealna na start dla specjalistów i małych firm.',
       features: [
-        'Projekt graficzny One-Page',
-        'Responsywność (Mobile First)',
-        'Integracja z Mapami / Social Media', // DODANE
-        'Podstawowe SEO techniczne',
-        'Formularz kontaktowy',
-        'Szybki serwer i domena (rok)',
+        'Projekt One-Page (Wszystko na 1 stronie)',
+        'Działa idealnie na telefonach (RWD)', // ZMIANA
+        'Integracja z Mapami / Facebookiem',
+        'Przyjazna dla Google (Podstawy SEO)', // ZMIANA
+        'Formularz kontaktowy na email',
+        'Szybki serwer i domena (rok w cenie)',
       ]
     },
     {
@@ -27,11 +27,11 @@ export default function Pricing() {
       desc: 'Kompletne rozwiązanie budujące przewagę rynkową.',
       features: [
         'Rozbudowana struktura (do 6 podstron)',
-        'Panel CMS (Edytujesz treści sam)', // KLUCZOWY ARGUMENT
-        'Copywriting sprzedażowy (Psychologia)',
-        'Zaawansowana analityka (Google)',
-        'Konfiguracja Google Moja Firma', // TO BRZMI PROFESJONALNIEJ NIŻ "MAPA"
-        'Optymalizacja Core Web Vitals',
+        'Panel CMS (Edytujesz treści sam)',
+        'Teksty sprzedażowe (Pisze Copywriter)', // ZMIANA NA BARDZIEJ ZROZUMIAŁE
+        'Podpięcie statystyk odwiedzin',
+        'Konfiguracja wizytówki Google',
+        'Błyskawiczne wczytywanie (Lepsze SEO)', // ZAMIAST CORE WEB VITALS
       ]
     },
     {
@@ -41,10 +41,10 @@ export default function Pricing() {
       features: [
         'Sklep internetowy / Płatności',
         'Niestandardowe funkcjonalności',
-        'Integracje API / CRM',
+        'Integracje z hurtowniami / CRM',
         'Strategia marketingowa',
-        'Wielojęzyczność',
-        'Audyt konkurencji'
+        'Wersje wielojęzyczne',
+        'Analiza konkurencji'
       ]
     }
   ];
