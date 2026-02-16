@@ -6,6 +6,14 @@ export default function Hero() {
     document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Definicja awatarów: 2 pierwsze to zdjęcia z folderu public, kolejne to placeholdery
+  const avatars = [
+    { type: 'image', src: '/logo_avaps.jpg', alt: 'Avaps' },
+    { type: 'image', src: '/logo_ninfea.png', alt: 'Ninfea' },
+    { type: 'icon' },
+    { type: 'icon' },
+  ];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-brand-dark pt-20 pb-12 px-4">
       {/* Tło ozdobne */}
@@ -35,7 +43,7 @@ export default function Hero() {
             Tworzymy serwisy klasy premium, które <span className="text-white font-semibold">zamieniają odwiedzających w płacących klientów.</span>
           </p>
 
-          {/* --- WIDEO (PRZENIESIONE TUTAJ) --- */}
+          {/* --- WIDEO --- */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -85,13 +93,23 @@ export default function Hero() {
             transition={{ delay: 0.5 }}
             className="flex items-center justify-center gap-4 mb-12"
           >
-            {/* Grupa Avatarów (Symulacja) */}
+            {/* Grupa Avatarów */}
             <div className="flex -space-x-3">
-               {[1,2,3,4].map((i) => (
+               {avatars.map((avatar, i) => (
                  <div key={i} className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-700 flex items-center justify-center overflow-hidden">
-                    <User className="w-6 h-6 text-gray-400" />
+                    {avatar.type === 'image' ? (
+                      <img 
+                        src={avatar.src} 
+                        alt={avatar.alt} 
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <User className="w-6 h-6 text-gray-400" />
+                    )}
                  </div>
                ))}
+               
+               {/* Licznik +80 */}
                <div className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-800 flex items-center justify-center text-xs text-white font-bold">
                  +80
                </div>
