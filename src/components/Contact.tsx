@@ -3,9 +3,11 @@ import { useState } from 'react';
 import { CheckCircle, ArrowRight, ChevronLeft, Phone, Mail, Wallet } from 'lucide-react';
 
 export default function Contact() {
-  // Teraz mamy 4 kroki: Branża -> Metoda -> Budżet -> Dane (ZMIANA KOLEJNOŚCI)
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  
+  // Stan do obsługi niestandardowej branży
+  const [showCustomIndustryInput, setShowCustomIndustryInput] = useState(false);
   
   const [formData, setFormData] = useState({
     industry: '',     
@@ -18,8 +20,21 @@ export default function Contact() {
   });
 
   const handleSelection = (field: string, value: string) => {
+    // Specjalna obsługa dla "Inne" w branży
+    if (field === 'industry' && value === 'Inne') {
+        setShowCustomIndustryInput(true);
+        setFormData(prev => ({ ...prev, [field]: '' })); // Czyścimy, żeby user wpisał
+        return;
+    }
+
     setFormData(prev => ({ ...prev, [field]: value }));
     setStep(prev => prev + 1);
+  };
+
+  const handleCustomIndustrySubmit = () => {
+      if (formData.industry.trim() !== '') {
+          setStep(prev => prev + 1);
+      }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -63,7 +78,6 @@ export default function Contact() {
     }
   };
 
-  // Obliczenie postępu dla 4 kroków
   const progress = (step / 4) * 100;
 
   return (
@@ -86,14 +100,27 @@ export default function Contact() {
 
         <div className="bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl relative overflow-hidden">
             
-            {/* PASEK POSTĘPU */}
-            <div className="h-2 bg-gray-800 w-full absolute top-0 left-0 z-10">
+            {/* PASEK POSTĘPU - DOPAMINOWY (ANIMOWANY) */}
+            <div className="h-2 bg-gray-800 w-full absolute top-0 left-0 z-10 overflow-hidden">
                 <motion.div 
-                  className="h-full bg-gradient-to-r from-green-400 to-green-600"
+                  className="h-full relative"
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
                   transition={{ duration: 0.5 }}
-                />
+                >
+                    {/* Animowany gradient w tle */}
+                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-brand-neon via-green-400 to-brand-neon animate-progress-stripes bg-[length:200%_100%]"></div>
+                </motion.div>
+                {/* Styl inline dla animacji (jeśli nie ma w tailwind configu) */}
+                <style>{`
+                    @keyframes progress-stripes {
+                        0% { background-position: 100% 0; }
+                        100% { background-position: 0 0; }
+                    }
+                    .animate-progress-stripes {
+                        animation: progress-stripes 2s linear infinite;
+                    }
+                `}</style>
             </div>
 
             <div className="p-8 md:p-12 pt-10">
@@ -110,7 +137,7 @@ export default function Contact() {
                 ) : (
                 <AnimatePresence mode='wait'>
                     
-                    {/* KROK 1: BRANŻA (Bez zmian) */}
+                    {/* KROK 1: BRANŻA */}
                     {step === 1 && (
                     <motion.div
                         key="step1"
@@ -119,29 +146,59 @@ export default function Contact() {
                         exit={{ x: -20, opacity: 0 }}
                     >
                         <h3 className="text-xl font-bold text-white mb-6">W jakiej branży działasz?</h3>
-                        <div className="grid grid-cols-2 gap-3">
-                        {['Budownictwo / Usługi', 'Medycyna / Beauty', 'Transport / Auto', 'Prawo / Finanse', 'E-commerce', 'Inne'].map((opt) => (
-                            <button
-                            key={opt}
-                            onClick={() => handleSelection('industry', opt)}
-                            className="w-full text-left p-4 rounded-lg border border-gray-700 bg-gray-800 hover:bg-brand-navy hover:border-brand-neon hover:text-brand-neon transition-all"
-                            >
-                            <span className="font-medium text-gray-200 text-sm">{opt}</span>
-                            </button>
-                        ))}
-                        </div>
+                        
+                        {!showCustomIndustryInput ? (
+                            <div className="grid grid-cols-2 gap-3">
+                            {['Budownictwo / Usługi', 'Medycyna / Beauty', 'Transport / Auto', 'Prawo / Finanse', 'E-commerce', 'Inne'].map((opt) => (
+                                <button
+                                key={opt}
+                                onClick={() => handleSelection('industry', opt)}
+                                className="w-full text-left p-4 rounded-lg border border-gray-700 bg-gray-800 hover:bg-brand-navy hover:border-brand-neon hover:text-brand-neon transition-all"
+                                >
+                                <span className="font-medium text-gray-200 text-sm">{opt}</span>
+                                </button>
+                            ))}
+                            </div>
+                        ) : (
+                            // INPUT DLA OPCJI "INNE"
+                            <div className="space-y-4">
+                                <input
+                                    name="industry"
+                                    placeholder="Wpisz swoją branżę..."
+                                    value={formData.industry}
+                                    onChange={handleInputChange}
+                                    autoFocus
+                                    className="w-full p-4 bg-gray-800 border border-brand-neon rounded-lg text-white focus:outline-none"
+                                />
+                                <div className="flex gap-4">
+                                    <button 
+                                        onClick={() => setShowCustomIndustryInput(false)}
+                                        className="px-6 py-3 rounded-lg border border-gray-700 text-gray-400 hover:text-white"
+                                    >
+                                        Wróć
+                                    </button>
+                                    <button
+                                        onClick={handleCustomIndustrySubmit}
+                                        disabled={!formData.industry}
+                                        className="flex-1 bg-brand-neon text-black font-bold py-3 rounded-lg hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        Dalej
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                     </motion.div>
                     )}
 
-                    {/* KROK 2: METODA KONTAKTU (Przeniesiony wcześniej) */}
+                    {/* KROK 2: METODA KONTAKTU */}
                     {step === 2 && (
                     <motion.div
-                        key="step2" // Zmienione z step3 na step2
+                        key="step2"
                         initial={{ x: 20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: -20, opacity: 0 }}
                     >
-                        <div className="flex items-center gap-2 mb-6 cursor-pointer text-gray-500 hover:text-white" onClick={() => setStep(1)}>
+                        <div className="flex items-center gap-2 mb-6 cursor-pointer text-gray-500 hover:text-white" onClick={() => { setStep(1); setShowCustomIndustryInput(false); }}>
                             <ChevronLeft className="w-4 h-4" /> Wstecz
                         </div>
                         <h3 className="text-xl font-bold text-white mb-2">Jak chcesz omówić szczegóły?</h3>
@@ -183,24 +240,22 @@ export default function Contact() {
                     </motion.div>
                     )}
 
-                    {/* KROK 3: BUDŻET (Przeniesiony później) */}
+                    {/* KROK 3: BUDŻET */}
                     {step === 3 && (
                     <motion.div
-                        key="step3" // Zmienione z step2 na step3
+                        key="step3"
                         initial={{ x: 20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: -20, opacity: 0 }}
                     >
-                        {/* Wstecz prowadzi teraz do kroku 2 (Metoda) */}
                         <div className="flex items-center gap-2 mb-6 cursor-pointer text-gray-500 hover:text-white" onClick={() => setStep(2)}>
                             <ChevronLeft className="w-4 h-4" /> Wstecz
                         </div>
-                        {/* ZMIANA TREŚCI PYTANIA */}
                         <h3 className="text-xl font-bold text-white mb-2">W jakim przedziale inwestycyjnym chcemy się poruszać?</h3>
                         <p className="text-gray-400 text-sm mb-6">Pozwoli nam to dobrać odpowiednie rozwiązania.</p>
                         
                         <div className="space-y-3">
-                          {['2,500 - 4,000 zł (Wizytówka / Start)', '4,000 - 7,000 zł (Strona Firmowa)', 'Powyżej 7,000 zł (Sklep / Custom)'].map((opt) => (
+                          {['2,400 - 4,000 zł (Wizytówka / Start)', '4,000 - 7,000 zł (Strona Firmowa)', 'Powyżej 7,000 zł (Sklep / Custom)'].map((opt) => (
                             <button
                               key={opt}
                               onClick={() => handleSelection('budget', opt)}
@@ -214,7 +269,7 @@ export default function Contact() {
                     </motion.div>
                     )}
 
-                    {/* KROK 4: DANE KONTAKTOWE (Wstecz prowadzi do kroku 3 - Budżet) */}
+                    {/* KROK 4: DANE KONTAKTOWE */}
                     {step === 4 && (
                     <motion.div
                         key="step4"
