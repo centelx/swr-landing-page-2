@@ -36,7 +36,7 @@ export default function Portfolio() {
           description: 'Łagodny, pastelowy motyw budujący zaufanie. Nastawiony na poczucie bezpieczeństwa.',
           link: 'https://gabinetnadzieja.pl/', 
           // NOWE DANE:
-          price: '2400 zł',
+          price: '2200 zł',
           deliveryTime: '5 Dni'
         },
         {
@@ -48,7 +48,7 @@ export default function Portfolio() {
           description: 'Kontrastowy, profesjonalny design łączący nowoczesność z tradycją rzemiosła.',
           link: 'https://kominiarznitak.pages.dev/', 
           // NOWE DANE:
-          price: '2200 zł',
+          price: '2400 zł',
           deliveryTime: '7 Dni'
         }
       ]
