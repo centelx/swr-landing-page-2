@@ -1,6 +1,6 @@
-import { X, ArrowRight, Smartphone, Monitor } from 'lucide-react';
+import { X, ArrowRight, Smartphone, Monitor, MessageSquare } from 'lucide-react';
 import { useState } from 'react';
-import { motion } from 'framer-motion'; // Dodajemy animację dla przycisku mobile
+import { motion } from 'framer-motion';
 
 export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string, onClose: () => void }) {
   const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
@@ -99,18 +99,18 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
         </div>
       </div>
 
-      {/* 3. MOBILE CTA (Floating Button na dole - ZAMIAST STICKY CTA) */}
-      {/* Pojawia się tylko na ekranach mniejszych niż 'md' */}
+      {/* 3. MOBILE CTA (Floating Button na dole - STYL ZŁOTY/YELLOW) */}
       <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[110] w-full px-4">
         <motion.button
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5, type: "spring" }} // Wyjeżdża chwilę po otwarciu
+            transition={{ delay: 0.5, type: "spring" }}
             onClick={handleCtaClick}
-            className="w-full bg-brand-neon text-black font-bold text-lg py-4 rounded-full shadow-2xl shadow-brand-neon/40 flex items-center justify-center gap-2 border-2 border-white/20"
+            // ZASTOSOWANO STYL ZŁOTY (YELLOW)
+            className="w-full bg-yellow-400 text-black font-bold text-lg py-4 rounded-full shadow-2xl shadow-yellow-400/30 flex items-center justify-center gap-2 border-2 border-yellow-300"
         >
-            <span>Chcę taką stronę</span>
-            <ArrowRight className="w-5 h-5" />
+            <MessageSquare className="w-5 h-5" />
+            <span>Zapytaj o Darmową Wycenę</span>
         </motion.button>
       </div>
 
