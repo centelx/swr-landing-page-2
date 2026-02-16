@@ -1,8 +1,17 @@
 import { X, ArrowRight, Smartphone, Monitor } from 'lucide-react';
 import { useState } from 'react';
+import { motion } from 'framer-motion'; // Dodajemy animację dla przycisku mobile
 
 export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string, onClose: () => void }) {
   const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
+
+  const handleCtaClick = () => {
+    onClose();
+    // Małe opóźnienie, żeby modal zdążył zniknąć zanim zacznie scrollować
+    setTimeout(() => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
 
   return (
     <div className="fixed inset-0 z-[100] bg-gray-950 flex flex-col h-screen w-screen">
@@ -37,51 +46,42 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
           </button>
         </div>
 
-        {/* Prawa: CTA */}
-        <div className="flex items-center gap-4">
-          <span className="hidden md:inline text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
+        {/* Prawa: CTA (TYLKO DESKTOP - hidden na mobile) */}
+        <div className="hidden md:flex items-center gap-4">
+          <span className="text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
           <button 
-            onClick={() => {
-              onClose();
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={handleCtaClick}
             className="bg-gradient-to-r from-brand-neon to-brand-blue text-black font-bold text-sm px-6 py-2.5 rounded-full hover:shadow-lg hover:shadow-brand-neon/50 transition-all flex items-center gap-2"
           >
             Chcę taką stronę
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
+        
+        {/* Na mobile pokazujemy tylko logo lub pustą przestrzeń, żeby X był po lewej */}
+        <div className="md:hidden w-5"></div> 
       </div>
 
       {/* 2. OBSZAR PODGLĄDU */}
-      {/* Na mobile usuwamy padding (p-0), na desktopie zostawiamy (md:p-8) */}
       <div className="flex-1 bg-gray-900 w-full flex items-center justify-center overflow-hidden p-0 md:p-8 relative">
         
         {/* KONTENER URZĄDZENIA */}
-        {/* ZMIANY: 
-            Dodałem prefix 'md:' do wszystkich stylów "iPhone'owych".
-            Bez prefixu (czyli na mobile) ustawiamy w-full h-full i border-0.
-        */}
         <div className={`transition-all duration-500 ease-in-out relative shadow-2xl mx-auto flex flex-col bg-white ${
             device === 'mobile' 
                 ? 'w-full h-full border-0 rounded-none md:w-[430px] md:h-[932px] md:max-h-[90vh] md:rounded-[3rem] md:border-[12px] md:border-gray-800 md:ring-4 md:ring-black/50'
                 : 'w-full h-full rounded-none md:rounded-lg border-0 md:border border-gray-700'
         }`}>
             
-            {/* Notch - tylko na mobile-VIEW w trybie DESKTOP (ukryty na prawdziwym telefonie) */}
+            {/* Notch */}
             {device === 'mobile' && (
                  <div className="hidden md:block absolute top-0 left-1/2 -translate-x-1/2 h-[30px] w-[120px] bg-gray-800 rounded-b-2xl z-20 pointer-events-none border-b border-x border-gray-900/50"></div>
             )}
 
             {/* MASKOWNICA */}
             <div className={`w-full h-full overflow-hidden bg-white ${device === 'mobile' ? 'rounded-none md:rounded-[2.2rem]' : 'rounded-none md:rounded-lg'}`}>
-              
               <iframe 
                 src={projectUrl} 
                 title="Podgląd strony"
-                /* ZMIANA: Trik z +20px (ukrywanie scrolla) stosujemy tylko na Desktopie (md:).
-                   Na prawdziwym telefonie chcemy natywny scroll (w-full).
-                */
                 className={`bg-white border-0 ${
                     device === 'mobile' 
                     ? 'w-full h-full md:w-[calc(100%+20px)] md:h-[calc(100%+20px)]' 
@@ -90,15 +90,30 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
                 sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               />
-
             </div>
             
-            {/* Odbicie światła - tylko na desktopie */}
+            {/* Odbicie światła */}
             {device === 'mobile' && (
                 <div className="hidden md:block absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none z-10 rounded-[2.5rem]"></div>
             )}
         </div>
       </div>
+
+      {/* 3. MOBILE CTA (Floating Button na dole - ZAMIAST STICKY CTA) */}
+      {/* Pojawia się tylko na ekranach mniejszych niż 'md' */}
+      <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[110] w-full px-4">
+        <motion.button
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, type: "spring" }} // Wyjeżdża chwilę po otwarciu
+            onClick={handleCtaClick}
+            className="w-full bg-brand-neon text-black font-bold text-lg py-4 rounded-full shadow-2xl shadow-brand-neon/40 flex items-center justify-center gap-2 border-2 border-white/20"
+        >
+            <span>Chcę taką stronę</span>
+            <ArrowRight className="w-5 h-5" />
+        </motion.button>
+      </div>
+
     </div>
   );
 }
