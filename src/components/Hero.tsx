@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronRight, Star, User } from 'lucide-react';
+import { ChevronRight, Star, User, Hexagon } from 'lucide-react';
 
 export default function Hero() {
   const scrollToPricing = () => {
@@ -12,9 +12,13 @@ export default function Hero() {
     { type: 'image', src: '/logo_avaps.jpg', alt: 'Avaps' },
     // 2. Zdjęcie z pliku
     { type: 'image', src: '/logo_ninfea.png', alt: 'Ninfea' },
-    // 3. Standardowa ikona (szara)
-    { type: 'icon' },
-    // 4. NOWOŚĆ: Wygenerowany kodem "Cool" awatar (Gradient + Inicjały)
+    // 3. NOWOŚĆ: Wygenerowane logo "Tech Startup" (Fioletowy Hexagon)
+    { 
+        type: 'logo-icon', 
+        icon: Hexagon, 
+        colors: 'from-purple-600 to-pink-600 text-white' 
+    },
+    // 4. Wygenerowany kodem "Cool" awatar (Gradient + Inicjały)
     { type: 'generated', label: 'MK', colors: 'from-brand-neon to-brand-blue text-black' },
   ];
 
@@ -113,14 +117,21 @@ export default function Hero() {
                       />
                     )}
 
-                    {/* Typ 2: Wygenerowany Gradient + Inicjały (To "Fajne") */}
+                    {/* Typ 2: Wygenerowane LOGO (Hexagon) */}
+                    {avatar.type === 'logo-icon' && avatar.icon && (
+                        <div className={`w-full h-full bg-gradient-to-br ${avatar.colors} flex items-center justify-center`}>
+                            <avatar.icon className="w-5 h-5 fill-white/20" />
+                        </div>
+                    )}
+
+                    {/* Typ 3: Wygenerowany Gradient + Inicjały */}
                     {avatar.type === 'generated' && (
                         <div className={`w-full h-full bg-gradient-to-br ${avatar.colors} flex items-center justify-center font-bold text-xs tracking-tighter`}>
                             {avatar.label}
                         </div>
                     )}
 
-                    {/* Typ 3: Zwykła ikona (Default) */}
+                    {/* Typ 4: Zwykła ikona (Default - zabezpieczenie) */}
                     {avatar.type === 'icon' && (
                       <User className="w-6 h-6 text-gray-500" />
                     )}
