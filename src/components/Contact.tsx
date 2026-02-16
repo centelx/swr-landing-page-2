@@ -96,37 +96,48 @@ export default function Contact() {
 
         <div className="bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl relative overflow-hidden">
             
-            {/* --- DOPAMINOWY PASEK POSTĘPU --- */}
-            {/* Zwiększono wysokość h-2 -> h-3 dla lepszego efektu */}
-            <div className="h-3 bg-gray-950 w-full absolute top-0 left-0 z-10 overflow-hidden">
+            {/* --- NOWY PASEK POSTĘPU "PLASMA SURGE" --- */}
+            <div className="relative w-full h-4 bg-gray-950 overflow-hidden rounded-t-2xl">
+                {/* Tło "rury" */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-900 to-gray-950 opacity-50"></div>
+                
                 <motion.div 
-                  // Dodano silny neonowy cień (glow)
-                  className="h-full relative shadow-[0_0_20px_rgba(52,211,153,0.6)]"
+                  className="h-full relative rounded-r-full"
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.6, type: "spring", bounce: 0.2 }} // Sprężysta animacja przy zmianie kroku
+                  // Kluczowa zmiana: Fizyka sprężyny dla efektu "uderzenia"
+                  transition={{ type: "spring", stiffness: 120, damping: 15, mass: 1 }}
                 >
-                    {/* Animowane paski w tle */}
-                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-brand-neon via-green-400 to-brand-neon animate-progress-stripes bg-[length:200%_100%]"></div>
+                    {/* Główny gradient wypełnienia */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-brand-blue via-brand-neon to-white rounded-r-full shadow-[0_0_15px_rgba(52,211,153,0.5)]"></div>
                     
-                    {/* "Głowica" prowadząca - jasny biały błysk na końcu paska */}
-                    <div className="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-white via-white/50 to-transparent blur-[3px] opacity-90"></div>
+                    {/* Animowana tekstura płynącej energii */}
+                    <div 
+                        className="absolute inset-0 opacity-30 bg-[length:20px_20px] animate-plasma-flow rounded-r-full"
+                        style={{
+                            backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, transparent 75%, transparent)'
+                        }}
+                    ></div>
+
+                    {/* "Głowica" prowadząca - intensywny błysk na końcu */}
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full blur-md shadow-[0_0_20px_rgba(255,255,255,0.8)]"></div>
+                     <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full blur-sm"></div>
                 </motion.div>
-
-                <style>{`
-                    @keyframes progress-stripes {
-                        0% { background-position: 100% 0; }
-                        100% { background-position: 0 0; }
-                    }
-                    .animate-progress-stripes {
-                        /* Przyspieszono animację z 2s na 0.7s dla większej dynamiki */
-                        animation: progress-stripes 0.7s linear infinite;
-                    }
-                `}</style>
             </div>
-            {/* -------------------------------- */}
 
-            <div className="p-8 md:p-12 pt-12">
+            {/* Style dla animacji płynącej plazmy */}
+            <style>{`
+                @keyframes plasma-flow {
+                    0% { background-position: 0 0; }
+                    100% { background-position: 40px 0; }
+                }
+                .animate-plasma-flow {
+                    animation: plasma-flow 1s linear infinite;
+                }
+            `}</style>
+            {/* -------------------------------------- */}
+
+            <div className="p-8 md:p-12 pt-8">
                 {status === 'success' ? (
                 <div className="text-center py-10">
                     <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />
