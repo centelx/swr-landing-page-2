@@ -17,7 +17,7 @@ export default function TopBar() {
         transition={{ duration: 1 }}
       >
         <span className="text-brand-neon mr-2">●</span>
-        Status: Przyjmujemy zlecenia na luty. Ostatnie 2 wolne terminy.
+        Status: Przyjmujemy zlecenia na luty. <br className="md:hidden" />Ostatnie 2 wolne terminy.
       </motion.p>
     </div>
   );
