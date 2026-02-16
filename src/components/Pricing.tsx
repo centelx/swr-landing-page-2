@@ -104,13 +104,23 @@ export default function Pricing() {
                     </div>
                 )}
                 
-                <div className="flex items-baseline gap-1">
-                  {plan.price !== 'Wycena' && <span className="text-gray-400 text-lg">od</span>}
-                  <span className="text-4xl font-bold text-white">{plan.price}</span>
-                  {plan.price !== 'Wycena' && <span className="text-xl text-gray-400">zł</span>}
+                {/* --- NOWY WYGLĄD CENY --- */}
+                <div className="flex items-end gap-2">
+                  {plan.price !== 'Wycena' && <span className="text-gray-400 text-lg mb-2">od</span>}
+                  
+                  {/* Główna cena - powiększona */}
+                  <span className="text-5xl font-bold text-white tracking-tight">{plan.price}</span>
+                  
+                  {plan.price !== 'Wycena' && (
+                    /* Zł i Netto ułożone pionowo obok ceny */
+                    <div className="flex flex-col justify-end mb-1.5">
+                        <span className="text-xl text-gray-300 font-bold leading-none">zł</span>
+                        <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold leading-none mt-1">
+                            netto
+                        </span>
+                    </div>
+                  )}
                 </div>
-                {/* ZMIANA NA NETTO */}
-                {plan.price !== 'Wycena' && <p className="text-gray-500 text-sm mt-2">netto</p>}
               </div>
 
               <ul className="space-y-4 mb-8 flex-grow">
