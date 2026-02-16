@@ -2,18 +2,21 @@ import { X, ArrowRight, Smartphone, Monitor, MessageSquare, Clock, Banknote } fr
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-// Dodano propsy: price i deliveryTime
+// Definicja typów propsów (odbieramy price i deliveryTime)
+interface DemoViewerProps {
+  projectUrl: string;
+  onClose: () => void;
+  price?: string;       // Opcjonalne (z domyślną wartością)
+  deliveryTime?: string; // Opcjonalne (z domyślną wartością)
+}
+
 export default function DemoViewer({ 
   projectUrl, 
   onClose, 
-  price = "2400 zł", // Domyślna wartość, jeśli nie podasz innej
+  price = "Wycena",      // Domyślna wartość jakbyś zapomniał podać
   deliveryTime = "7 Dni" // Domyślna wartość
-}: { 
-  projectUrl: string, 
-  onClose: () => void,
-  price?: string,
-  deliveryTime?: string
-}) {
+}: DemoViewerProps) {
+    
   const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
 
   const handleCtaClick = () => {
@@ -29,7 +32,7 @@ export default function DemoViewer({
       {/* 1. TOP BAR */}
       <div className="h-16 bg-brand-navy border-b border-gray-700 flex items-center justify-between px-4 md:px-8 shadow-xl relative z-10 flex-shrink-0">
         
-        {/* Lewa: Powrót */}
+        {/* LEWA STRONA: Powrót */}
         <button 
           onClick={onClose}
           className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium"
@@ -38,7 +41,7 @@ export default function DemoViewer({
           <span className="hidden md:inline">Zamknij podgląd</span>
         </button>
 
-        {/* Środek: Przełącznik (Ukryty na małych telefonach) */}
+        {/* ŚRODEK: Przełącznik (Ukryty na małych telefonach) */}
         <div className="hidden md:flex bg-gray-800 rounded-lg p-1 border border-gray-700">
           <button 
             onClick={() => setDevice('desktop')}
@@ -56,27 +59,27 @@ export default function DemoViewer({
           </button>
         </div>
 
-        {/* --- PRAWA STRONA --- */}
+        {/* PRAWA STRONA: LOGIKA WYŚWIETLANIA (MOBILE vs DESKTOP) */}
         <div className="flex items-center">
             
-            {/* WERSJA MOBILE: KOSZT I CZAS (Zamiast przycisku) */}
+            {/* A) WERSJA MOBILE: POKAZUJEMY CENĘ I CZAS (Zamiast przycisku) */}
             <div className="md:hidden flex items-center gap-4">
                 
                 {/* Cena */}
                 <div className="flex flex-col items-end">
-                    <div className="flex items-center gap-1 text-gray-400 text-[10px] uppercase tracking-wider font-medium">
+                    <div className="flex items-center gap-1 text-gray-400 text-[10px] uppercase tracking-wider font-bold">
                         <Banknote className="w-3 h-3" />
                         <span>Koszt</span>
                     </div>
                     <span className="text-brand-neon font-bold text-sm leading-none">{price}</span>
                 </div>
 
-                {/* Separator */}
+                {/* Pionowa Kreska (Separator) */}
                 <div className="w-px h-6 bg-gray-700"></div>
 
                 {/* Czas */}
                 <div className="flex flex-col items-start">
-                    <div className="flex items-center gap-1 text-gray-400 text-[10px] uppercase tracking-wider font-medium">
+                    <div className="flex items-center gap-1 text-gray-400 text-[10px] uppercase tracking-wider font-bold">
                         <Clock className="w-3 h-3" />
                         <span>Czas</span>
                     </div>
@@ -85,7 +88,7 @@ export default function DemoViewer({
 
             </div>
 
-            {/* WERSJA DESKTOP: ZŁOTY PRZYCISK (Ukryty na mobile) */}
+            {/* B) WERSJA DESKTOP: ZŁOTY PRZYCISK (Ukryty na mobile) */}
             <div className="hidden md:flex items-center gap-4">
                 <span className="text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
                 <button 
@@ -100,7 +103,7 @@ export default function DemoViewer({
         </div>
       </div>
 
-      {/* 2. OBSZAR PODGLĄDU */}
+      {/* 2. OBSZAR PODGLĄDU (IFRAME) */}
       <div className="flex-1 bg-gray-900 w-full flex items-center justify-center overflow-hidden p-0 md:p-8 relative">
         
         {/* KONTENER URZĄDZENIA */}
@@ -110,7 +113,7 @@ export default function DemoViewer({
                 : 'w-full h-full rounded-none md:rounded-lg border-0 md:border border-gray-700'
         }`}>
             
-            {/* Notch */}
+            {/* Notch (Tylko w trybie symulacji telefonu) */}
             {device === 'mobile' && (
                  <div className="hidden md:block absolute top-0 left-1/2 -translate-x-1/2 h-[30px] w-[120px] bg-gray-800 rounded-b-2xl z-20 pointer-events-none border-b border-x border-gray-900/50"></div>
             )}
@@ -130,14 +133,15 @@ export default function DemoViewer({
               />
             </div>
             
-            {/* Odbicie światła */}
+            {/* Odbicie światła na ekranie telefonu */}
             {device === 'mobile' && (
                 <div className="hidden md:block absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none z-10 rounded-[2.5rem]"></div>
             )}
         </div>
       </div>
 
-      {/* 3. MOBILE CTA (Floating Button na dole - ZŁOTY) */}
+      {/* 3. MOBILE CTA (FLOATING BUTTON NA DOLE) */}
+      {/* Ten przycisk pokazuje się tylko na telefonie, bo na górze usunęliśmy przycisk na rzecz Ceny/Czasu */}
       <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[110] w-full px-4">
         <motion.button
             initial={{ y: 50, opacity: 0 }}
