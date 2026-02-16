@@ -21,15 +21,15 @@ export default function Comparison() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 relative z-10">
-          {/* TANIA STRONA - ROZJAŚNIONA DLA CZYTELNOŚCI */}
+          {/* TANIA STRONA */}
           <div className="bg-gray-800/40 border border-gray-700 p-8 rounded-2xl shadow-inner">
             <h3 className="text-xl font-bold text-gray-300 mb-6 flex items-center gap-2">
-              Tania strona (500 - 1500 zł)
+              Tania strona (Szablon)
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-gray-400">
                 <X className="w-5 h-5 text-red-500 flex-shrink-0 mt-1" />
-                <span>**Musisz sam napisać wszystkie teksty** i wymyślić ofertę.</span>
+                <span><strong>Musisz sam napisać wszystkie teksty</strong> i wymyślić ofertę.</span>
               </li>
               <li className="flex items-start gap-3 text-gray-400">
                 <X className="w-5 h-5 text-red-500 flex-shrink-0 mt-1" />
@@ -41,41 +41,40 @@ export default function Comparison() {
               </li>
               <li className="flex items-start gap-3 text-gray-400">
                 <X className="w-5 h-5 text-red-500 flex-shrink-0 mt-1" />
-                <span>Brak analizy rynku – strona ma tylko "ładnie wyglądać".</span>
+                {/* ZMIANA: Dodano punkt o niskiej pozycji w Google */}
+                <span>Strona jest nisko w Google i nie zdobywa klientów (jest bezużyteczna).</span>
               </li>
             </ul>
           </div>
 
-          {/* TWOJA OFERTA PREMIUM */}
+          {/* TWOJA OFERTA - USUNIĘTO PLAKIETKĘ "MODEL PREMIUM" */}
           <div className="bg-gray-800 border-2 border-brand-neon p-8 rounded-2xl shadow-2xl shadow-brand-neon/5 relative">
-            <div className="absolute -top-4 right-6 bg-brand-neon text-black text-xs font-black px-3 py-1 rounded shadow-lg">
-                MODEL PREMIUM
-            </div>
             <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-              Nasza realizacja (3000 zł+)
+              Nasza realizacja
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-gray-100">
                 <Check className="w-5 h-5 text-brand-neon flex-shrink-0 mt-1" />
-                <span>**Bierzemy wszystko na siebie.** My tworzymy teksty sprzedażowe za Ciebie.</span>
+                <span><strong>Bierzemy wszystko na siebie.</strong> My tworzymy teksty sprzedażowe za Ciebie.</span>
               </li>
               <li className="flex items-start gap-3 text-gray-100">
                 <Check className="w-5 h-5 text-brand-neon flex-shrink-0 mt-1" />
-                <span>Dobieramy profesjonalne zdjęcia i grafiki z naszych baz.</span>
+                {/* ZMIANA: Dodano info o licencjach */}
+                <span>Dobieramy profesjonalne zdjęcia i grafiki z naszych baz, <strong>na które mamy licencje</strong>.</span>
               </li>
               <li className="flex items-start gap-3 text-gray-100">
                 <Check className="w-5 h-5 text-brand-neon flex-shrink-0 mt-1" />
-                <span>Projektujemy strukturę, która **sama sprzedaje** Twoje usługi.</span>
+                <span>Projektujemy strukturę, która <strong>sama sprzedaje</strong> Twoje usługi.</span>
               </li>
               <li className="flex items-start gap-3 text-gray-100">
                 <Check className="w-5 h-5 text-brand-neon flex-shrink-0 mt-1" />
-                <span>Ty tylko akceptujesz gotowe etapy. **Oszczędzasz ok. 20h pracy.**</span>
+                <span>Ty tylko akceptujesz gotowe etapy. <strong>Oszczędzasz ok. 20h pracy.</strong></span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Banner "Święty Spokój" z nowym opisem */}
+        {/* Banner "Święty Spokój" */}
         <motion.div 
             whileInView={{ opacity: 1, scale: 1 }}
             initial={{ opacity: 0, scale: 0.9 }}
@@ -98,7 +97,7 @@ export default function Comparison() {
                 <div>
                     <h4 className="text-white font-bold text-lg">Zero Twojej Pracy</h4>
                     <p className="text-gray-400 text-sm">
-                      Na podstawie **szczątkowych informacji** i krótkiego wywiadu tworzymy pełnowartościowe, dopasowane do Twojego klienta teksty marketingowe.
+                      Na podstawie <strong>szczątkowych informacji</strong> i krótkiego wywiadu tworzymy pełnowartościowe, dopasowane do Twojego klienta teksty marketingowe.
                     </p>
                 </div>
             </div>
