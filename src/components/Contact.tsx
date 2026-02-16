@@ -96,7 +96,7 @@ export default function Contact() {
 
         <div className="bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl relative overflow-hidden">
             
-            {/* --- NOWY PASEK POSTĘPU "PLASMA SURGE" --- */}
+            {/* --- PASEK POSTĘPU "PLASMA SURGE" (ZIELONY) --- */}
             <div className="relative w-full h-4 bg-gray-950 overflow-hidden rounded-t-2xl">
                 {/* Tło "rury" */}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-900 to-gray-950 opacity-50"></div>
@@ -105,11 +105,11 @@ export default function Contact() {
                   className="h-full relative rounded-r-full"
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
-                  // Kluczowa zmiana: Fizyka sprężyny dla efektu "uderzenia"
+                  // Fizyka sprężyny (Spring Physics)
                   transition={{ type: "spring", stiffness: 120, damping: 15, mass: 1 }}
                 >
-                    {/* Główny gradient wypełnienia */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-brand-blue via-brand-neon to-white rounded-r-full shadow-[0_0_15px_rgba(52,211,153,0.5)]"></div>
+                    {/* Główny gradient wypełnienia - ZIELONY NEON */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-600 via-brand-neon to-white rounded-r-full shadow-[0_0_15px_rgba(52,211,153,0.5)]"></div>
                     
                     {/* Animowana tekstura płynącej energii */}
                     <div 
@@ -125,7 +125,6 @@ export default function Contact() {
                 </motion.div>
             </div>
 
-            {/* Style dla animacji płynącej plazmy */}
             <style>{`
                 @keyframes plasma-flow {
                     0% { background-position: 0 0; }
@@ -135,7 +134,7 @@ export default function Contact() {
                     animation: plasma-flow 1s linear infinite;
                 }
             `}</style>
-            {/* -------------------------------------- */}
+            {/* ------------------------------------------------ */}
 
             <div className="p-8 md:p-12 pt-8">
                 {status === 'success' ? (
