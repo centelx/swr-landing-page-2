@@ -1,20 +1,19 @@
-import { X, ArrowRight, Smartphone, Monitor, MessageSquare, Clock, Banknote } from 'lucide-react';
+import { ArrowRight, Smartphone, Monitor, MessageSquare, Clock, Banknote, ChevronLeft } from 'lucide-react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-// Definicja typów propsów (odbieramy price i deliveryTime)
 interface DemoViewerProps {
   projectUrl: string;
   onClose: () => void;
-  price?: string;       // Opcjonalne (z domyślną wartością)
-  deliveryTime?: string; // Opcjonalne (z domyślną wartością)
+  price?: string;       
+  deliveryTime?: string; 
 }
 
 export default function DemoViewer({ 
   projectUrl, 
   onClose, 
-  price = "Wycena",      // Domyślna wartość jakbyś zapomniał podać
-  deliveryTime = "7 Dni" // Domyślna wartość
+  price = "Wycena",      
+  deliveryTime = "7 Dni" 
 }: DemoViewerProps) {
     
   const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
@@ -32,13 +31,21 @@ export default function DemoViewer({
       {/* 1. TOP BAR */}
       <div className="h-16 bg-brand-navy border-b border-gray-700 flex items-center justify-between px-4 md:px-8 shadow-xl relative z-10 flex-shrink-0">
         
-        {/* LEWA STRONA: Powrót */}
+        {/* LEWA STRONA: Powrót (ZMIENIONE) */}
         <button 
           onClick={onClose}
-          className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium"
+          // Zmiana: text-white zamiast text-gray-400. Dodano hover z kolorem brandowym.
+          className="group flex items-center gap-2 text-white hover:text-brand-neon transition-colors font-medium"
         >
-          <X className="w-5 h-5" />
-          <span className="hidden md:inline">Zamknij podgląd</span>
+          {/* Zmiana ikony na strzałkę (bardziej intuicyjne "Wróć") */}
+          <div className="p-2 bg-white/10 rounded-full group-hover:bg-brand-neon/20 transition-all">
+             <ChevronLeft className="w-5 h-5" />
+          </div>
+          
+          {/* Tekst tylko na Desktopie, krótki i konkretny */}
+          <span className="hidden md:inline text-sm font-bold tracking-wide">
+            Wróć
+          </span>
         </button>
 
         {/* ŚRODEK: Przełącznik (Ukryty na małych telefonach) */}
@@ -59,13 +66,11 @@ export default function DemoViewer({
           </button>
         </div>
 
-        {/* PRAWA STRONA: LOGIKA WYŚWIETLANIA (MOBILE vs DESKTOP) */}
+        {/* PRAWA STRONA */}
         <div className="flex items-center">
             
-            {/* A) WERSJA MOBILE: POKAZUJEMY CENĘ I CZAS (Zamiast przycisku) */}
+            {/* A) WERSJA MOBILE: POKAZUJEMY CENĘ I CZAS */}
             <div className="md:hidden flex items-center gap-4">
-                
-                {/* Cena */}
                 <div className="flex flex-col items-end">
                     <div className="flex items-center gap-1 text-gray-400 text-[10px] uppercase tracking-wider font-bold">
                         <Banknote className="w-3 h-3" />
@@ -73,11 +78,7 @@ export default function DemoViewer({
                     </div>
                     <span className="text-brand-neon font-bold text-sm leading-none">{price}</span>
                 </div>
-
-                {/* Pionowa Kreska (Separator) */}
                 <div className="w-px h-6 bg-gray-700"></div>
-
-                {/* Czas */}
                 <div className="flex flex-col items-start">
                     <div className="flex items-center gap-1 text-gray-400 text-[10px] uppercase tracking-wider font-bold">
                         <Clock className="w-3 h-3" />
@@ -85,10 +86,9 @@ export default function DemoViewer({
                     </div>
                     <span className="text-white font-bold text-sm leading-none">{deliveryTime}</span>
                 </div>
-
             </div>
 
-            {/* B) WERSJA DESKTOP: ZŁOTY PRZYCISK (Ukryty na mobile) */}
+            {/* B) WERSJA DESKTOP: ZŁOTY PRZYCISK */}
             <div className="hidden md:flex items-center gap-4">
                 <span className="text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
                 <button 
@@ -103,22 +103,16 @@ export default function DemoViewer({
         </div>
       </div>
 
-      {/* 2. OBSZAR PODGLĄDU (IFRAME) */}
+      {/* 2. OBSZAR PODGLĄDU */}
       <div className="flex-1 bg-gray-900 w-full flex items-center justify-center overflow-hidden p-0 md:p-8 relative">
-        
-        {/* KONTENER URZĄDZENIA */}
         <div className={`transition-all duration-500 ease-in-out relative shadow-2xl mx-auto flex flex-col bg-white ${
             device === 'mobile' 
                 ? 'w-full h-full border-0 rounded-none md:w-[430px] md:h-[932px] md:max-h-[90vh] md:rounded-[3rem] md:border-[12px] md:border-gray-800 md:ring-4 md:ring-black/50'
                 : 'w-full h-full rounded-none md:rounded-lg border-0 md:border border-gray-700'
         }`}>
-            
-            {/* Notch (Tylko w trybie symulacji telefonu) */}
             {device === 'mobile' && (
                  <div className="hidden md:block absolute top-0 left-1/2 -translate-x-1/2 h-[30px] w-[120px] bg-gray-800 rounded-b-2xl z-20 pointer-events-none border-b border-x border-gray-900/50"></div>
             )}
-
-            {/* MASKOWNICA */}
             <div className={`w-full h-full overflow-hidden bg-white ${device === 'mobile' ? 'rounded-none md:rounded-[2.2rem]' : 'rounded-none md:rounded-lg'}`}>
               <iframe 
                 src={projectUrl} 
@@ -132,16 +126,13 @@ export default function DemoViewer({
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               />
             </div>
-            
-            {/* Odbicie światła na ekranie telefonu */}
             {device === 'mobile' && (
                 <div className="hidden md:block absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none z-10 rounded-[2.5rem]"></div>
             )}
         </div>
       </div>
 
-      {/* 3. MOBILE CTA (FLOATING BUTTON NA DOLE) */}
-      {/* Ten przycisk pokazuje się tylko na telefonie, bo na górze usunęliśmy przycisk na rzecz Ceny/Czasu */}
+      {/* 3. MOBILE CTA */}
       <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[110] w-full px-4">
         <motion.button
             initial={{ y: 50, opacity: 0 }}
