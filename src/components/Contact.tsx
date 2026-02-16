@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { CheckCircle, ArrowRight, ChevronLeft, Phone, Mail } from 'lucide-react';
 
 export default function Contact() {
-  // Zmiana: Teraz mamy 3 kroki: Branża -> Metoda -> Dane (USUNIĘTO BUDŻET)
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   
@@ -12,7 +11,6 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     industry: '',     
     contactMethod: '', 
-    // Usunięto pole budget
     name: '',         
     phone: '',        
     email: '',        
@@ -46,7 +44,6 @@ export default function Contact() {
     
     const formBody = new FormData();
     formBody.append('access_key', '4343a106-203d-4279-9980-da05e02f360f'); 
-    // Usunięto budżet z tematu wiadomości
     formBody.append('subject', `LEAD PREMIUM: ${formData.name}`);
     
     const messageBody = `
@@ -77,7 +74,6 @@ export default function Contact() {
     }
   };
 
-  // Obliczenie postępu dla 3 kroków (zamiast 4)
   const progress = (step / 3) * 100;
 
   return (
@@ -100,28 +96,37 @@ export default function Contact() {
 
         <div className="bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl relative overflow-hidden">
             
-            {/* PASEK POSTĘPU */}
-            <div className="h-2 bg-gray-800 w-full absolute top-0 left-0 z-10 overflow-hidden">
+            {/* --- DOPAMINOWY PASEK POSTĘPU --- */}
+            {/* Zwiększono wysokość h-2 -> h-3 dla lepszego efektu */}
+            <div className="h-3 bg-gray-950 w-full absolute top-0 left-0 z-10 overflow-hidden">
                 <motion.div 
-                  className="h-full relative"
+                  // Dodano silny neonowy cień (glow)
+                  className="h-full relative shadow-[0_0_20px_rgba(52,211,153,0.6)]"
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.6, type: "spring", bounce: 0.2 }} // Sprężysta animacja przy zmianie kroku
                 >
+                    {/* Animowane paski w tle */}
                     <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-brand-neon via-green-400 to-brand-neon animate-progress-stripes bg-[length:200%_100%]"></div>
+                    
+                    {/* "Głowica" prowadząca - jasny biały błysk na końcu paska */}
+                    <div className="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-white via-white/50 to-transparent blur-[3px] opacity-90"></div>
                 </motion.div>
+
                 <style>{`
                     @keyframes progress-stripes {
                         0% { background-position: 100% 0; }
                         100% { background-position: 0 0; }
                     }
                     .animate-progress-stripes {
-                        animation: progress-stripes 2s linear infinite;
+                        /* Przyspieszono animację z 2s na 0.7s dla większej dynamiki */
+                        animation: progress-stripes 0.7s linear infinite;
                     }
                 `}</style>
             </div>
+            {/* -------------------------------- */}
 
-            <div className="p-8 md:p-12 pt-10">
+            <div className="p-8 md:p-12 pt-12">
                 {status === 'success' ? (
                 <div className="text-center py-10">
                     <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />
@@ -237,7 +242,7 @@ export default function Contact() {
                     </motion.div>
                     )}
 
-                    {/* KROK 3: DANE KONTAKTOWE (Dawny Krok 4) */}
+                    {/* KROK 3: DANE KONTAKTOWE */}
                     {step === 3 && (
                     <motion.div
                         key="step3"
@@ -245,7 +250,6 @@ export default function Contact() {
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: -20, opacity: 0 }}
                     >
-                        {/* Wstecz prowadzi teraz do kroku 2 (Metoda) */}
                         <div className="flex items-center gap-2 mb-6 cursor-pointer text-gray-500 hover:text-white" onClick={() => setStep(2)}>
                             <ChevronLeft className="w-4 h-4" /> Wstecz
                         </div>
