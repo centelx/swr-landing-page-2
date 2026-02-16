@@ -28,7 +28,7 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
           <span className="hidden md:inline">Zamknij podgląd</span>
         </button>
 
-        {/* Środek: Przełącznik (Ukrywamy go na małych telefonach, bo tam zawsze jest mobile) */}
+        {/* Środek: Przełącznik (Ukryty na małych telefonach) */}
         <div className="hidden md:flex bg-gray-800 rounded-lg p-1 border border-gray-700">
           <button 
             onClick={() => setDevice('desktop')}
@@ -46,20 +46,18 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
           </button>
         </div>
 
-        {/* Prawa: CTA (TYLKO DESKTOP - hidden na mobile) */}
-        <div className="hidden md:flex items-center gap-4">
-          <span className="text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
+        {/* Prawa: CTA (PRZYWRÓCONE DO ORYGINAŁU - IDENTYCZNE JAK WCZEŚNIEJ) */}
+        <div className="flex items-center gap-4">
+          <span className="hidden md:inline text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
           <button 
             onClick={handleCtaClick}
+            // Usunięto 'text-xs md:text-sm' i inne zmiany. Jest 1:1 jak w oryginale.
             className="bg-gradient-to-r from-brand-neon to-brand-blue text-black font-bold text-sm px-6 py-2.5 rounded-full hover:shadow-lg hover:shadow-brand-neon/50 transition-all flex items-center gap-2"
           >
             Chcę taką stronę
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
-        
-        {/* Na mobile pokazujemy tylko logo lub pustą przestrzeń, żeby X był po lewej */}
-        <div className="md:hidden w-5"></div> 
       </div>
 
       {/* 2. OBSZAR PODGLĄDU */}
@@ -99,14 +97,13 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
         </div>
       </div>
 
-      {/* 3. MOBILE CTA (Floating Button na dole - STYL ZŁOTY/YELLOW) */}
+      {/* 3. MOBILE CTA (Floating Button na dole - ZŁOTY) */}
       <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[110] w-full px-4">
         <motion.button
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, type: "spring" }}
             onClick={handleCtaClick}
-            // ZASTOSOWANO STYL ZŁOTY (YELLOW)
             className="w-full bg-yellow-400 text-black font-bold text-lg py-4 rounded-full shadow-2xl shadow-yellow-400/30 flex items-center justify-center gap-2 border-2 border-yellow-300"
         >
             <MessageSquare className="w-5 h-5" />
