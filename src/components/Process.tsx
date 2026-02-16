@@ -10,8 +10,8 @@ export default function Process() {
     },
     {
       icon: FileSignature,
-      title: '2. Formalności (30%)',
-      description: 'Podpisujemy umowę i wpłacasz zadatek (30%) na start prac. To rezerwuje Twój termin i pokrywa koszty analizy.',
+      title: '2. Formalności (20%)', // ZMIANA NA 20%
+      description: 'Wpłacasz zadatek (20%) na start prac. To rezerwuje Twój termin i pokrywa koszty analizy.', // USUNIĘTO SŁOWO "UMOWA"
     },
     {
       icon: MonitorPlay,
@@ -20,7 +20,7 @@ export default function Process() {
     },
     {
       icon: Rocket,
-      title: '4. Publikacja i Start (70%)',
+      title: '4. Publikacja i Start (80%)', // ZMIANA NA 80%
       description: 'Po akceptacji wrzucamy stronę do sieci. Od tego momentu Twój biznes jest widoczny online 24/7 i zaczyna na siebie zarabiać.',
     },
   ];
