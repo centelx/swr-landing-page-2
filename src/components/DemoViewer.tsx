@@ -46,13 +46,13 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
           </button>
         </div>
 
-        {/* Prawa: CTA (PRZYWRÓCONE DO ORYGINAŁU - IDENTYCZNE JAK WCZEŚNIEJ) */}
+        {/* Prawa: CTA (TERAZ ZŁOTY - IDENTYCZNY STYL JAK NA MOBILE) */}
         <div className="flex items-center gap-4">
           <span className="hidden md:inline text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
           <button 
             onClick={handleCtaClick}
-            // Usunięto 'text-xs md:text-sm' i inne zmiany. Jest 1:1 jak w oryginale.
-            className="bg-gradient-to-r from-brand-neon to-brand-blue text-black font-bold text-sm px-6 py-2.5 rounded-full hover:shadow-lg hover:shadow-brand-neon/50 transition-all flex items-center gap-2"
+            // ZMIANA KOLORU NA ZŁOTY (Yellow-400 + Border Yellow-300)
+            className="bg-yellow-400 text-black font-bold text-sm px-6 py-2.5 rounded-full shadow-lg shadow-yellow-400/30 border-2 border-yellow-300 hover:bg-white hover:border-white hover:shadow-yellow-400/50 transition-all flex items-center gap-2"
           >
             Chcę taką stronę
             <ArrowRight className="w-4 h-4" />
