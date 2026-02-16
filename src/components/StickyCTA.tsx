@@ -10,11 +10,13 @@ export default function StickyCTA() {
       const contactSection = document.getElementById('contact');
       if (contactSection) {
          const rect = contactSection.getBoundingClientRect();
+         // Ukryj przycisk, gdy użytkownik dojedzie do sekcji kontakt
          if (rect.top < window.innerHeight) {
              setIsVisible(false);
              return;
          }
       }
+      // Pokaż przycisk po przewinięciu 300px
       if (window.scrollY > 300) {
         setIsVisible(true);
       } else {
@@ -40,7 +42,8 @@ export default function StickyCTA() {
         >
           <button
             onClick={scrollToContact}
-            className="w-full bg-brand-neon text-black font-bold text-lg py-4 rounded-full shadow-2xl flex items-center justify-center gap-2"
+            // ZMIANA KOLORÓW TUTAJ (Yellow-400 + Border Yellow-300 + Shadow Yellow)
+            className="w-full bg-yellow-400 text-black font-bold text-lg py-4 rounded-full shadow-2xl shadow-yellow-400/30 border-2 border-yellow-300 flex items-center justify-center gap-2"
           >
             <MessageSquare className="w-5 h-5" />
             <span>Zapytaj o Darmową Wycenę</span>
