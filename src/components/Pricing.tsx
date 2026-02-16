@@ -9,7 +9,7 @@ export default function Pricing() {
   const plans = [
     {
       name: 'Wizytówka',
-      price: '2400', // ZMIANA Z 2900
+      price: '2400',
       oldPrice: '3500', 
       desc: 'Idealna na start dla specjalistów i małych firm.',
       features: [
@@ -18,12 +18,11 @@ export default function Pricing() {
         'Integracja z Mapami / Facebookiem',
         'Przyjazna dla Google (Podstawy SEO)',
         'Formularz kontaktowy na email',
-        // USUNIĘTO: 'Szybki serwer i domena (rok w cenie)',
       ]
     },
     {
       name: 'Strona Firmowa',
-      price: '3100', // ZMIANA Z 3900
+      price: '3100',
       oldPrice: '4900', 
       popular: false, 
       desc: 'Kompletne rozwiązanie budujące przewagę rynkową.',
@@ -110,7 +109,8 @@ export default function Pricing() {
                   <span className="text-4xl font-bold text-white">{plan.price}</span>
                   {plan.price !== 'Wycena' && <span className="text-xl text-gray-400">zł</span>}
                 </div>
-                {plan.price !== 'Wycena' && <p className="text-gray-500 text-sm mt-2">+ VAT 23%</p>}
+                {/* ZMIANA NA NETTO */}
+                {plan.price !== 'Wycena' && <p className="text-gray-500 text-sm mt-2">netto</p>}
               </div>
 
               <ul className="space-y-4 mb-8 flex-grow">
