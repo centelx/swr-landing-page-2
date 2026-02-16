@@ -15,7 +15,7 @@ export default function Portfolio() {
       icon: LayoutTemplate,
       projects: [
         {
-          title: 'Auto-Serwis "Błysk"',
+          title: 'Mechanik Samochodowy "Iglen"',
           category: 'Motoryzacja',
           style: 'FACHOWIEC & ENERGIA',
           styleColor: 'text-orange-400 border-orange-400/30 bg-orange-400/10',
@@ -24,12 +24,12 @@ export default function Portfolio() {
           link: 'https://iglen.pl/', 
         },
         {
-          title: 'Salon Urody "Elegance"',
-          category: 'Beauty & Wellness',
-          style: 'BEAUTY & PREMIUM',
+          title: 'Gabinet Terapii Pedagogicznej "Nadzieja"',
+          category: 'Edukacja & Terapia',
+          style: 'EMPATIA & SPOKÓJ',
           styleColor: 'text-pink-300 border-pink-300/30 bg-pink-300/10',
           image: '/screen2.png',
-          description: 'Subtelne animacje, złote akcenty i dużo przestrzeni. Buduje poczucie luksusu.',
+          description: 'Spokojna, pastelowa kolorystyka i duża ilość przestrzeni budują zaufanie oraz poczucie bezpieczeństwa, nie przytłaczając rodzica szukającego pomocy.',
           link: 'https://gabinetnadzieja.pl/', 
         },
         {
@@ -37,9 +37,9 @@ export default function Portfolio() {
           category: 'Budownictwo',
           style: 'ZAUFANIE & USŁUGI',
           styleColor: 'text-blue-300 border-blue-300/30 bg-blue-300/10',
-          image: '/screen3.png',
+          image: '/screen4.png',
           description: 'Przejrzysty układ, stonowane kolory. Budzi zaufanie i spokój.',
-          link: 'https://domnaroztoczu.pages.dev/', 
+          link: 'https://kominiarznitak.pages.dev/', 
         }
       ]
     },
