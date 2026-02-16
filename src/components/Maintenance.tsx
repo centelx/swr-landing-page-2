@@ -9,9 +9,9 @@ export default function Maintenance() {
   const plans = [
     {
       name: 'TECHNICZNY',
-      price: '79', // Cena promocyjna (roczna) jako główna
-      monthlyPrice: '99', // Cena standardowa (miesięczna)
-      popular: true, // Wyróżniamy ten pakiet
+      price: '47', // ZMIANA NA 47 netto rocznie
+      monthlyPrice: '79', // ZMIANA NA 79 miesięcznie
+      popular: true,
       features: [
         'Szybki hosting NVMe',
         'Certyfikat bezpieczeństwa SSL',
@@ -21,7 +21,7 @@ export default function Maintenance() {
       icon: Server
     },
     {
-      name: 'OPIEKA VIP',
+      name: 'ENTERPRISE', // ZMIANA NAZWY Z VIP
       price: '249',
       popular: false,
       features: [
@@ -44,11 +44,12 @@ export default function Maintenance() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
+          {/* NOWY NAGŁÓWEK - WYBÓR */}
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Święty Spokój
+            Wybór należy do Ciebie
           </h2>
-          <p className="text-xl text-gray-400">
-            Zajmij się biznesem, my zajmiemy się technologią.
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            Jesteś właścicielem strony i kodu. Możesz utrzymywać ją samodzielnie, albo <span className="text-white font-bold">zrzucić ten obowiązek na nas</span> i mieć problem z głowy.
           </p>
         </motion.div>
 
@@ -65,7 +66,6 @@ export default function Maintenance() {
                   : 'bg-gray-900 border-gray-700'
               }`}
             >
-              {/* Plakietka wyróżniająca - ZMIANA TEKSTU NA BARDZIEJ PRZEKONUJĄCY */}
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-neon text-black px-4 py-1 rounded-full text-sm font-bold shadow-lg shadow-brand-neon/20 whitespace-nowrap">
                   NAJCZĘŚCIEJ WYBIERANY
@@ -76,7 +76,6 @@ export default function Maintenance() {
                 <div>
                    <h3 className="text-2xl font-bold text-white mb-3">{plan.name}</h3>
                    
-                   {/* Logika wyświetlania cen */}
                    {plan.monthlyPrice ? (
                      <div className="flex flex-col">
                         <div className="flex items-baseline gap-1">
@@ -91,7 +90,6 @@ export default function Maintenance() {
                         </p>
                      </div>
                    ) : (
-                     // Standardowy widok dla pakietu VIP (jedna cena)
                      <div className="flex items-baseline gap-1">
                         <span className="text-4xl font-bold text-white">{plan.price}</span>
                         <span className="text-gray-400">zł / mc</span>
