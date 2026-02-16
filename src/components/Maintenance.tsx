@@ -9,11 +9,12 @@ export default function Maintenance() {
   const plans = [
     {
       name: 'TECHNICZNY',
-      price: '47', // ZMIANA NA 47 netto rocznie
-      monthlyPrice: '79', // ZMIANA NA 79 miesięcznie
+      price: '47',
+      monthlyPrice: '79',
       popular: true,
       features: [
         'Szybki hosting NVMe',
+        'Regularne opłacanie domeny i hostingu', // NOWY PUNKT
         'Certyfikat bezpieczeństwa SSL',
         'Codzienne kopie zapasowe',
         'Monitoring dostępności 24/7',
@@ -21,7 +22,7 @@ export default function Maintenance() {
       icon: Server
     },
     {
-      name: 'ENTERPRISE', // ZMIANA NAZWY Z VIP
+      name: 'ENTERPRISE',
       price: '249',
       popular: false,
       features: [
@@ -44,7 +45,6 @@ export default function Maintenance() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          {/* NOWY NAGŁÓWEK - WYBÓR */}
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Wybór należy do Ciebie
           </h2>
