@@ -6,12 +6,16 @@ export default function Hero() {
     document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Definicja awatarów: 2 pierwsze to zdjęcia z folderu public, kolejne to placeholdery
+  // Definicja awatarów
   const avatars = [
+    // 1. Zdjęcie z pliku
     { type: 'image', src: '/logo_avaps.jpg', alt: 'Avaps' },
+    // 2. Zdjęcie z pliku
     { type: 'image', src: '/logo_ninfea.png', alt: 'Ninfea' },
+    // 3. Standardowa ikona (szara)
     { type: 'icon' },
-    { type: 'icon' },
+    // 4. NOWOŚĆ: Wygenerowany kodem "Cool" awatar (Gradient + Inicjały)
+    { type: 'generated', label: 'MK', colors: 'from-brand-neon to-brand-blue text-black' },
   ];
 
   return (
@@ -96,16 +100,31 @@ export default function Hero() {
             {/* Grupa Avatarów */}
             <div className="flex -space-x-3">
                {avatars.map((avatar, i) => (
-                 <div key={i} className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-700 flex items-center justify-center overflow-hidden">
-                    {avatar.type === 'image' ? (
+                 <div key={i} className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-800 flex items-center justify-center overflow-hidden relative">
+                    
+                    {/* LOGIKA WYŚWIETLANIA AWATARÓW */}
+                    
+                    {/* Typ 1: Zwykłe zdjęcie */}
+                    {avatar.type === 'image' && (
                       <img 
                         src={avatar.src} 
                         alt={avatar.alt} 
                         className="w-full h-full object-cover"
                       />
-                    ) : (
-                      <User className="w-6 h-6 text-gray-400" />
                     )}
+
+                    {/* Typ 2: Wygenerowany Gradient + Inicjały (To "Fajne") */}
+                    {avatar.type === 'generated' && (
+                        <div className={`w-full h-full bg-gradient-to-br ${avatar.colors} flex items-center justify-center font-bold text-xs tracking-tighter`}>
+                            {avatar.label}
+                        </div>
+                    )}
+
+                    {/* Typ 3: Zwykła ikona (Default) */}
+                    {avatar.type === 'icon' && (
+                      <User className="w-6 h-6 text-gray-500" />
+                    )}
+
                  </div>
                ))}
                
