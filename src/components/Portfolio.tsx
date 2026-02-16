@@ -29,7 +29,7 @@ export default function Portfolio() {
           style: 'EMPATIA & SPOKÓJ',
           styleColor: 'text-pink-300 border-pink-300/30 bg-pink-300/10',
           image: '/screen2.png',
-          description: 'Spokojna, pastelowa kolorystyka i duża ilość przestrzeni budują zaufanie oraz poczucie bezpieczeństwa, nie przytłaczając rodzica szukającego pomocy.',
+          description: 'Łagodny, pastelowy motyw budujący zaufanie. Nastawiony na poczucie bezpieczeństwa.',
           link: 'https://gabinetnadzieja.pl/', 
         },
         {
