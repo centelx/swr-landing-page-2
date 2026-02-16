@@ -38,7 +38,7 @@ export default function Portfolio() {
           style: 'AUTORYTET & BEZPIECZEŃSTWO',
           styleColor: 'text-orange-500 border-orange-500/30 bg-orange-500/10',
           image: '/screen4.png',
-          description: 'Ciemny, kontrastowy motyw budujący wizerunek eksperta z 25-letnim stażem.',
+          description: 'Kontrastowy, profesjonalny design łączący nowoczesność z tradycją rzemiosła.',
           link: 'https://kominiarznitak.pages.dev/', 
         }
       ]
