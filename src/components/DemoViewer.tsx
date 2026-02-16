@@ -1,13 +1,23 @@
-import { X, ArrowRight, Smartphone, Monitor, MessageSquare } from 'lucide-react';
+import { X, ArrowRight, Smartphone, Monitor, MessageSquare, Clock, Banknote } from 'lucide-react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string, onClose: () => void }) {
+// Dodano propsy: price i deliveryTime
+export default function DemoViewer({ 
+  projectUrl, 
+  onClose, 
+  price = "2400 zł", // Domyślna wartość, jeśli nie podasz innej
+  deliveryTime = "7 Dni" // Domyślna wartość
+}: { 
+  projectUrl: string, 
+  onClose: () => void,
+  price?: string,
+  deliveryTime?: string
+}) {
   const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
 
   const handleCtaClick = () => {
     onClose();
-    // Małe opóźnienie, żeby modal zdążył zniknąć zanim zacznie scrollować
     setTimeout(() => {
         document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
@@ -46,17 +56,47 @@ export default function DemoViewer({ projectUrl, onClose }: { projectUrl: string
           </button>
         </div>
 
-        {/* Prawa: CTA (TERAZ ZŁOTY - IDENTYCZNY STYL JAK NA MOBILE) */}
-        <div className="flex items-center gap-4">
-          <span className="hidden md:inline text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
-          <button 
-            onClick={handleCtaClick}
-            // ZMIANA KOLORU NA ZŁOTY (Yellow-400 + Border Yellow-300)
-            className="bg-yellow-400 text-black font-bold text-sm px-6 py-2.5 rounded-full shadow-lg shadow-yellow-400/30 border-2 border-yellow-300 hover:bg-white hover:border-white hover:shadow-yellow-400/50 transition-all flex items-center gap-2"
-          >
-            Chcę taką stronę
-            <ArrowRight className="w-4 h-4" />
-          </button>
+        {/* --- PRAWA STRONA --- */}
+        <div className="flex items-center">
+            
+            {/* WERSJA MOBILE: KOSZT I CZAS (Zamiast przycisku) */}
+            <div className="md:hidden flex items-center gap-4">
+                
+                {/* Cena */}
+                <div className="flex flex-col items-end">
+                    <div className="flex items-center gap-1 text-gray-400 text-[10px] uppercase tracking-wider font-medium">
+                        <Banknote className="w-3 h-3" />
+                        <span>Koszt</span>
+                    </div>
+                    <span className="text-brand-neon font-bold text-sm leading-none">{price}</span>
+                </div>
+
+                {/* Separator */}
+                <div className="w-px h-6 bg-gray-700"></div>
+
+                {/* Czas */}
+                <div className="flex flex-col items-start">
+                    <div className="flex items-center gap-1 text-gray-400 text-[10px] uppercase tracking-wider font-medium">
+                        <Clock className="w-3 h-3" />
+                        <span>Czas</span>
+                    </div>
+                    <span className="text-white font-bold text-sm leading-none">{deliveryTime}</span>
+                </div>
+
+            </div>
+
+            {/* WERSJA DESKTOP: ZŁOTY PRZYCISK (Ukryty na mobile) */}
+            <div className="hidden md:flex items-center gap-4">
+                <span className="text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
+                <button 
+                    onClick={handleCtaClick}
+                    className="bg-yellow-400 text-black font-bold text-sm px-6 py-2.5 rounded-full shadow-lg shadow-yellow-400/30 border-2 border-yellow-300 hover:bg-white hover:border-white hover:shadow-yellow-400/50 transition-all flex items-center gap-2"
+                >
+                    Chcę taką stronę
+                    <ArrowRight className="w-4 h-4" />
+                </button>
+            </div>
+
         </div>
       </div>
 
