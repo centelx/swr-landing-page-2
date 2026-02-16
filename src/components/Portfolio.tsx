@@ -33,12 +33,12 @@ export default function Portfolio() {
           link: 'https://gabinetnadzieja.pl/', 
         },
         {
-          title: 'Remonty Kowalski',
-          category: 'Budownictwo',
-          style: 'ZAUFANIE & USŁUGI',
-          styleColor: 'text-blue-300 border-blue-300/30 bg-blue-300/10',
+          title: 'Mistrz Kominiarski Nitak',
+          category: 'Usługi & Budownictwo',
+          style: 'AUTORYTET & BEZPIECZEŃSTWO',
+          styleColor: 'text-orange-500 border-orange-500/30 bg-orange-500/10',
           image: '/screen4.png',
-          description: 'Przejrzysty układ, stonowane kolory. Budzi zaufanie i spokój.',
+          description: 'Ciemny, kontrastowy motyw budujący wizerunek eksperta z 25-letnim stażem.,
           link: 'https://kominiarznitak.pages.dev/', 
         }
       ]
