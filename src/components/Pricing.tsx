@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check, ShieldCheck, Zap, BarChart, Tag } from 'lucide-react';
+import { Check, Zap, BarChart, ShieldCheck, Tag } from 'lucide-react';
 
 export default function Pricing() {
   const scrollToContact = () => {
@@ -9,7 +9,7 @@ export default function Pricing() {
   const plans = [
     {
       name: 'Wizytówka',
-      price: '2900',
+      price: '2400', // ZMIANA Z 2900
       oldPrice: '3500', 
       desc: 'Idealna na start dla specjalistów i małych firm.',
       features: [
@@ -18,12 +18,12 @@ export default function Pricing() {
         'Integracja z Mapami / Facebookiem',
         'Przyjazna dla Google (Podstawy SEO)',
         'Formularz kontaktowy na email',
-        'Szybki serwer i domena (rok w cenie)',
+        // USUNIĘTO: 'Szybki serwer i domena (rok w cenie)',
       ]
     },
     {
       name: 'Strona Firmowa',
-      price: '3900',
+      price: '3100', // ZMIANA Z 3900
       oldPrice: '4900', 
       popular: false, 
       desc: 'Kompletne rozwiązanie budujące przewagę rynkową.',
@@ -95,12 +95,10 @@ export default function Pricing() {
               </div>
 
               <div className="mb-8">
-                {/* --- NOWE: CENA REGULARNA BEZ PRZEKREŚLENIA --- */}
                 {plan.oldPrice && (
                     <div className="inline-flex items-center gap-2 bg-red-900/30 border border-red-500/50 rounded-lg px-3 py-1.5 mb-3">
                         <Tag className="w-3 h-3 text-red-400" />
                         <span className="text-red-300 text-xs font-medium uppercase tracking-wide">Cena regularna:</span>
-                        {/* Usunięto klasę 'line-through' dla lepszej czytelności */}
                         <span className="text-red-200 font-bold text-lg">
                             {plan.oldPrice} zł
                         </span>
@@ -140,7 +138,6 @@ export default function Pricing() {
           ))}
         </div>
 
-        {/* Sekcja "Black Magic" - Uzasadnienie ceny */}
         <div className="mt-20 grid md:grid-cols-3 gap-8 border-t border-gray-800 pt-12">
             <div className="text-center">
                 <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-4 text-brand-neon">
