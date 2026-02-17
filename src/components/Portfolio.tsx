@@ -66,7 +66,7 @@ export default function Portfolio() {
           styleColor: 'text-yellow-200 border-yellow-200/30 bg-yellow-200/10',
           image: '/screen5.png', 
           description: 'Luksusowy design w odcieniach złota i beżu. Przejrzysta struktura podstron oferty i cennika.',
-          link: 'https://lumina-estetica.pages.dev/offer', 
+          link: 'https://lumina-estetica.pages.dev/', 
           price: '3100',
           deliveryTime: '11 Dni'
         },
