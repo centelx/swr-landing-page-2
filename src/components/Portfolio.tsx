@@ -60,15 +60,15 @@ export default function Portfolio() {
       icon: Layers,
       projects: [
         {
-          title: 'Klinika "Uśmiech"',
-          category: 'Medycyna',
-          style: 'BEAUTY & PREMIUM',
-          styleColor: 'text-pink-300 border-pink-300/30 bg-pink-300/10',
-          image: '/screen2.png', 
-          description: 'Profesjonalna strona z opisem zabiegów i zespołem lekarzy.',
-          link: '#', 
-          price: 'Wycena',
-          deliveryTime: '14 Dni'
+          title: 'Klinika "Lumina Estetica"',
+          category: 'Beauty & Wellness',
+          style: 'ELEGANCJA & HARMONIA',
+          styleColor: 'text-yellow-200 border-yellow-200/30 bg-yellow-200/10',
+          image: '/screen5.png', 
+          description: 'Luksusowy design w odcieniach złota i beżu.',
+          link: 'https://lumina-estetica.pages.dev/offer', 
+          price: '3100',
+          deliveryTime: '11 Dni'
         },
         {
           title: 'Developer "Solid"',
