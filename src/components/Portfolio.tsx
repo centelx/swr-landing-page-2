@@ -67,7 +67,7 @@ export default function Portfolio() {
           image: '/screen5.png', 
           description: 'Luksusowy design w odcieniach złota i beżu. Przejrzysta struktura podstron oferty i cennika.',
           link: 'https://lumina-estetica.pages.dev/', 
-          price: '3100',
+          price: '3100 zł',
           deliveryTime: '9 Dni'
         },
         {
@@ -78,18 +78,18 @@ export default function Portfolio() {
           image: '/screen7.png', 
           description: 'Futurystyczny, ciemny design z neonowymi gradientami. Rozbudowana oferta usług.',
           link: 'https://nightride2.pages.dev/',
-          price: '3200',
+          price: '3200 zł',
           deliveryTime: '10 Dni'
         },
         {
-          title: 'Biuro "Bilans"',
-          category: 'Finanse',
+          title: 'Importer Aut "D-Way"',
+          category: 'Motoryzacja & Biznes',
           style: 'ZAUFANIE & USŁUGI',
           styleColor: 'text-blue-300 border-blue-300/30 bg-blue-300/10',
           image: '/screen6.png', 
-          description: 'Klasyczny, korporacyjny styl. Idealny dla kancelarii i księgowości.',
-          link: '#', 
-          price: 'Wycena',
+          description: 'Profesjonalny, błękitny design budujący wiarygodność marki globalnej. Dedykowana podstrona "Proces" wizualnie tłumaczy skomplikowaną logistykę importu.',
+          link: 'https://d-way.pl/', 
+          price: '3100 zł',
           deliveryTime: '12 Dni'
         }
       ]
