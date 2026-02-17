@@ -19,7 +19,7 @@ export default function Portfolio() {
           title: 'Mechanik Samochodowy "Iglen"',
           category: 'Motoryzacja',
           style: 'FACHOWIEC & ENERGIA',
-          styleColor: 'text-orange-400 border-orange-400/30 bg-orange-400/10',
+          styleColor: 'text-red-500 border-red-500/30 bg-red-500/10',
           image: '/screen1.png', 
           description: 'Mocny, ciemny motyw budujący autorytet. Nastawiony na szybki telefon.',
           link: 'https://iglen.pl/',
