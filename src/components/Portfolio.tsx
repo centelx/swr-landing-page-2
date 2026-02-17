@@ -68,18 +68,18 @@ export default function Portfolio() {
           description: 'Luksusowy design w odcieniach złota i beżu. Przejrzysta struktura podstron oferty i cennika.',
           link: 'https://lumina-estetica.pages.dev/', 
           price: '3100',
-          deliveryTime: '11 Dni'
+          deliveryTime: '9 Dni'
         },
         {
-          title: 'Developer "Solid"',
-          category: 'Budownictwo',
-          style: 'FACHOWIEC & ENERGIA',
-          styleColor: 'text-orange-400 border-orange-400/30 bg-orange-400/10',
-          image: '/screen1.png', 
-          description: 'Nowoczesna prezentacja inwestycji z ciemnym, technicznym tłem.',
-          link: '#', 
-          price: 'Wycena',
-          deliveryTime: '21 Dni'
+          title: 'Studio "Obsidian Detailing"',
+          category: 'Motoryzacja & Tuning',
+          style: 'CYBER & GLOW',
+          styleColor: 'text-indigo-400 border-indigo-400/30 bg-indigo-400/10',
+          image: '/screen7.png', 
+          description: 'Futurystyczny, ciemny design z neonowymi gradientami. Rozbudowana oferta usług.',
+          link: 'https://nightride2.pages.dev/',
+          price: '3200',
+          deliveryTime: '10 Dni'
         },
         {
           title: 'Biuro "Bilans"',
@@ -90,7 +90,7 @@ export default function Portfolio() {
           description: 'Klasyczny, korporacyjny styl. Idealny dla kancelarii i księgowości.',
           link: '#', 
           price: 'Wycena',
-          deliveryTime: '14 Dni'
+          deliveryTime: '12 Dni'
         }
       ]
     }
