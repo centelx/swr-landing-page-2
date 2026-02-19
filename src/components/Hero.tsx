@@ -10,7 +10,6 @@ export default function Hero() {
     document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // --- LOGIKA WIDEO Z BUNNY.NET ---
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoSrc = 'https://vz-6da79063-56c.b-cdn.net/3d5c80a2-760d-4c04-8294-1e32f7388145/playlist.m3u8';
 
@@ -18,7 +17,6 @@ export default function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Konfiguracja odtwarzacza: brak 'progress' i 'current-time' blokuje przewijanie
     const plyrOptions = {
       controls: ['play-large', 'play', 'mute', 'volume', 'fullscreen'],
       hideControls: false,
@@ -33,7 +31,6 @@ export default function Hero() {
         new Plyr(video, plyrOptions);
       });
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      // Natywne wsparcie dla urządzeń Apple
       video.src = videoSrc;
       video.addEventListener('loadedmetadata', () => {
         new Plyr(video, plyrOptions);
@@ -41,7 +38,6 @@ export default function Hero() {
     }
   }, []);
 
-  // Definicja awatarów
   const avatars = [
     { type: 'image', src: '/logo_avaps.jpg', alt: 'Avaps' },
     { type: 'image', src: '/logo_ninfea.png', alt: 'Ninfea' },
@@ -51,20 +47,19 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-brand-dark pt-20 pb-12 px-4">
-      {/* Nadpisanie domyślnych kolorów Plyr na Twoje neonowe */}
+      {/* STYLE ODTWARZACZA VSL */}
       <style>{`
         :root {
-          /* Zmień ten kolor na dokładny HEX swojego brand-neon (np. żółty z StickyCTA lub limonkowy) */
-          --plyr-color-main: #facc15; 
-          --plyr-video-control-background-hover: #facc15;
+          /* Kolor dopasowany do przycisku ze screena */
+          --plyr-color-main: #06b6d4; 
+          --plyr-video-control-background-hover: #06b6d4;
         }
-        /* Dodatkowe zabezpieczenie ukrywające pasek postępu */
         .plyr__progress, .plyr__time { 
           display: none !important; 
         }
-        /* Dopasowanie zaokrągleń do Twojego designu */
         .plyr {
           border-radius: 1rem;
+          height: 100%; /* Wymuszenie pełnej wysokości */
         }
       `}</style>
 
@@ -102,14 +97,15 @@ export default function Hero() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="relative max-w-4xl mx-auto mb-10 group"
           >
-            <div className="relative bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden shadow-2xl shadow-brand-neon/10">
+            {/* PRZYWRÓCONE aspect-video i w-full */}
+            <div className="relative aspect-video w-full bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden shadow-2xl shadow-brand-neon/10">
               
               <video 
                 ref={videoRef}
                 className="w-full h-full object-cover"
                 crossOrigin="anonymous"
                 playsInline
-                poster="/twoja-okladka.jpg" /* PAMIĘTAJ O DODANIU MINIATURKI W FOLDERZE PUBLIC */
+                poster="/twoja-okladka.jpg"
               >
                 Twoja przeglądarka nie obsługuje wideo.
               </video>
