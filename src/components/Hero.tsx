@@ -1,29 +1,73 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, Star, User, Hexagon } from 'lucide-react';
+import Hls from 'hls.js';
+import Plyr from 'plyr';
+import 'plyr/dist/plyr.css';
 
 export default function Hero() {
   const scrollToPricing = () => {
     document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // --- LOGIKA WIDEO Z BUNNY.NET ---
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoSrc = 'https://vz-6da79063-56c.b-cdn.net/3d5c80a2-760d-4c04-8294-1e32f7388145/playlist.m3u8';
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Konfiguracja odtwarzacza: brak 'progress' i 'current-time' blokuje przewijanie
+    const plyrOptions = {
+      controls: ['play-large', 'play', 'mute', 'volume', 'fullscreen'],
+      hideControls: false,
+    };
+
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        new Plyr(video, plyrOptions);
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      // Natywne wsparcie dla urządzeń Apple
+      video.src = videoSrc;
+      video.addEventListener('loadedmetadata', () => {
+        new Plyr(video, plyrOptions);
+      });
+    }
+  }, []);
+
   // Definicja awatarów
   const avatars = [
-    // 1. Zdjęcie z pliku
     { type: 'image', src: '/logo_avaps.jpg', alt: 'Avaps' },
-    // 2. Zdjęcie z pliku
     { type: 'image', src: '/logo_ninfea.png', alt: 'Ninfea' },
-    // 3. NOWOŚĆ: Wygenerowane logo "Tech Startup" (Fioletowy Hexagon)
-    { 
-        type: 'logo-icon', 
-        icon: Hexagon, 
-        colors: 'from-purple-600 to-pink-600 text-white' 
-    },
-    // 4. Wygenerowany kodem "Cool" awatar (Gradient + Inicjały)
+    { type: 'logo-icon', icon: Hexagon, colors: 'from-purple-600 to-pink-600 text-white' },
     { type: 'generated', label: 'MK', colors: 'from-brand-neon to-brand-blue text-black' },
   ];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-brand-dark pt-20 pb-12 px-4">
+      {/* Nadpisanie domyślnych kolorów Plyr na Twoje neonowe */}
+      <style>{`
+        :root {
+          /* Zmień ten kolor na dokładny HEX swojego brand-neon (np. żółty z StickyCTA lub limonkowy) */
+          --plyr-color-main: #facc15; 
+          --plyr-video-control-background-hover: #facc15;
+        }
+        /* Dodatkowe zabezpieczenie ukrywające pasek postępu */
+        .plyr__progress, .plyr__time { 
+          display: none !important; 
+        }
+        /* Dopasowanie zaokrągleń do Twojego designu */
+        .plyr {
+          border-radius: 1rem;
+        }
+      `}</style>
+
       {/* Tło ozdobne */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute w-96 h-96 bg-brand-neon/10 rounded-full blur-3xl top-20 -left-20"></div>
@@ -51,21 +95,25 @@ export default function Hero() {
             Tworzymy serwisy klasy premium, które <span className="text-white font-semibold">zamieniają odwiedzających w płacących klientów.</span>
           </p>
 
-          {/* --- WIDEO --- */}
+          {/* --- WIDEO VSL --- */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
             className="relative max-w-4xl mx-auto mb-10 group"
           >
-            <div className="relative aspect-video bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden shadow-2xl shadow-brand-neon/10">
-              <iframe 
-                className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/gkjSXBCVo8E?rel=0" 
-                title="Wideo sprzedażowe"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
+            <div className="relative bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden shadow-2xl shadow-brand-neon/10">
+              
+              <video 
+                ref={videoRef}
+                className="w-full h-full object-cover"
+                crossOrigin="anonymous"
+                playsInline
+                poster="/twoja-okladka.jpg" /* PAMIĘTAJ O DODANIU MINIATURKI W FOLDERZE PUBLIC */
+              >
+                Twoja przeglądarka nie obsługuje wideo.
+              </video>
+
             </div>
             <p className="text-gray-500 text-xs mt-4 uppercase tracking-widest">
                 Wideo: Zobacz dlaczego warto (0:33)
@@ -101,51 +149,33 @@ export default function Hero() {
             transition={{ delay: 0.5 }}
             className="flex items-center justify-center gap-4 mb-12"
           >
-            {/* Grupa Avatarów */}
             <div className="flex -space-x-3">
                {avatars.map((avatar, i) => (
                  <div key={i} className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-800 flex items-center justify-center overflow-hidden relative">
-                    
-                    {/* LOGIKA WYŚWIETLANIA AWATARÓW */}
-                    
-                    {/* Typ 1: Zwykłe zdjęcie */}
                     {avatar.type === 'image' && (
-                      <img 
-                        src={avatar.src} 
-                        alt={avatar.alt} 
-                        className="w-full h-full object-cover"
-                      />
+                      <img src={avatar.src} alt={avatar.alt} className="w-full h-full object-cover" />
                     )}
-
-                    {/* Typ 2: Wygenerowane LOGO (Hexagon) */}
                     {avatar.type === 'logo-icon' && avatar.icon && (
                         <div className={`w-full h-full bg-gradient-to-br ${avatar.colors} flex items-center justify-center`}>
                             <avatar.icon className="w-5 h-5 fill-white/20" />
                         </div>
                     )}
-
-                    {/* Typ 3: Wygenerowany Gradient + Inicjały */}
                     {avatar.type === 'generated' && (
                         <div className={`w-full h-full bg-gradient-to-br ${avatar.colors} flex items-center justify-center font-bold text-xs tracking-tighter`}>
                             {avatar.label}
                         </div>
                     )}
-
-                    {/* Typ 4: Zwykła ikona (Default - zabezpieczenie) */}
                     {avatar.type === 'icon' && (
                       <User className="w-6 h-6 text-gray-500" />
                     )}
-
                  </div>
                ))}
                
-               {/* Licznik +80 */}
                <div className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-800 flex items-center justify-center text-xs text-white font-bold">
                  +80
                </div>
             </div>
             
-            {/* Tekst i Gwiazdki */}
             <div className="text-left">
                 <div className="flex gap-0.5 mb-0.5">
                    {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />)}
