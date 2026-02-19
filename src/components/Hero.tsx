@@ -17,8 +17,9 @@ export default function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
+    // Usunięto 'fullscreen' z kontrolek
     const plyrOptions = {
-      controls: ['play-large', 'play', 'mute', 'volume', 'fullscreen'],
+      controls: ['play-large', 'play', 'mute', 'volume'],
       hideControls: false,
     };
 
@@ -26,7 +27,7 @@ export default function Hero() {
       const hls = new Hls();
       hls.loadSource(videoSrc);
       hls.attachMedia(video);
-      
+
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
         new Plyr(video, plyrOptions);
       });
@@ -50,16 +51,23 @@ export default function Hero() {
       {/* STYLE ODTWARZACZA VSL */}
       <style>{`
         :root {
-          /* Kolor dopasowany do przycisku ze screena */
-          --plyr-color-main: #06b6d4; 
+          --plyr-color-main: #06b6d4;
           --plyr-video-control-background-hover: #06b6d4;
         }
-        .plyr__progress, .plyr__time { 
-          display: none !important; 
+        .plyr__progress, .plyr__time {
+          display: none !important;
         }
         .plyr {
           border-radius: 1rem;
-          height: 100%; /* Wymuszenie pełnej wysokości */
+          height: 100%;
+        }
+        /* POWIĘKSZONY PRZYCISK PLAY */
+        .plyr__control--overlaid {
+          padding: 32px !important;
+        }
+        .plyr__control--overlaid svg {
+          width: 54px !important;
+          height: 54px !important;
         }
       `}</style>
 
@@ -86,7 +94,7 @@ export default function Hero() {
 
           {/* PODTYTUŁ */}
           <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto">
-            Twoja konkurencja walczy ceną. Ty wygraj jakością. 
+            Twoja konkurencja walczy ceną. Ty wygraj jakością.
             Tworzymy serwisy klasy premium, które <span className="text-white font-semibold">zamieniają odwiedzających w płacących klientów.</span>
           </p>
 
@@ -97,10 +105,9 @@ export default function Hero() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="relative max-w-4xl mx-auto mb-10 group"
           >
-            {/* PRZYWRÓCONE aspect-video i w-full */}
             <div className="relative aspect-video w-full bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden shadow-2xl shadow-brand-neon/10">
-              
-              <video 
+
+              <video
                 ref={videoRef}
                 className="w-full h-full object-cover"
                 crossOrigin="anonymous"
@@ -112,73 +119,73 @@ export default function Hero() {
 
             </div>
             <p className="text-gray-500 text-xs mt-4 uppercase tracking-widest">
-                Wideo: Zobacz dlaczego warto (0:33)
+              Wideo: Zobacz dlaczego warto (2:17)
             </p>
           </motion.div>
 
           {/* PRZYCISKI CTA */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
             <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={scrollToPricing}
-                className="bg-brand-neon text-black font-bold text-lg px-12 py-5 rounded-full hover:shadow-2xl hover:shadow-brand-neon/50 transition-all flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={scrollToPricing}
+              className="bg-brand-neon text-black font-bold text-lg px-12 py-5 rounded-full hover:shadow-2xl hover:shadow-brand-neon/50 transition-all flex items-center gap-2"
             >
-                Zobacz Ofertę
-                <ChevronRight className="w-5 h-5" />
+              Zobacz Ofertę
+              <ChevronRight className="w-5 h-5" />
             </motion.button>
 
             <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-transparent border border-gray-700 text-white font-bold text-lg px-12 py-5 rounded-full hover:bg-white/5 transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-transparent border border-gray-700 text-white font-bold text-lg px-12 py-5 rounded-full hover:bg-white/5 transition-all"
             >
-                Nasze Realizacje
+              Nasze Realizacje
             </motion.button>
           </div>
 
           {/* KONKRETNE LICZBY (SOCIAL PROOF) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
             className="flex items-center justify-center gap-4 mb-12"
           >
             <div className="flex -space-x-3">
-               {avatars.map((avatar, i) => (
-                 <div key={i} className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-800 flex items-center justify-center overflow-hidden relative">
-                    {avatar.type === 'image' && (
-                      <img src={avatar.src} alt={avatar.alt} className="w-full h-full object-cover" />
-                    )}
-                    {avatar.type === 'logo-icon' && avatar.icon && (
-                        <div className={`w-full h-full bg-gradient-to-br ${avatar.colors} flex items-center justify-center`}>
-                            <avatar.icon className="w-5 h-5 fill-white/20" />
-                        </div>
-                    )}
-                    {avatar.type === 'generated' && (
-                        <div className={`w-full h-full bg-gradient-to-br ${avatar.colors} flex items-center justify-center font-bold text-xs tracking-tighter`}>
-                            {avatar.label}
-                        </div>
-                    )}
-                    {avatar.type === 'icon' && (
-                      <User className="w-6 h-6 text-gray-500" />
-                    )}
-                 </div>
-               ))}
-               
-               <div className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-800 flex items-center justify-center text-xs text-white font-bold">
-                 +80
-               </div>
-            </div>
-            
-            <div className="text-left">
-                <div className="flex gap-0.5 mb-0.5">
-                   {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />)}
+              {avatars.map((avatar, i) => (
+                <div key={i} className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-800 flex items-center justify-center overflow-hidden relative">
+                  {avatar.type === 'image' && (
+                    <img src={avatar.src} alt={avatar.alt} className="w-full h-full object-cover" />
+                  )}
+                  {avatar.type === 'logo-icon' && avatar.icon && (
+                    <div className={`w-full h-full bg-gradient-to-br ${avatar.colors} flex items-center justify-center`}>
+                      <avatar.icon className="w-5 h-5 fill-white/20" />
+                    </div>
+                  )}
+                  {avatar.type === 'generated' && (
+                    <div className={`w-full h-full bg-gradient-to-br ${avatar.colors} flex items-center justify-center font-bold text-xs tracking-tighter`}>
+                      {avatar.label}
+                    </div>
+                  )}
+                  {avatar.type === 'icon' && (
+                    <User className="w-6 h-6 text-gray-500" />
+                  )}
                 </div>
-                <p className="text-gray-400 text-sm">
-                   <strong className="text-white">89</strong> Zadowolonych Firm
-                </p>
+              ))}
+
+              <div className="w-10 h-10 rounded-full border-2 border-brand-dark bg-gray-800 flex items-center justify-center text-xs text-white font-bold">
+                +80
+              </div>
+            </div>
+
+            <div className="text-left">
+              <div className="flex gap-0.5 mb-0.5">
+                {[1, 2, 3, 4, 5].map(i => <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />)}
+              </div>
+              <p className="text-gray-400 text-sm">
+                <strong className="text-white">89</strong> Zadowolonych Firm
+              </p>
             </div>
           </motion.div>
 
@@ -188,13 +195,13 @@ export default function Hero() {
               Realizujemy projekty dla:
             </p>
             <div className="flex flex-wrap justify-center gap-4 md:gap-12 opacity-70">
-               <span className="font-bold text-white text-lg">USŁUGI</span>
-               <span className="text-gray-700 hidden md:inline">•</span>
-               <span className="font-bold text-white text-lg">E-COMMERCE</span>
-               <span className="text-gray-700 hidden md:inline">•</span>
-               <span className="font-bold text-white text-lg">BUDOWNICTWO</span>
-               <span className="text-gray-700 hidden md:inline">•</span>
-               <span className="font-bold text-white text-lg">SPECJALIŚCI</span>
+              <span className="font-bold text-white text-lg">USŁUGI</span>
+              <span className="text-gray-700 hidden md:inline">•</span>
+              <span className="font-bold text-white text-lg">E-COMMERCE</span>
+              <span className="text-gray-700 hidden md:inline">•</span>
+              <span className="font-bold text-white text-lg">BUDOWNICTWO</span>
+              <span className="text-gray-700 hidden md:inline">•</span>
+              <span className="font-bold text-white text-lg">SPECJALIŚCI</span>
             </div>
           </div>
 
