@@ -53,7 +53,7 @@ export default function DemoViewer({
           </button>
         </div>
 
-        {/* PRAWA STRONA: Przycisk CTA (teraz jako link tel:) */}
+        {/* PRAWA STRONA: Przycisk CTA (Neon, jako link tel:) */}
         <div className="flex items-center gap-4">
             <span className="hidden lg:inline text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
             <a 
