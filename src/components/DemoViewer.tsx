@@ -1,6 +1,5 @@
-import { ArrowRight, Smartphone, Monitor, Clock, Banknote, ChevronLeft } from 'lucide-react';
+import { ArrowRight, Smartphone, Monitor, ChevronLeft } from 'lucide-react';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 
 interface DemoViewerProps {
   projectUrl: string;
@@ -11,9 +10,7 @@ interface DemoViewerProps {
 
 export default function DemoViewer({ 
   projectUrl, 
-  onClose, 
-  price = "Wycena",      
-  deliveryTime = "7 Dni" 
+  onClose 
 }: DemoViewerProps) {
     
   const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
@@ -29,7 +26,7 @@ export default function DemoViewer({
     <div className="fixed inset-0 z-[100] bg-gray-950 flex flex-col h-screen w-screen">
       
       {/* 1. TOP BAR */}
-      <div className="h-16 bg-brand-navy border-b border-gray-700 flex items-center justify-between px-4 md:px-8 shadow-xl relative z-10 flex-shrink-0">
+      <div className="h-16 bg-brand-navy border-b border-gray-700 flex items-center justify-between px-3 md:px-8 shadow-xl relative z-10 flex-shrink-0">
         
         {/* LEWA STRONA: Powrót */}
         <button 
@@ -45,8 +42,8 @@ export default function DemoViewer({
           </span>
         </button>
 
-        {/* ŚRODEK: Przełącznik (Ukryty na małych telefonach) */}
-        <div className="hidden md:flex bg-gray-800 rounded-lg p-1 border border-gray-700">
+        {/* ŚRODEK: Przełącznik (Ukryty na małych telefonach, na desktopie wyśrodkowany absolutnie) */}
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 bg-gray-800 rounded-lg p-1 border border-gray-700">
           <button 
             onClick={() => setDevice('desktop')}
             className={`p-2 rounded-md transition-all flex items-center gap-2 ${device === 'desktop' ? 'bg-brand-neon text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}
@@ -63,41 +60,18 @@ export default function DemoViewer({
           </button>
         </div>
 
-        {/* PRAWA STRONA */}
-        <div className="flex items-center">
-            
-            {/* A) WERSJA MOBILE: POKAZUJEMY CENĘ I CZAS */}
-            <div className="md:hidden flex items-center gap-4">
-                <div className="flex flex-col items-end">
-                    <div className="flex items-center gap-1 text-gray-400 text-[10px] uppercase tracking-wider font-bold">
-                        <Banknote className="w-3 h-3" />
-                        <span>Koszt</span>
-                    </div>
-                    <span className="text-brand-neon font-bold text-sm leading-none">{price}</span>
-                </div>
-                <div className="w-px h-6 bg-gray-700"></div>
-                <div className="flex flex-col items-start">
-                    <div className="flex items-center gap-1 text-gray-400 text-[10px] uppercase tracking-wider font-bold">
-                        <Clock className="w-3 h-3" />
-                        <span>Czas</span>
-                    </div>
-                    <span className="text-white font-bold text-sm leading-none">{deliveryTime}</span>
-                </div>
-            </div>
-
-            {/* B) WERSJA DESKTOP: NEONOWY PRZYCISK */}
-            <div className="hidden md:flex items-center gap-4">
-                <span className="text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
-                <button 
-                    onClick={handleCtaClick}
-                    className="bg-brand-neon text-black font-bold text-sm px-6 py-2.5 rounded-full shadow-lg shadow-brand-neon/30 border-2 border-brand-neon hover:bg-white hover:border-white hover:shadow-white/50 transition-all flex items-center gap-2"
-                >
-                    Chcę taką stronę
-                    <ArrowRight className="w-4 h-4" />
-                </button>
-            </div>
-
+        {/* PRAWA STRONA: Przycisk CTA */}
+        <div className="flex items-center gap-4">
+            <span className="hidden lg:inline text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
+            <button 
+                onClick={handleCtaClick}
+                className="bg-brand-neon text-black font-bold text-xs md:text-sm px-4 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg shadow-brand-neon/30 border-2 border-brand-neon hover:bg-white hover:border-white hover:shadow-white/50 transition-all flex items-center gap-2"
+            >
+                <span className="whitespace-nowrap">Chcę taką stronę</span>
+                <ArrowRight className="w-4 h-4 hidden sm:block" />
+            </button>
         </div>
+
       </div>
 
       {/* 2. OBSZAR PODGLĄDU */}
@@ -127,20 +101,6 @@ export default function DemoViewer({
                 <div className="hidden md:block absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none z-10 rounded-[2.5rem]"></div>
             )}
         </div>
-      </div>
-
-      {/* 3. MOBILE CTA */}
-      <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[110] w-full px-4">
-        <motion.button
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5, type: "spring" }}
-            onClick={handleCtaClick}
-            className="w-full bg-brand-neon text-black font-bold text-lg py-4 rounded-full shadow-2xl shadow-brand-neon/30 flex items-center justify-center gap-2 border-2 border-brand-neon"
-        >
-            <ArrowRight className="w-5 h-5" />
-            <span>Chcę taką stronę</span>
-        </motion.button>
       </div>
 
     </div>
