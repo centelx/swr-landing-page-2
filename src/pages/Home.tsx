@@ -14,21 +14,21 @@ import StickyCTA from '../components/StickyCTA';
 export default function Home() {
   return (
     <>
-      <TopBar />
+      {/* <TopBar /> */}
       <Hero />
       <Portfolio />
       <Comparison />
-      
+
       {/* Tu jest idealne miejsce. Tłumaczymy "JAK" to robimy, zanim powiemy "ZA ILE" */}
       <Process />
-      
+
       <Pricing />
       <Maintenance />
       <Testimonials />
       <FAQ />
-      <Contact />
+      {/* <Contact /> */}
       <Footer />
-      
+
       <StickyCTA />
     </>
   );

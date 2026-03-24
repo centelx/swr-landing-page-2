@@ -10,17 +10,17 @@ export default function Process() {
     },
     {
       icon: FileSignature,
-      title: '2. Formalności (20%)', // ZMIANA NA 20%
-      description: 'Wpłacasz zadatek (20%) na start prac. To rezerwuje Twój termin i pokrywa koszty analizy.', // USUNIĘTO SŁOWO "UMOWA"
+      title: '2. Formalności (20%)',
+      description: 'Wpłacasz zaliczkę (20%) na start prac. To rezerwuje Twój termin i pokrywa koszty analizy.',
     },
     {
       icon: MonitorPlay,
-      title: '3. Projekt i Demo',
-      description: 'Tworzymy w pełni działającą stronę na naszym serwerze testowym. Możesz klikać, sprawdzać i zgłaszać uwagi.',
+      title: '3. Pierwszy projekt w 24h',
+      description: 'Dzięki automatyzacji i sztucznej inteligencji, już w 24 godziny po starcie prac otrzymujesz od nas działający szkielet i propozycję designu. Klikasz, sprawdzasz i zgłaszasz swoje poprawki.',
     },
     {
       icon: Rocket,
-      title: '4. Publikacja i Start (80%)', // ZMIANA NA 80%
+      title: '4. Publikacja i Start (80%)',
       description: 'Po akceptacji wrzucamy stronę do sieci. Od tego momentu Twój biznes jest widoczny online 24/7 i zaczyna na siebie zarabiać.',
     },
   ];
@@ -60,11 +60,11 @@ export default function Process() {
                 <div className="w-16 h-16 bg-brand-navy rounded-full flex items-center justify-center mb-6 mx-auto border border-brand-neon/20 shadow-lg shadow-brand-neon/10">
                   <step.icon className="w-8 h-8 text-brand-neon" />
                 </div>
-                
+
                 <h3 className="text-xl font-bold text-white mb-3 text-center">
                   {step.title}
                 </h3>
-                
+
                 <p className="text-gray-400 text-center text-sm leading-relaxed">
                   {step.description}
                 </p>

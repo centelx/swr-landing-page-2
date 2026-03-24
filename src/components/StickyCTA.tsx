@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { MessageSquare } from 'lucide-react';
+import { Phone } from 'lucide-react';
 
 export default function StickyCTA() {
   const [isVisible, setIsVisible] = useState(false);
@@ -9,12 +9,12 @@ export default function StickyCTA() {
     const handleScroll = () => {
       const contactSection = document.getElementById('contact');
       if (contactSection) {
-         const rect = contactSection.getBoundingClientRect();
-         // Ukryj przycisk, gdy użytkownik dojedzie do sekcji kontakt
-         if (rect.top < window.innerHeight) {
-             setIsVisible(false);
-             return;
-         }
+        const rect = contactSection.getBoundingClientRect();
+        // Ukryj przycisk, gdy użytkownik dojedzie do sekcji kontakt
+        if (rect.top < window.innerHeight) {
+          setIsVisible(false);
+          return;
+        }
       }
       // Pokaż przycisk po przewinięciu 300px
       if (window.scrollY > 300) {
@@ -27,10 +27,6 @@ export default function StickyCTA() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <AnimatePresence>
       {isVisible && (
@@ -40,14 +36,13 @@ export default function StickyCTA() {
           exit={{ y: 100, opacity: 0 }}
           className="fixed bottom-4 left-4 right-4 z-40 md:hidden"
         >
-          <button
-            onClick={scrollToContact}
-            // ZMIANA KOLORÓW TUTAJ (Yellow-400 + Border Yellow-300 + Shadow Yellow)
-            className="w-full bg-yellow-400 text-black font-bold text-lg py-4 rounded-full shadow-2xl shadow-yellow-400/30 border-2 border-yellow-300 flex items-center justify-center gap-2"
+          <a
+            href="tel:518550491"
+            className="w-full bg-brand-neon text-black font-bold text-lg py-4 rounded-full shadow-2xl shadow-brand-neon/30 border-2 border-brand-neon flex items-center justify-center gap-2"
           >
-            <MessageSquare className="w-5 h-5" />
-            <span>Zapytaj o Darmową Wycenę</span>
-          </button>
+            <Phone className="w-5 h-5" />
+            <span>Zadzwoń teraz</span>
+          </a>
         </motion.div>
       )}
     </AnimatePresence>

@@ -8,44 +8,28 @@ export default function Pricing() {
 
   const plans = [
     {
-      name: 'Wizytówka',
-      price: '2400',
-      oldPrice: '3500', 
-      desc: 'Idealna na start dla specjalistów i małych firm.',
+      name: 'Strona Standard',
+      price: '800',
+      desc: 'Profesjonalna obecność w sieci bez konieczności samodzielnego zarządzania.',
       features: [
-        'Projekt One-Page (Wszystko na 1 stronie)',
+        'Strona dopasowana do Twoich wymagań',
         'Działa idealnie na telefonach (RWD)',
-        'Integracja z Mapami / Facebookiem',
+        'Integracja z Mapami i Mediami',
         'Przyjazna dla Google (Podstawy SEO)',
         'Formularz kontaktowy na email',
       ]
     },
     {
-      name: 'Strona Firmowa',
-      price: '3100',
-      oldPrice: '4900', 
-      popular: false, 
-      desc: 'Kompletne rozwiązanie budujące przewagę rynkową.',
+      name: 'Strona + CMS',
+      price: '1170',
+      popular: false,
+      desc: 'Pełna kontrola i niezależność. Edytujesz treści kiedy chcesz, a my działamy priorytetowo.',
       features: [
-        'Rozbudowana struktura (do 6 podstron)',
-        'Panel CMS (Edytujesz treści sam)',
-        'Teksty sprzedażowe (Pisze Copywriter)',
-        'Podpięcie statystyk odwiedzin',
-        'Konfiguracja wizytówki Google',
-        'Błyskawiczne wczytywanie (Lepsze SEO)',
-      ]
-    },
-    {
-      name: 'E-Commerce / Custom',
-      price: 'Wycena',
-      desc: 'Dla wymagających biznesów i sklepów.',
-      features: [
-        'Sklep internetowy / Płatności',
-        'Niestandardowe funkcjonalności',
-        'Integracje z hurtowniami / CRM',
-        'Strategia marketingowa',
-        'Wersje wielojęzyczne',
-        'Analiza konkurencji'
+        'Wszystko to, co w pakiecie Standard',
+        'Panel CMS (Samodzielna edycja tekstów i zdjęć)',
+        'Priorytetowa realizacja (projekt poza kolejką)',
+        'Zgłoszenie strony do wyszukiwarki Google',
+        'Instrukcja wideo z obsługi panelu',
       ]
     }
   ];
@@ -63,12 +47,12 @@ export default function Pricing() {
             Inwestycja w Twój Biznes
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Nie oferujemy "tanich stron", które trzeba poprawiać po miesiącu. 
+            Nie oferujemy "tanich stron", które trzeba poprawiać po miesiącu.
             Dostarczamy kompletne rozwiązania, które zarabiają na siebie od pierwszego dnia.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
@@ -76,14 +60,13 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`relative rounded-2xl p-8 flex flex-col ${
-                plan.popular 
-                  ? 'bg-gray-800 border-2 border-brand-neon' 
-                  : 'bg-gray-900 border border-gray-700'
-              }`}
+              className={`relative rounded-2xl p-8 flex flex-col ${plan.popular
+                ? 'bg-gray-800 border-2 border-brand-neon'
+                : 'bg-gray-900 border border-gray-700'
+                }`}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-neon text-black px-4 py-1 rounded-full text-sm font-bold">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-neon text-black px-4 py-1 rounded-full text-sm font-bold whitespace-nowrap">
                   NAJCZĘŚCIEJ WYBIERANY
                 </div>
               )}
@@ -95,31 +78,24 @@ export default function Pricing() {
 
               <div className="mb-8">
                 {plan.oldPrice && (
-                    <div className="inline-flex items-center gap-2 bg-red-900/30 border border-red-500/50 rounded-lg px-3 py-1.5 mb-3">
-                        <Tag className="w-3 h-3 text-red-400" />
-                        <span className="text-red-300 text-xs font-medium uppercase tracking-wide">Cena regularna:</span>
-                        <span className="text-red-200 font-bold text-lg">
-                            {plan.oldPrice} zł
-                        </span>
-                    </div>
+                  <div className="inline-flex items-center gap-2 bg-red-900/30 border border-red-500/50 rounded-lg px-3 py-1.5 mb-3">
+                    <Tag className="w-3 h-3 text-red-400" />
+                    <span className="text-red-300 text-xs font-medium uppercase tracking-wide">Cena regularna:</span>
+                    <span className="text-red-200 font-bold text-lg">
+                      {plan.oldPrice} zł
+                    </span>
+                  </div>
                 )}
-                
-                {/* --- NOWY WYGLĄD CENY --- */}
+
                 <div className="flex items-end gap-2">
-                  {plan.price !== 'Wycena' && <span className="text-gray-400 text-lg mb-2">od</span>}
-                  
-                  {/* Główna cena - powiększona */}
                   <span className="text-5xl font-bold text-white tracking-tight">{plan.price}</span>
-                  
-                  {plan.price !== 'Wycena' && (
-                    /* Zł i Netto ułożone pionowo obok ceny */
-                    <div className="flex flex-col justify-end mb-1.5">
-                        <span className="text-xl text-gray-300 font-bold leading-none">zł</span>
-                        <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold leading-none mt-1">
-                            netto
-                        </span>
-                    </div>
-                  )}
+
+                  <div className="flex flex-col justify-end mb-1.5">
+                    <span className="text-xl text-gray-300 font-bold leading-none">zł</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold leading-none mt-1">
+                      netto
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -127,7 +103,7 @@ export default function Pricing() {
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3 text-gray-300">
                     <div className="w-5 h-5 rounded-full bg-brand-neon/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check className="w-3 h-3 text-brand-neon" />
+                      <Check className="w-3 h-3 text-brand-neon" />
                     </div>
                     <span className="text-sm">{feature}</span>
                   </li>
@@ -136,11 +112,10 @@ export default function Pricing() {
 
               <button
                 onClick={scrollToContact}
-                className={`w-full py-4 rounded-xl font-bold transition-all ${
-                  plan.popular
-                    ? 'bg-brand-neon text-black hover:bg-white'
-                    : 'bg-white/10 text-white hover:bg-white/20'
-                }`}
+                className={`w-full py-4 rounded-xl font-bold transition-all ${plan.popular
+                  ? 'bg-brand-neon text-black hover:bg-white'
+                  : 'bg-white/10 text-white hover:bg-white/20'
+                  }`}
               >
                 Zapytaj o ten pakiet
               </button>
@@ -149,27 +124,27 @@ export default function Pricing() {
         </div>
 
         <div className="mt-20 grid md:grid-cols-3 gap-8 border-t border-gray-800 pt-12">
-            <div className="text-center">
-                <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-4 text-brand-neon">
-                    <Zap className="w-6 h-6" />
-                </div>
-                <h4 className="text-white font-bold mb-2">Technologia React/Next.js</h4>
-                <p className="text-gray-400 text-sm">Nie używamy powolnych kreatorów. Twoja strona będzie działać błyskawicznie, co Google nagradza wyższą pozycją.</p>
+          <div className="text-center">
+            <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-4 text-brand-neon">
+              <Zap className="w-6 h-6" />
             </div>
-            <div className="text-center">
-                <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-4 text-brand-neon">
-                    <BarChart className="w-6 h-6" />
-                </div>
-                <h4 className="text-white font-bold mb-2">Psychologia Sprzedaży</h4>
-                <p className="text-gray-400 text-sm">Układ strony projektujemy tak, aby prowadził klienta za rękę prosto do przycisku "Kup" lub "Zadzwoń".</p>
+            <h4 className="text-white font-bold mb-2">Technologia AI & React/Next.js</h4>
+            <p className="text-gray-400 text-sm">Połączyliśmy szybkość sztucznej inteligencji z niezawodnością nowoczesnego kodu. Twoja strona powstaje błyskawicznie, ładuje się w ułamku sekundy, a Google nagradza ją wyższą pozycją.</p>
+          </div>
+          <div className="text-center">
+            <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-4 text-brand-neon">
+              <BarChart className="w-6 h-6" />
             </div>
-             <div className="text-center">
-                <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-4 text-brand-neon">
-                    <ShieldCheck className="w-6 h-6" />
-                </div>
-                <h4 className="text-white font-bold mb-2">Bezpieczeństwo i RODO</h4>
-                <p className="text-gray-400 text-sm">Zadba o certyfikaty SSL, politykę prywatności i zgodność z prawem, abyś mógł spać spokojnie.</p>
+            <h4 className="text-white font-bold mb-2">Psychologia Sprzedaży</h4>
+            <p className="text-gray-400 text-sm">Układ strony projektujemy tak, aby prowadził klienta za rękę prosto do przycisku "Kup" lub "Zadzwoń".</p>
+          </div>
+          <div className="text-center">
+            <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-4 text-brand-neon">
+              <ShieldCheck className="w-6 h-6" />
             </div>
+            <h4 className="text-white font-bold mb-2">Bezpieczeństwo i RODO</h4>
+            <p className="text-gray-400 text-sm">Zadbamy o certyfikaty SSL, politykę prywatności i zgodność z prawem, abyś mógł spać spokojnie.</p>
+          </div>
         </div>
 
       </div>

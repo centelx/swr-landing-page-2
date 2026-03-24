@@ -9,12 +9,12 @@ export default function Maintenance() {
   const plans = [
     {
       name: 'TECHNICZNY',
-      price: '47',
-      monthlyPrice: '79',
+      price: '27',
+      monthlyPrice: '49',
       popular: true,
       features: [
         'Szybki hosting NVMe',
-        'Regularne opłacanie domeny i hostingu', // NOWY PUNKT
+        'Regularne opłacanie domeny i hostingu',
         'Certyfikat bezpieczeństwa SSL',
         'Codzienne kopie zapasowe',
         'Monitoring dostępności 24/7',
@@ -60,11 +60,10 @@ export default function Maintenance() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className={`relative rounded-2xl p-8 border ${
-                plan.popular 
-                  ? 'bg-gray-800 border-2 border-brand-neon' 
-                  : 'bg-gray-900 border-gray-700'
-              }`}
+              className={`relative rounded-2xl p-8 border ${plan.popular
+                ? 'bg-gray-800 border-2 border-brand-neon'
+                : 'bg-gray-900 border-gray-700'
+                }`}
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-neon text-black px-4 py-1 rounded-full text-sm font-bold shadow-lg shadow-brand-neon/20 whitespace-nowrap">
@@ -74,31 +73,41 @@ export default function Maintenance() {
 
               <div className="flex justify-between items-start mb-6">
                 <div>
-                   <h3 className="text-2xl font-bold text-white mb-3">{plan.name}</h3>
-                   
-                   {plan.monthlyPrice ? (
-                     <div className="flex flex-col">
-                        <div className="flex items-baseline gap-1">
-                            <span className="text-4xl font-bold text-white">{plan.price}</span>
-                            <span className="text-gray-400">zł / mc</span>
+                  <h3 className="text-2xl font-bold text-white mb-3">{plan.name}</h3>
+
+                  {plan.monthlyPrice ? (
+                    <div className="flex flex-col">
+                      <div className="flex items-end gap-1.5">
+                        <span className="text-4xl font-bold text-white leading-none">{plan.price}</span>
+                        <div className="flex flex-col justify-end">
+                          <span className="text-gray-400 font-bold leading-none">zł / mc</span>
+                          <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold leading-none mt-1">
+                            netto
+                          </span>
                         </div>
-                        <p className="text-brand-neon text-xs font-bold uppercase tracking-wide mt-1 mb-1">
-                            Przy płatności rocznej
-                        </p>
-                        <p className="text-gray-500 text-sm">
-                            lub {plan.monthlyPrice} zł przy płatności co miesiąc
-                        </p>
-                     </div>
-                   ) : (
-                     <div className="flex items-baseline gap-1">
-                        <span className="text-4xl font-bold text-white">{plan.price}</span>
-                        <span className="text-gray-400">zł / mc</span>
-                     </div>
-                   )}
+                      </div>
+                      <p className="text-brand-neon text-xs font-bold uppercase tracking-wide mt-3 mb-1">
+                        Przy płatności rocznej
+                      </p>
+                      <p className="text-gray-500 text-sm">
+                        lub {plan.monthlyPrice} zł netto przy płatności co miesiąc
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="flex items-end gap-1.5">
+                      <span className="text-4xl font-bold text-white leading-none">{plan.price}</span>
+                      <div className="flex flex-col justify-end">
+                        <span className="text-gray-400 font-bold leading-none">zł / mc</span>
+                        <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold leading-none mt-1">
+                          netto
+                        </span>
+                      </div>
+                    </div>
+                  )}
 
                 </div>
                 <div className={`p-3 rounded-lg ${plan.popular ? 'bg-brand-neon/10' : 'bg-white/5'}`}>
-                    <plan.icon className={`w-8 h-8 ${plan.popular ? 'text-brand-neon' : 'text-gray-400'}`} />
+                  <plan.icon className={`w-8 h-8 ${plan.popular ? 'text-brand-neon' : 'text-gray-400'}`} />
                 </div>
               </div>
 
@@ -113,11 +122,10 @@ export default function Maintenance() {
 
               <button
                 onClick={scrollToContact}
-                className={`w-full py-3 rounded-lg font-bold border transition-all ${
-                    plan.popular
-                    ? 'bg-brand-neon text-black border-brand-neon hover:bg-white hover:border-white'
-                    : 'bg-white/5 text-white border-gray-600 hover:bg-white/10'
-                }`}
+                className={`w-full py-3 rounded-lg font-bold border transition-all ${plan.popular
+                  ? 'bg-brand-neon text-black border-brand-neon hover:bg-white hover:border-white'
+                  : 'bg-white/5 text-white border-gray-600 hover:bg-white/10'
+                  }`}
               >
                 Wybieram {plan.name}
               </button>

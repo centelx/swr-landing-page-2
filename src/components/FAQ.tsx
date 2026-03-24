@@ -7,23 +7,25 @@ export default function FAQ() {
 
   const faqs = [
     {
-      question: 'Czy muszę płacić całość z góry?',
-      answer: 'Nie. Działamy w modelu "Bezpieczny Start". Pobieramy jedynie 20% zaliczki na rozpoczęcie prac (rezerwacja czasu zespołu). Pozostałe 80% płacisz dopiero wtedy, gdy zobaczysz gotową, działającą stronę na naszym serwerze testowym i zaakceptujesz efekt.', // ZMIANA NA 20% i 80%
+      question: 'Czy to prawda, że zobaczę stronę w 24 godziny?',
+      answer: 'Tak! Wykorzystujemy sztuczną inteligencję do automatyzacji powtarzalnego kodowania. Dzięki temu w 24 godziny od startu prac pokazujemy Ci pierwszy, działający szkielet i design na naszym serwerze testowym. Kolejne dni to dopieszczanie tekstów i wprowadzanie Twoich poprawek.',
     },
     {
-      question: 'Czy jestem właścicielem strony?', // NOWE PYTANIE
+      question: 'Czy moją stronę robi od zera automat (AI)?',
+      answer: 'Absolutnie nie. AI to dla nas tylko narzędzie – jak zaawansowany kalkulator dla księgowego. Automat pisze żmudny kod, ale to nasz zespół projektuje strategię, wymyśla teksty sprzedażowe i dba o to, żeby strona realnie zdobywała klientów. Płacisz za naszą wiedzę marketingową, a nie za ręczne wklepywanie kodu.',
+    },
+    {
+      question: 'Czy muszę płacić całość z góry?',
+      answer: 'Nie. Działamy w modelu "Bezpieczny Start". Pobieramy jedynie 20% zaliczki na rozpoczęcie prac (rezerwacja czasu zespołu). Pozostałe 80% płacisz dopiero wtedy, gdy zobaczysz gotową, działającą stronę na naszym serwerze testowym i zaakceptujesz efekt.',
+    },
+    {
+      question: 'Czy jestem właścicielem strony?',
       answer: 'Tak. W przeciwieństwie do abonamentowych kreatorów, po opłaceniu końcowej faktury stajesz się 100% właścicielem kodu źródłowego i praw autorskich. Możesz przenieść stronę na dowolny serwer i robić z nią co chcesz.',
     },
     {
       question: 'Co jeśli strona mi się nie spodoba?',
       answer: 'Pracujemy do skutku. W cenie projektu uwzględnione są rundy poprawek. Zanim zakodujemy stronę, przedstawiamy wstępną wizję. Jeśli finalny efekt drastycznie rozminie się z ustaleniami (co nam się nie zdarza), masz prawo do rezygnacji, a my nie pobieramy końcowej wpłaty.',
     },
-    // USUNIĘTO PYTANIE O STRONĘ ZA 500 ZŁ
-    {
-      question: 'Jak długo trwa realizacja?',
-      answer: 'Standardowy czas to 7-14 dni roboczych. Jakość wymaga czasu - musimy poznać Twój biznes, przygotować strategię, zaprojektować unikalny wygląd i przetestować wdrożenie. Nie wierzymy w "profesjonalne strony w 24h".',
-    },
-    // USUNIĘTO PYTANIE O VAT
     {
       question: 'Czy po oddaniu strony zostaję sam?',
       answer: 'Absolutnie nie. Oferujemy pakiety opieki technicznej, dzięki którym Twoja strona będzie zawsze aktualna i bezpieczna. Możesz też zlecać nam dalszy rozwój serwisu.',
@@ -60,9 +62,8 @@ export default function FAQ() {
               >
                 <span className="font-semibold text-white text-lg pr-4">{faq.question}</span>
                 <ChevronDown
-                  className={`w-5 h-5 text-brand-neon flex-shrink-0 transition-transform ${
-                    openIndex === index ? 'rotate-180' : ''
-                  }`}
+                  className={`w-5 h-5 text-brand-neon flex-shrink-0 transition-transform ${openIndex === index ? 'rotate-180' : ''
+                    }`}
                 />
               </button>
 

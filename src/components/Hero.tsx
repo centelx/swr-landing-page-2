@@ -1,43 +1,10 @@
-import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, Star, User, Hexagon } from 'lucide-react';
-import Hls from 'hls.js';
-import Plyr from 'plyr';
-import 'plyr/dist/plyr.css';
 
 export default function Hero() {
   const scrollToPricing = () => {
     document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const videoSrc = 'https://vz-6da79063-56c.b-cdn.net/3d5c80a2-760d-4c04-8294-1e32f7388145/playlist.m3u8';
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    // Usunięto 'fullscreen' z kontrolek
-    const plyrOptions = {
-      controls: ['play-large', 'play', 'mute', 'volume'],
-      hideControls: false,
-    };
-
-    if (Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(videoSrc);
-      hls.attachMedia(video);
-
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        new Plyr(video, plyrOptions);
-      });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = videoSrc;
-      video.addEventListener('loadedmetadata', () => {
-        new Plyr(video, plyrOptions);
-      });
-    }
-  }, []);
 
   const avatars = [
     { type: 'image', src: '/logo_avaps.jpg', alt: 'Avaps' },
@@ -48,29 +15,6 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-brand-dark pt-20 pb-12 px-4">
-      {/* STYLE ODTWARZACZA VSL */}
-      <style>{`
-        :root {
-          --plyr-color-main: #06b6d4;
-          --plyr-video-control-background-hover: #06b6d4;
-        }
-        .plyr__progress, .plyr__time {
-          display: none !important;
-        }
-        .plyr {
-          border-radius: 1rem;
-          height: 100%;
-        }
-        /* POWIĘKSZONY PRZYCISK PLAY */
-        .plyr__control--overlaid {
-          padding: 32px !important;
-        }
-        .plyr__control--overlaid svg {
-          width: 54px !important;
-          height: 54px !important;
-        }
-      `}</style>
-
       {/* Tło ozdobne */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute w-96 h-96 bg-brand-neon/10 rounded-full blur-3xl top-20 -left-20"></div>
@@ -94,34 +38,8 @@ export default function Hero() {
 
           {/* PODTYTUŁ */}
           <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto">
-            Twoja konkurencja walczy ceną. Ty wygraj jakością.
-            Tworzymy serwisy klasy premium, które <span className="text-white font-semibold">zamieniają odwiedzających w płacących klientów.</span>
+            Twoja konkurencja przepłaca w powolnych agencjach. Ty wygraj sprytem. Wykorzystujemy najnowsze technologie AI, by tworzyć profesjonalne, sprzedażowe strony internetowe w ułamek standardowego czasu. <span className="text-white font-semibold">Pierwszy działający projekt zobaczysz już w 24 godziny.</span>
           </p>
-
-          {/* --- WIDEO VSL --- */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="relative max-w-4xl mx-auto mb-10 group"
-          >
-            <div className="relative aspect-video w-full bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden shadow-2xl shadow-brand-neon/10">
-
-              <video
-                ref={videoRef}
-                className="w-full h-full object-cover"
-                crossOrigin="anonymous"
-                playsInline
-                poster="/miniaturka.png"
-              >
-                Twoja przeglądarka nie obsługuje wideo.
-              </video>
-
-            </div>
-            <p className="text-gray-500 text-xs mt-4 uppercase tracking-widest">
-              Wideo: Zobacz dlaczego warto (2:17)
-            </p>
-          </motion.div>
 
           {/* PRZYCISKI CTA */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
