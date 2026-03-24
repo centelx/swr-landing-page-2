@@ -10,6 +10,7 @@ import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import StickyCTA from '../components/StickyCTA';
+import CallToAction from '../components/CallToAction';
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
       <Testimonials />
       <FAQ />
       {/* <Contact /> */}
+      <CallToAction />
       <Footer />
 
       <StickyCTA />
