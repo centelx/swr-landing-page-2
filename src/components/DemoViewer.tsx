@@ -1,4 +1,4 @@
-import { ArrowRight, Smartphone, Monitor, MessageSquare, Clock, Banknote, ChevronLeft } from 'lucide-react';
+import { ArrowRight, Smartphone, Monitor, Clock, Banknote, ChevronLeft } from 'lucide-react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -31,18 +31,15 @@ export default function DemoViewer({
       {/* 1. TOP BAR */}
       <div className="h-16 bg-brand-navy border-b border-gray-700 flex items-center justify-between px-4 md:px-8 shadow-xl relative z-10 flex-shrink-0">
         
-        {/* LEWA STRONA: Powrót (ZMIENIONE) */}
+        {/* LEWA STRONA: Powrót */}
         <button 
           onClick={onClose}
-          // Zmiana: text-white zamiast text-gray-400. Dodano hover z kolorem brandowym.
           className="group flex items-center gap-2 text-white hover:text-brand-neon transition-colors font-medium"
         >
-          {/* Zmiana ikony na strzałkę (bardziej intuicyjne "Wróć") */}
           <div className="p-2 bg-white/10 rounded-full group-hover:bg-brand-neon/20 transition-all">
              <ChevronLeft className="w-5 h-5" />
           </div>
           
-          {/* Tekst tylko na Desktopie, krótki i konkretny */}
           <span className="hidden md:inline text-sm font-bold tracking-wide">
             Wróć
           </span>
@@ -88,12 +85,12 @@ export default function DemoViewer({
                 </div>
             </div>
 
-            {/* B) WERSJA DESKTOP: ZŁOTY PRZYCISK */}
+            {/* B) WERSJA DESKTOP: NEONOWY PRZYCISK */}
             <div className="hidden md:flex items-center gap-4">
                 <span className="text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
                 <button 
                     onClick={handleCtaClick}
-                    className="bg-yellow-400 text-black font-bold text-sm px-6 py-2.5 rounded-full shadow-lg shadow-yellow-400/30 border-2 border-yellow-300 hover:bg-white hover:border-white hover:shadow-yellow-400/50 transition-all flex items-center gap-2"
+                    className="bg-brand-neon text-black font-bold text-sm px-6 py-2.5 rounded-full shadow-lg shadow-brand-neon/30 border-2 border-brand-neon hover:bg-white hover:border-white hover:shadow-white/50 transition-all flex items-center gap-2"
                 >
                     Chcę taką stronę
                     <ArrowRight className="w-4 h-4" />
@@ -139,10 +136,10 @@ export default function DemoViewer({
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, type: "spring" }}
             onClick={handleCtaClick}
-            className="w-full bg-yellow-400 text-black font-bold text-lg py-4 rounded-full shadow-2xl shadow-yellow-400/30 flex items-center justify-center gap-2 border-2 border-yellow-300"
+            className="w-full bg-brand-neon text-black font-bold text-lg py-4 rounded-full shadow-2xl shadow-brand-neon/30 flex items-center justify-center gap-2 border-2 border-brand-neon"
         >
-            <MessageSquare className="w-5 h-5" />
-            <span>Zapytaj o Darmową Wycenę</span>
+            <ArrowRight className="w-5 h-5" />
+            <span>Chcę taką stronę</span>
         </motion.button>
       </div>
 
