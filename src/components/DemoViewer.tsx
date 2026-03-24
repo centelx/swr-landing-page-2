@@ -15,13 +15,6 @@ export default function DemoViewer({
     
   const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
 
-  const handleCtaClick = () => {
-    onClose();
-    setTimeout(() => {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  };
-
   return (
     <div className="fixed inset-0 z-[100] bg-gray-950 flex flex-col h-screen w-screen">
       
@@ -60,16 +53,16 @@ export default function DemoViewer({
           </button>
         </div>
 
-        {/* PRAWA STRONA: Przycisk CTA */}
+        {/* PRAWA STRONA: Przycisk CTA (teraz jako link tel:) */}
         <div className="flex items-center gap-4">
             <span className="hidden lg:inline text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
-            <button 
-                onClick={handleCtaClick}
+            <a 
+                href="tel:518550491"
                 className="bg-brand-neon text-black font-bold text-xs md:text-sm px-4 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg shadow-brand-neon/30 border-2 border-brand-neon hover:bg-white hover:border-white hover:shadow-white/50 transition-all flex items-center gap-2"
             >
                 <span className="whitespace-nowrap">Chcę taką stronę</span>
                 <ArrowRight className="w-4 h-4 hidden sm:block" />
-            </button>
+            </a>
         </div>
 
       </div>
