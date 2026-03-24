@@ -1,4 +1,4 @@
-import { ArrowRight, Smartphone, Monitor, ChevronLeft } from 'lucide-react';
+import { ArrowRight, Smartphone, Monitor, ChevronLeft, Phone } from 'lucide-react';
 import { useState } from 'react';
 
 interface DemoViewerProps {
@@ -35,7 +35,7 @@ export default function DemoViewer({
           </span>
         </button>
 
-        {/* ŚRODEK: Przełącznik (Ukryty na małych telefonach, na desktopie wyśrodkowany absolutnie) */}
+        {/* ŚRODEK: Przełącznik */}
         <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 bg-gray-800 rounded-lg p-1 border border-gray-700">
           <button 
             onClick={() => setDevice('desktop')}
@@ -53,16 +53,26 @@ export default function DemoViewer({
           </button>
         </div>
 
-        {/* PRAWA STRONA: Przycisk CTA (Neon, jako link tel:) */}
+        {/* PRAWA STRONA: Przycisk CTA (OPCJA 2 - Wyświetla numer na desktopie) */}
         <div className="flex items-center gap-4">
             <span className="hidden lg:inline text-gray-300 text-sm">Podoba Ci się ten projekt?</span>
+            
+            {/* Wersja Mobile - Od razu dzwoni (md:hidden) */}
             <a 
                 href="tel:518550491"
-                className="bg-brand-neon text-black font-bold text-xs md:text-sm px-4 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg shadow-brand-neon/30 border-2 border-brand-neon hover:bg-white hover:border-white hover:shadow-white/50 transition-all flex items-center gap-2"
+                className="md:hidden bg-brand-neon text-black font-bold text-xs px-4 py-2 rounded-full shadow-lg shadow-brand-neon/30 border-2 border-brand-neon hover:bg-white hover:border-white transition-all flex items-center gap-2"
             >
                 <span className="whitespace-nowrap">Chcę taką stronę</span>
-                <ArrowRight className="w-4 h-4 hidden sm:block" />
+                <Phone className="w-3 h-3" />
             </a>
+
+            {/* Wersja Desktop - Tylko wyświetla numer (hidden md:flex) */}
+            <div 
+                className="hidden md:flex bg-brand-neon text-black font-bold text-sm px-6 py-2.5 rounded-full shadow-lg shadow-brand-neon/30 border-2 border-brand-neon items-center gap-2"
+            >
+                <Phone className="w-4 h-4" />
+                <span className="whitespace-nowrap">Zadzwoń: 518 550 491</span>
+            </div>
         </div>
 
       </div>
