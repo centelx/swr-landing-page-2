@@ -11,7 +11,7 @@ export default function Maintenance() {
       name: 'TECHNICZNY',
       price: '27',
       monthlyPrice: '49',
-      popular: true,
+      popular: false,
       features: [
         'Szybki hosting NVMe',
         'Regularne opłacanie domeny i hostingu',
@@ -23,14 +23,14 @@ export default function Maintenance() {
     },
     {
       name: 'ENTERPRISE',
-      price: '249',
-      popular: false,
+      price: '37',
+      monthlyPrice: '59',
+      popular: true,
       features: [
         'Wszystko z pakietu Technicznego',
-        '2h prac programistycznych w cenie',
-        'Priorytetowe wsparcie (telefon)',
-        'Aktualizacje treści na życzenie',
-        'Raporty miesięczne',
+        'Certyfikowana skrzynka e-mail (TwojeImię@TwojaDomena.pl)',
+        'Działający formularz kontaktowy bez spamu',
+        'Priorytetowe wsparcie (telefon)'
       ],
       icon: Shield
     },
