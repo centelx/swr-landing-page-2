@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronRight, Star, User, Hexagon } from 'lucide-react';
+import { ChevronRight, Star, User, Hexagon, Code, Zap, Monitor, Rocket } from 'lucide-react';
 
 export default function Hero() {
   const scrollToPricing = () => {
@@ -13,12 +13,47 @@ export default function Hero() {
     { type: 'generated', label: 'MK', colors: 'from-brand-neon to-brand-blue text-black' },
   ];
 
+  const floatingIcons = [
+    { Icon: Code, top: '18%', left: '9%', delay: 0 },
+    { Icon: Zap, top: '22%', right: '9%', delay: 1 },
+    { Icon: Monitor, bottom: '22%', left: '11%', delay: 2 },
+    { Icon: Rocket, bottom: '28%', right: '11%', delay: 0.5 },
+  ];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-brand-dark pt-20 pb-12 px-4">
       {/* Tło ozdobne */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute w-96 h-96 bg-brand-neon/10 rounded-full blur-3xl top-20 -left-20"></div>
         <div className="absolute w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl bottom-20 -right-20"></div>
+      </div>
+
+      {/* Floating Icons */}
+      <div className="absolute inset-0 pointer-events-none hidden lg:block overflow-hidden">
+        {floatingIcons.map((item, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-brand-neon/40 drop-shadow-lg"
+            style={{
+              top: item.top,
+              left: item.left,
+              right: item.right,
+              bottom: item.bottom,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 5, -5, 0],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: item.delay,
+            }}
+          >
+            <item.Icon className="w-16 h-16" />
+          </motion.div>
+        ))}
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
