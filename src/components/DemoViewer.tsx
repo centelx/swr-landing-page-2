@@ -59,7 +59,7 @@ export default function DemoViewer({
             
             {/* Wersja Mobile - Od razu dzwoni (md:hidden) */}
             <a 
-                href="tel:518550491"
+                href="tel:662060605"
                 className="md:hidden bg-brand-neon text-black font-bold text-xs px-4 py-2 rounded-full shadow-lg shadow-brand-neon/30 border-2 border-brand-neon hover:bg-white hover:border-white transition-all flex items-center gap-2"
             >
                 <span className="whitespace-nowrap">Chcę taką stronę</span>
@@ -71,7 +71,7 @@ export default function DemoViewer({
                 className="hidden md:flex bg-brand-neon text-black font-bold text-sm px-6 py-2.5 rounded-full shadow-lg shadow-brand-neon/30 border-2 border-brand-neon items-center gap-2"
             >
                 <Phone className="w-4 h-4" />
-                <span className="whitespace-nowrap">Zadzwoń: 518 550 491</span>
+                <span className="whitespace-nowrap">Zadzwoń: 662 060 605</span>
             </div>
         </div>
 

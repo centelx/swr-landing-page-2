@@ -20,9 +20,9 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Kontakt</h4>
             <div className="space-y-3">
-              <a href="tel:518550491" className="flex items-center gap-3 text-gray-400 hover:text-brand-neon transition-colors">
+              <a href="tel:662060605" className="flex items-center gap-3 text-gray-400 hover:text-brand-neon transition-colors">
                 <Phone className="w-4 h-4" />
-                <span>518 550 491</span>
+                <span>662 060 605</span>
               </a>
               <a href="mailto:swr.albert.swierczewski@gmail.com" className="flex items-center gap-3 text-gray-400 hover:text-brand-neon transition-colors break-all">
                 <Mail className="w-4 h-4 flex-shrink-0" />

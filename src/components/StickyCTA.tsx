@@ -37,7 +37,7 @@ export default function StickyCTA() {
           className="fixed bottom-4 left-4 right-4 z-40 md:hidden"
         >
           <a
-            href="tel:518550491"
+            href="tel:662060605"
             className="w-full bg-brand-neon text-black font-bold text-lg py-4 rounded-full shadow-2xl shadow-brand-neon/30 border-2 border-brand-neon flex items-center justify-center gap-2"
           >
             <Phone className="w-5 h-5" />

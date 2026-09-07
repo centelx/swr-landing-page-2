@@ -1,4 +1,4 @@
-import TopBar from '../components/TopBar';
+
 import Hero from '../components/Hero';
 import Portfolio from '../components/Portfolio';
 import Comparison from '../components/Comparison';
@@ -15,7 +15,7 @@ import CallToAction from '../components/CallToAction';
 export default function Home() {
   return (
     <>
-      <TopBar />
+
       <Hero />
       <Portfolio />
       <Comparison />

@@ -18,11 +18,11 @@ export default function CallToAction() {
                     </p>
 
                     <a
-                        href="tel:518550491"
+                        href="tel:662060605"
                         className="inline-flex items-center justify-center gap-3 bg-brand-neon text-black font-bold text-xl px-10 py-5 rounded-full shadow-2xl shadow-brand-neon/20 border-2 border-brand-neon hover:bg-white hover:border-white transition-all hover:scale-105"
                     >
                         <Phone className="w-6 h-6" />
-                        <span>Zadzwoń: 518 550 491</span>
+                        <span>Zadzwoń: 662 060 605</span>
                     </a>
                 </motion.div>
             </div>

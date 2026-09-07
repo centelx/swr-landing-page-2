@@ -34,7 +34,7 @@ export default function PrivacyPolicy() {
                 <p>Adres: Świercze 15a, 21-404 Trzebieszów</p>
                 <p>NIP: 8252208750</p>
                 <p>Email: swr.albert.swierczewski@gmail.com</p>
-                <p>Telefon: 518 550 491</p>
+                <p>Telefon: 662 060 605</p>
               </div>
             </section>
 
@@ -146,7 +146,7 @@ export default function PrivacyPolicy() {
               </p>
               <ul className="list-disc list-inside mt-3 space-y-2 pl-4">
                 <li>Email: swr.albert.swierczewski@gmail.com</li>
-                <li>Telefon: 518 550 491</li>
+                <li>Telefon: 662 060 605</li>
               </ul>
             </section>
 
